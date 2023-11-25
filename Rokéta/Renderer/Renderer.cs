@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
 
-namespace ConsoleRenderer2.Renderer
+namespace Roketa.Renderer
 {
     internal class Renderer
     {
