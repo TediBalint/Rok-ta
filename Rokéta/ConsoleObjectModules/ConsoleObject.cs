@@ -16,7 +16,7 @@ namespace Roketa.ConsoleObjectModules
         public int Width { get; set; }
         public int Height { get; set; }
         public CharInfo[,] CharInfos { get; set; }
-        private string? FilePath;
+        public string? FilePath;
 
         public ConsoleObject(int x, int y, int zIndex, int width, int height,string? filePath = null)
         {

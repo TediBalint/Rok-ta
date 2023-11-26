@@ -60,7 +60,7 @@ namespace Roketa.ConsoleObjectModules
 			{
 				return len;
 			}
-			if (thisIndex <= consoleObjectList.Last().Z_Index)
+			if (thisIndex <= consoleObjectList.First().Z_Index)
 			{
 				return 0;
 			}

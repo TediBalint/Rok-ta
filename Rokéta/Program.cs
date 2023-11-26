@@ -37,12 +37,14 @@ void main()
 
 	// ConsoleObjectList sorted by Zindex for render 
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
-	ConsoleObject background = consoleObjectManager.BuildConsoleObject(0,0,0, width, height);
+	ConsoleObject background = consoleObjectManager.BuildConsoleObject(0, 0, 0, width, height);
 	background.Fill(ConsoleColor.Red);
-	Player player1 = consoleObjectManager.BuildPlayer("Kindian", 20, 20, 2, 5, 5, filePath:"SafeFiles\\Objects\\Obj1.txt");
-	ConsoleObject obj2 = consoleObjectManager.BuildConsoleObject(40, 20, 1, 5, 5, filePath:"SafeFiles\\Objects\\Obj2.txt");
-	Debug.WriteLine(obj2.X + " " + obj2.Y);
-    consoleObjectManager.RenderObjects();
+	ConsoleObject obj2 = consoleObjectManager.BuildConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	ConsoleObject obj3 = consoleObjectManager.BuildConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	Player player1 = consoleObjectManager.BuildPlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
+	ConsoleObject obj4 = consoleObjectManager.BuildConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+
+	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
 
