@@ -6,14 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Roketa.ConsoleObject
+namespace Roketa.ConsoleObjectModules
 {
     public class ConsoleObject
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        private int lastX = -1;
-        private int lastY = -1;
+        public double X { get; set; }
+        public double Y { get; set; }
         public int Z_Index { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
@@ -50,7 +48,7 @@ namespace Roketa.ConsoleObject
                 index++;
             }
         }
-        public void Move(int x, int y)
+        public void MoveRaw(int x, int y)
         {
             if (canMoveX(x))
             {
@@ -61,31 +59,45 @@ namespace Roketa.ConsoleObject
 				//azert -= mert kulonben +ra le menne
 				Y -= y;
 			}
+		}
+        public void MoveMotion(double x, double y, int currentGameThicks)
+        {
 
-		}
-        public bool canMoveX(int x)
+			if (canMoveX(x/currentGameThicks))
+            {
+                X += x / currentGameThicks;
+            }
+            if (canMoveY(y/currentGameThicks))
+            {
+                //azert -= mert kulonben +ra le menne
+                Y -= y / currentGameThicks;
+            }
+        }
+        public bool canMoveX(double x)
         {
-			if (x + X + Width <= Console.WindowWidth && x + X >= 0)
+            int offset;
+            if(int.TryParse(x.ToString(), out _)) offset = 0;
+			else offset = 1;
+			if (x + X + Width-offset <= Console.WindowWidth && x + X >= 0)
             {
                 return true;
             }
             return false;
 		}
-        public bool canMoveY(int y)
+        public bool canMoveY(double y)
         {
-			if (Y + Height - y <= Console.WindowHeight && Y - y >= 0)
+			int offset;
+            if (int.TryParse(y.ToString(), out _)) offset = 0;
+            else offset = 1;
+			if (Y + Height - y - offset <= Console.WindowHeight && Y - y >= 0)
             {
                 return true;
             }
             return false;
 		}
-        public bool canMove(int x, int y)
+        public bool canMove(double x, double y)
         {
-            bool[] conditions = { x + X + Width <= Console.WindowWidth, x + X >= 0, Y + Height - y <= Console.WindowHeight, Y - y >= 0 };
-			if (conditions.All(x => x))
-            {
-                return true;
-            }
+            if(canMoveX(x) && canMoveY(y)) return true;
             return false;
 		}
         public void Fill(ConsoleColor color = ConsoleColor.Black)
@@ -108,7 +120,7 @@ namespace Roketa.ConsoleObject
 			{
 				for (int j = 0; j < Width; j++)
 				{
-					pixels[i + Y, j + X] = CharInfos[i, j];
+					pixels[i + (int)Y, j + (int)X] = CharInfos[i, j];
 				}
 			}
 

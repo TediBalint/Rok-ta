@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Rokéta.ConsoleObjectModules.PlayerModules;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Roketa.ConsoleObject
+
+namespace Roketa.ConsoleObjectModules
 {
 	internal class ConsoleObjectManager
 	{
@@ -21,11 +24,21 @@ namespace Roketa.ConsoleObject
 		{
 			ConsoleObject newObj = new ConsoleObject(x, y, zIndex, width, height, filePath);
 			consoleObjectList.Insert(findConsoleObjectPlace(newObj), newObj);
-			if(instantlyShow)
+			if (instantlyShow)
 			{
 				newObj.insertToMatrix(ref pixels);
 			}
 			return newObj;
+		}
+		public Player BuildPlayer(string name ,int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
+		{
+			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name);
+			consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
+			if (instantlyShow)
+			{
+				newPlayer.insertToMatrix(ref pixels);
+			}
+			return newPlayer;
 		}
 		public void RenderObjects()
 		{
@@ -43,11 +56,11 @@ namespace Roketa.ConsoleObject
 			{
 				return 0;
 			}
-			if (thisIndex >= consoleObjectList.Max(x => x.Z_Index))
+			if (thisIndex >= consoleObjectList.Last().Z_Index)
 			{
 				return len;
 			}
-			if (thisIndex <= consoleObjectList.Min(x => x.Z_Index))
+			if (thisIndex <= consoleObjectList.Last().Z_Index)
 			{
 				return 0;
 			}

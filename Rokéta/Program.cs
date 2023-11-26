@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using Roketa.Renderer;
-using Roketa.ConsoleObject;
+using Roketa.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.PlayerModules;
+
 void Performance_BenchMark()
 {
 	int width = Console.WindowWidth;
@@ -37,62 +39,85 @@ void main()
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
 	ConsoleObject background = consoleObjectManager.BuildConsoleObject(0,0,0, width, height);
 	background.Fill(ConsoleColor.Red);
-	ConsoleObject obj1 = consoleObjectManager.BuildConsoleObject(20, 20, 2, 5, 5, filePath:"SafeFiles\\Objects\\Obj1.txt");
+	Player player1 = consoleObjectManager.BuildPlayer("Kindian", 20, 20, 2, 5, 5, filePath:"SafeFiles\\Objects\\Obj1.txt");
 	ConsoleObject obj2 = consoleObjectManager.BuildConsoleObject(40, 20, 1, 5, 5, filePath:"SafeFiles\\Objects\\Obj2.txt");
+	Debug.WriteLine(obj2.X + " " + obj2.Y);
     consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
-	
+
 
 
 	// thread for inputs
-	Thread thread2 = new Thread(() =>
+	Thread thread2 = new Thread(inputThread);
+	
+	thread2.Start();
+
+	bool obj2State = true;
+	bool obj2State2 = true;
+	int gameThicks = 0;
+	int currentGameThicks = 2000;
+	Stopwatch timer = Stopwatch.StartNew();
+	double speed = 50;
+
+	//gameloop
+	while (true)
+	{
+		if (obj2State)
+		{
+			if (obj2.canMoveX(speed / currentGameThicks)) obj2.MoveMotion(speed, 0, currentGameThicks);
+			else obj2State = false;
+		}
+		else
+		{
+			if (obj2.canMoveX(-speed/currentGameThicks)) obj2.MoveMotion(-speed, 0, currentGameThicks);
+			else obj2State = true;
+		}
+		if (obj2State2)
+		{
+			if (obj2.canMoveY(speed / currentGameThicks)) obj2.MoveMotion(0, speed, currentGameThicks);
+			else obj2State2 = false;
+		}
+		else
+		{
+			if (obj2.canMoveY(-speed / currentGameThicks)) obj2.MoveMotion(0, -speed, currentGameThicks);
+			else obj2State2 = true;
+		}
+		consoleObjectManager.RenderObjects();
+		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
+		renderer.Render();
+		gameThicks++;
+		if(timer.Elapsed.TotalSeconds >= 1)
+		{
+			timer.Restart();
+			currentGameThicks = gameThicks;
+			gameThicks = 0;
+		}
+	}
+	void inputThread()
 	{
 		while (true)
 		{
 			ConsoleKeyInfo keyPress = Console.ReadKey(true);
 			if (keyPress.KeyChar == 'w')
 			{
-				obj1.Move(0, 1);
+				player1.MoveRaw(0, 1);
 			}
 			else if (keyPress.KeyChar == 's')
 			{
-				obj1.Move(0, -1);
+				player1.MoveRaw(0, -1);
 			}
 			else if (keyPress.KeyChar == 'd')
 			{
-				obj1.Move(1, 0);
+				player1.MoveRaw(1, 0);
 			}
 			else if (keyPress.KeyChar == 'a')
 			{
-				obj1.Move(-1, 0);
+				player1.MoveRaw(-1, 0);
 			}
 		}
-
-	});
-	thread2.Start();
-
-	bool obj2State = true;
-	while (true)
-	{
-		if (obj2State)
-		{
-			if (obj2.canMoveX(1)) obj2.Move(1, 0);
-			else obj2State = false;
-		}
-		else
-		{
-			if (obj2.canMoveX(-1)) obj2.Move(-1, 0);
-			else obj2State = true;
-		}
-		consoleObjectManager.RenderObjects();
-		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
-		renderer.Render();
 	}
 	
-	
-		
-
 }
 
 CharInfo[] matrixToVector(CharInfo[,] charInfos)
@@ -106,4 +131,5 @@ CharInfo[] matrixToVector(CharInfo[,] charInfos)
 	return output;
 }
 main();
+
 
