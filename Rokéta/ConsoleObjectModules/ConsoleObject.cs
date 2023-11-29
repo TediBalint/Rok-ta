@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,38 +16,82 @@ namespace Roketa.ConsoleObjectModules
         public int Z_Index { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public CharInfo[,] CharInfos { get; set; }
+        public CharInfo?[,] CharInfos { get; set; }
         public string? FilePath;
 
-        public ConsoleObject(int x, int y, int zIndex, int width, int height,string? filePath = null)
+        public ConsoleObject(int x, int y, int zIndex, int? width, int? height,string? filePath = null)
         {
             X = x;
             Y = y;
             Z_Index = zIndex;
-            Width = width;
-            Height = height;
-            FilePath = filePath;
-            CharInfos = new CharInfo[height, width];
-            if (filePath != null)
+            if(filePath != null && File.Exists(filePath))
             {
-                readFile();
+				FilePath = filePath;
+				int[] sizes = getWidthHeightFromFile();
+                Width = sizes[0];
+                Height = sizes[1];
+                
+
+				CharInfos = new CharInfo?[Height, Width];
+				
+				readFile();
+			}
+            else if(width == null || height == null)
+            {
+                throw new Exception("ConsoleObject has no width,height and filepath");
             }
+            else
+            {
+				Width = width.Value;
+				Height = height.Value;
+				CharInfos = new CharInfo?[height.Value, width.Value];
+			}
+		}
+        private int[] getWidthHeightFromFile()
+        {
+            // filepath not null
+            int height = 1;
+            StreamReader sr = new StreamReader(FilePath);
+            int width = sr.ReadLine().Split(' ').Length;
+            while(!sr.EndOfStream)
+            {
+                sr.ReadLine();
+                height++;
+            }
+            sr.Close();
+            return new int[2] { width, height };
         }
         private void readFile()
         {
-            StreamReader sr = new StreamReader(FilePath);
-            int index = 0;
-            while(!sr.EndOfStream) 
+            
+            StreamReader sr;
+            try
             {
-                string[] line = sr.ReadLine().Split(' ');
-
-				for (int i = 0; i < line.Length; i++)
-                {
-                    CharInfo newCharInfo = new CharInfo(background: Colors.colorDictionary[line[i]]);
-                    CharInfos[index, i] = newCharInfo;
-                }
-                index++;
+                sr = new StreamReader(FilePath);
             }
+			catch (FileNotFoundException)
+			{
+				throw new Exception("File not found");
+			}
+			int index = 0;
+				while (!sr.EndOfStream)
+				{
+					string[] line = sr.ReadLine().Split(' ');
+
+					for (int i = 0; i < line.Length; i++)
+					{
+						if (!(Colors.colorDictionary[line[i]] == null))
+						{
+							CharInfo newCharInfo = new CharInfo(background: Colors.colorDictionary[line[i]]);
+							CharInfos[index, i] = newCharInfo;
+						}
+						else
+						{
+							CharInfos[index, i] = null;
+						}
+					}
+					index++;
+				}            
         }
         public void MoveRaw(int x, int y)
         {
@@ -114,13 +159,14 @@ namespace Roketa.ConsoleObjectModules
         public void insertToMatrix(ref CharInfo[,] pixels)
         {
             //ehhez lehet kell algoritmus amitol gyorsabb lesz????
-
-
 			for (int i = 0; i < Height; i++)
 			{
 				for (int j = 0; j < Width; j++)
 				{
-					pixels[i + (int)Y, j + (int)X] = CharInfos[i, j];
+                    if(CharInfos[i, j] != null)
+                    {
+					    pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+					}
 				}
 			}
 

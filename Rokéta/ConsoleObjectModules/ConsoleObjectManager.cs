@@ -19,8 +19,14 @@ namespace Roketa.ConsoleObjectModules
 			consoleObjectList = new List<ConsoleObject>();
 			pixels = new CharInfo[height, width];
 		}
-
-		public ConsoleObject BuildConsoleObject(int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
+		public void HandleCollisions()
+		{
+			foreach (ConsoleObject consoleObj in consoleObjectList) 
+			{
+			
+			}
+		}
+		public ConsoleObject CreateConsoleObject(int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
 		{
 			ConsoleObject newObj = new ConsoleObject(x, y, zIndex, width, height, filePath);
 			consoleObjectList.Insert(findConsoleObjectPlace(newObj), newObj);
@@ -30,7 +36,7 @@ namespace Roketa.ConsoleObjectModules
 			}
 			return newObj;
 		}
-		public Player BuildPlayer(string name ,int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
+		public Player CreatePlayer(string name ,int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
 		{
 			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name);
 			consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);

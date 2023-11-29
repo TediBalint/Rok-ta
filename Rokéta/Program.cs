@@ -30,6 +30,7 @@ void Performance_BenchMark()
 void main()
 {
 	Console.CursorVisible=false;
+	Console.Title = "Rokéta";
 	int width = Console.WindowWidth;
 	int height = Console.WindowHeight;	
 	
@@ -37,13 +38,13 @@ void main()
 
 	// ConsoleObjectList sorted by Zindex for render 
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
-	ConsoleObject background = consoleObjectManager.BuildConsoleObject(0, 0, 0, width, height);
+	ConsoleObject background = consoleObjectManager.CreateConsoleObject(0, 0, 0, width, height);
 	background.Fill(ConsoleColor.Red);
-	ConsoleObject obj2 = consoleObjectManager.BuildConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	ConsoleObject obj3 = consoleObjectManager.BuildConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	Player player1 = consoleObjectManager.BuildPlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
-	ConsoleObject obj4 = consoleObjectManager.BuildConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-
+	ConsoleObject obj2 = consoleObjectManager.CreateConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	ConsoleObject obj3 = consoleObjectManager.CreateConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	Player player1 = consoleObjectManager.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
+	ConsoleObject obj4 = consoleObjectManager.CreateConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	ConsoleObject letteR = consoleObjectManager.CreateConsoleObject(30, 10, 2, 3, 4, "SafeFiles\\Objects\\R.txt");
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
@@ -85,6 +86,7 @@ void main()
 			if (obj2.canMoveY(-speed / currentGameThicks)) obj2.MoveMotion(0, -speed, currentGameThicks);
 			else obj2State2 = true;
 		}
+		consoleObjectManager.HandleCollisions();
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 		renderer.Render();
@@ -111,7 +113,7 @@ void main()
 			}
 			else if (keyPress.KeyChar == 'd')
 			{
-				player1.MoveRaw(1, 0);
+				player1.MoveRaw(1 ,0);
 			}
 			else if (keyPress.KeyChar == 'a')
 			{
@@ -128,8 +130,8 @@ CharInfo[] matrixToVector(CharInfo[,] charInfos)
 	int index = 0;
     foreach (CharInfo chr in charInfos)
     {
-		output[index++] = chr;   
-    }
+		output[index++] = chr;
+	}
 	return output;
 }
 main();
