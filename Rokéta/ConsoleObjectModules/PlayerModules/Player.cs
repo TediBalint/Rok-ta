@@ -40,5 +40,9 @@ namespace Rokéta.ConsoleObjectModules.PlayerModules
             sw.WriteLine(Stats.ToString());
             sw.Close();
         }
-    }
+		public override void OnCollision(ConsoleObject otherObject)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

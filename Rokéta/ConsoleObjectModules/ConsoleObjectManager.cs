@@ -26,16 +26,16 @@ namespace Roketa.ConsoleObjectModules
 			
 			}
 		}
-		public ConsoleObject CreateConsoleObject(int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
-		{
-			ConsoleObject newObj = new ConsoleObject(x, y, zIndex, width, height, filePath);
-			consoleObjectList.Insert(findConsoleObjectPlace(newObj), newObj);
-			if (instantlyShow)
-			{
-				newObj.insertToMatrix(ref pixels);
-			}
-			return newObj;
-		}
+		//public ConsoleObject CreateConsoleObject(int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
+		//{
+		//	ConsoleObject newObj = new ConsoleObject(x, y, zIndex, width, height, filePath);
+		//	consoleObjectList.Insert(findConsoleObjectPlace(newObj), newObj);
+		//	if (instantlyShow)
+		//	{
+		//		newObj.insertToMatrix(ref pixels);
+		//	}
+		//	return newObj;
+		//}
 		public Player CreatePlayer(string name ,int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
 		{
 			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name);

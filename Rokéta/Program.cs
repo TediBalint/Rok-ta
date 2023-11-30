@@ -38,13 +38,13 @@ void main()
 
 	// ConsoleObjectList sorted by Zindex for render 
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
-	ConsoleObject background = consoleObjectManager.CreateConsoleObject(0, 0, 0, width, height);
-	background.Fill(ConsoleColor.Red);
-	ConsoleObject obj2 = consoleObjectManager.CreateConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	ConsoleObject obj3 = consoleObjectManager.CreateConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	//ConsoleObject background = consoleObjectManager.CreateConsoleObject(0, 0, 0, width, height);
+	//background.Fill(ConsoleColor.Red);
+	//ConsoleObject obj2 = consoleObjectManager.CreateConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	//ConsoleObject obj3 = consoleObjectManager.CreateConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
 	Player player1 = consoleObjectManager.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
-	ConsoleObject obj4 = consoleObjectManager.CreateConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	ConsoleObject letteR = consoleObjectManager.CreateConsoleObject(30, 10, 2, 3, 4, "SafeFiles\\Objects\\R.txt");
+	//ConsoleObject obj4 = consoleObjectManager.CreateConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
+	//ConsoleObject letteR = consoleObjectManager.CreateConsoleObject(30, 10, 2, 3, 4, "SafeFiles\\Objects\\R.txt");
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
@@ -66,26 +66,6 @@ void main()
 	//gameloop
 	while (true)
 	{
-		if (obj2State)
-		{
-			if (obj2.canMoveX(speed / currentGameThicks)) obj2.MoveMotion(speed, 0, currentGameThicks);
-			else obj2State = false;
-		}
-		else
-		{
-			if (obj2.canMoveX(-speed/currentGameThicks)) obj2.MoveMotion(-speed, 0, currentGameThicks);
-			else obj2State = true;
-		}
-		if (obj2State2)
-		{
-			if (obj2.canMoveY(speed / currentGameThicks)) obj2.MoveMotion(0, speed, currentGameThicks);
-			else obj2State2 = false;
-		}
-		else
-		{
-			if (obj2.canMoveY(-speed / currentGameThicks)) obj2.MoveMotion(0, -speed, currentGameThicks);
-			else obj2State2 = true;
-		}
 		consoleObjectManager.HandleCollisions();
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);

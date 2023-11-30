@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace Roketa.ConsoleObjectModules
 {
-    public class ConsoleObject
+    public abstract class ConsoleObject
     {
         public double X { get; set; }
         public double Y { get; set; }
+        // X = 0, Y = 0 a bal felső pont
         public int Z_Index { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public CharInfo?[,] CharInfos { get; set; }
         public string? FilePath;
+		public abstract void OnCollision(ConsoleObject otherObject);
 
-        public ConsoleObject(int x, int y, int zIndex, int? width, int? height,string? filePath = null)
+		public ConsoleObject(int x, int y, int zIndex, int? width, int? height,string? filePath = null)
         {
             X = x;
             Y = y;
@@ -169,7 +171,19 @@ namespace Roketa.ConsoleObjectModules
 					}
 				}
 			}
-
 		}
+        public bool isCollsion(ConsoleObject otherObject)
+        {
+            if(otherObject.X + otherObject.Width >= (int)X)
+            {
+                if(otherObject.Y - otherObject.Height <= (int)Y)
+                {
+                    return true;
+                    // make points for ConsoleObject like Top left Top right Bottom left Bottom right
+                }
+            } 
+
+            return false;
+        }
 	}
 }
