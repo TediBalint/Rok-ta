@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using Roketa.Renderer;
 using Roketa.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.PlayerModules;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 
 void Performance_BenchMark()
 {
@@ -38,13 +40,9 @@ void main()
 
 	// ConsoleObjectList sorted by Zindex for render 
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
-	//ConsoleObject background = consoleObjectManager.CreateConsoleObject(0, 0, 0, width, height);
-	//background.Fill(ConsoleColor.Red);
-	//ConsoleObject obj2 = consoleObjectManager.CreateConsoleObject(40, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	//ConsoleObject obj3 = consoleObjectManager.CreateConsoleObject(10, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	Player player1 = consoleObjectManager.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
-	//ConsoleObject obj4 = consoleObjectManager.CreateConsoleObject(50, 20, 1, 5, 5, filePath: "SafeFiles\\Objects\\Obj2.txt");
-	//ConsoleObject letteR = consoleObjectManager.CreateConsoleObject(30, 10, 2, 3, 4, "SafeFiles\\Objects\\R.txt");
+	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
+	Background background = consoleObjectFactory.CreateBackground(ConsoleColor.Red);
+	Player player1 = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
@@ -85,19 +83,19 @@ void main()
 			ConsoleKeyInfo keyPress = Console.ReadKey(true);
 			if (keyPress.KeyChar == 'w')
 			{
-				player1.MoveRaw(0, 1);
+				player1.MoveRaw(0, 1.5);
 			}
 			else if (keyPress.KeyChar == 's')
 			{
-				player1.MoveRaw(0, -1);
+				player1.MoveRaw(0, -1.5);
 			}
 			else if (keyPress.KeyChar == 'd')
 			{
-				player1.MoveRaw(1 ,0);
+				player1.MoveRaw(1.5 ,0);
 			}
 			else if (keyPress.KeyChar == 'a')
 			{
-				player1.MoveRaw(-1, 0);
+				player1.MoveRaw(-1.5, 0);
 			}
 		}
 	}

@@ -13,12 +13,40 @@ namespace Roketa.ConsoleObjectModules
     {
         public double X { get; set; }
         public double Y { get; set; }
+        public double[] TR { 
+            get 
+            {
+                return new double[] {X + Width, Y };    
+            }
+        }
+        public double[] TL
+        {
+            get
+            {
+                return new double[] { X, Y };
+            }
+        }
+        public double[] BR
+        {
+            get
+            {
+                return new double[] { X + Width, Y - Height};
+            }
+        }
+        public double[] BL
+        {
+            get
+            {
+                return new double[] { X, Y-Height};
+            }
+        }
         // X = 0, Y = 0 a bal felső pont
         public int Z_Index { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public CharInfo?[,] CharInfos { get; set; }
         public string? FilePath;
+
 		public abstract void OnCollision(ConsoleObject otherObject);
 
 		public ConsoleObject(int x, int y, int zIndex, int? width, int? height,string? filePath = null)
@@ -95,7 +123,7 @@ namespace Roketa.ConsoleObjectModules
 					index++;
 				}            
         }
-        public void MoveRaw(int x, int y)
+        public void MoveRaw(double x, double y)
         {
             if (canMoveX(x))
             {
@@ -172,16 +200,17 @@ namespace Roketa.ConsoleObjectModules
 				}
 			}
 		}
-        public bool isCollsion(ConsoleObject otherObject)
+        public bool isCollision(ConsoleObject otherObject)
         {
-            if(otherObject.X + otherObject.Width >= (int)X)
-            {
-                if(otherObject.Y - otherObject.Height <= (int)Y)
-                {
-                    return true;
-                    // make points for ConsoleObject like Top left Top right Bottom left Bottom right
-                }
-            } 
+            if 
+            (
+                (otherObject != this) ||
+                (otherObject.BR[0] > TL[0] && otherObject.BR[1] > TL[1]) || // otherobject is in Top left
+                (otherObject.BL[0] < TR[0] && otherObject.BL[1] > TR[1]) || // otherobject is in Top Right
+                (otherObject.TR[0] > BL[0] && otherObject.TR[1] < BL[1]) || // otherobject is in Bottom Left
+                (otherObject.TR[0] > BL[0] && otherObject.TR[1] < BL[1]) // otherobject is in Bottom Right
+            )
+            { return true; }
 
             return false;
         }
