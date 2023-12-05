@@ -1,0 +1,3 @@
+dr bl dr
+bl dm bl
+bl bl bl

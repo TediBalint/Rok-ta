@@ -4,6 +4,7 @@ using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 
 void Performance_BenchMark()
 {
@@ -31,6 +32,7 @@ void Performance_BenchMark()
 
 void main()
 {
+	Random r = new Random();
 	Console.CursorVisible=false;
 	Console.Title = "Rokéta";
 	int width = Console.WindowWidth;
@@ -43,6 +45,8 @@ void main()
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Background background = consoleObjectFactory.CreateBackground(ConsoleColor.Red);
 	Player player1 = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
+	Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
+	consoleObjectManager.consoleObjectList.Add(enemy);
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
