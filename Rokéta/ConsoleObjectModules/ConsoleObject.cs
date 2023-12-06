@@ -205,19 +205,15 @@ namespace Roketa.ConsoleObjectModules
         {
             if 
             (
-                (otherObject != this) &&
-                ((otherObject.BR[0] > TL[0] && otherObject.BR[1] < TL[1]) || // otherobject is in Top left
-                (otherObject.BL[0] < TR[0] && otherObject.BL[1] < TR[1]) || // otherobject is in Top Right
-                (otherObject.TR[0] > BL[0] && otherObject.TR[1] > BL[1]) || // otherobject is in Bottom Left
-                (otherObject.TL[0] > BR[0] && otherObject.TL[1] > BR[1])) // otherobject is in Bottom Right
-            )
-            {
-                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {BR[1]} > {TL[1]}");
-                //Debug.WriteLine($"{BL[0]} < {TR[0]}, {BL[1]} > {TR[1]}");
-                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {TR[1]} < {BL[1]}");
-                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {TR[1]} < {BR[1]}");
-                return true;
-                    
+                // AABB algorithm
+                otherObject != this &&
+                (int)X < (int)(otherObject.X + otherObject.Width) &&
+                (int)(X + Width) > (int)otherObject.X &&
+                (int)Y < (int)(otherObject.Y + otherObject.Height) &&
+                (int)(Y + Height)> (int)otherObject.Y                 
+			)
+			{
+                return true; 
             }
 
             return false;

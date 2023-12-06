@@ -45,7 +45,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         public override void OnCollision(ConsoleObject otherObject)
         {
             if (otherObject.GetType().Name == "Enemy") { 
-                Debug.WriteLine("Collided with " + otherObject.GetType().Name);
+                Debug.WriteLine("Collided with " + otherObject.GetType().Name + DateTime.Now);
                 //Environment.Exit(0);
             }
         }
