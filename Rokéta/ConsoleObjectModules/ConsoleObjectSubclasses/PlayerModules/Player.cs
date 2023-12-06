@@ -44,7 +44,12 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         }
         public override void OnCollision(ConsoleObject otherObject)
         {
-            if (otherObject.GetType().Name != "Background") Debug.WriteLine("Collided with " + otherObject.GetType().Name);
+            //if (otherObject.GetType().Name != "Background") Debug.WriteLine("Collided with " + otherObject.GetType().Name);
+            if(otherObject.GetType().Name == "Player") Debug.WriteLine("Collided with player" + DateTime.Now);
+            //if (otherObject.GetType().Name != "Player")
+            //{
+            //    Debug.WriteLine("Colldied with player");
+            //}
 
         }
     }

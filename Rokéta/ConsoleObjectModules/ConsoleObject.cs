@@ -11,6 +11,7 @@ namespace Roketa.ConsoleObjectModules
 {
     public abstract class ConsoleObject
     {
+        public bool IsDisposed { get; protected set; }
         public double X { get; set; }
         public double Y { get; set; }
         public double[] TR { 
@@ -204,13 +205,20 @@ namespace Roketa.ConsoleObjectModules
         {
             if 
             (
-                (otherObject != this) ||
-                (otherObject.BR[0] > TL[0] && otherObject.BR[1] > TL[1]) || // otherobject is in Top left
-                (otherObject.BL[0] < TR[0] && otherObject.BL[1] > TR[1]) || // otherobject is in Top Right
-                (otherObject.TR[0] > BL[0] && otherObject.TR[1] < BL[1]) || // otherobject is in Bottom Left
-                (otherObject.TR[0] > BL[0] && otherObject.TR[1] < BL[1]) // otherobject is in Bottom Right
+                (otherObject != this) &&
+                ((otherObject.BR[0] > TL[0] && otherObject.BR[1] < TL[1]) || // otherobject is in Top left
+                (otherObject.BL[0] < TR[0] && otherObject.BL[1] < TR[1]) || // otherobject is in Top Right
+                (otherObject.TR[0] > BL[0] && otherObject.TR[1] > BL[1]) || // otherobject is in Bottom Left
+                (otherObject.TL[0] > BR[0] && otherObject.TL[1] > BR[1])) // otherobject is in Bottom Right
             )
-            { return true; }
+            {
+                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {BR[1]} > {TL[1]}");
+                //Debug.WriteLine($"{BL[0]} < {TR[0]}, {BL[1]} > {TR[1]}");
+                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {TR[1]} < {BL[1]}");
+                //Debug.WriteLine($"{BR[0]} > {TL[0]}, {TR[1]} < {BR[1]}");
+                return true;
+                    
+            }
 
             return false;
         }

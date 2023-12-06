@@ -43,6 +43,7 @@ void main()
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Background background = consoleObjectFactory.CreateBackground(ConsoleColor.Red);
 	Player player1 = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
+	Player player2 = consoleObjectFactory.CreatePlayer("Kindian", 10, 20, 2, 5, 5, filePath: "SafeFiles\\Objects\\Obj1.txt");
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();

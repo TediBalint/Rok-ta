@@ -29,27 +29,27 @@ namespace Roketa.ConsoleObjectModules
 					{
 						consoleObj.OnCollision(otherObject);
 					}
+					
 				}
 			}
 		}
-		//public ConsoleObject CreateConsoleObject(int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
-		//{
-		//	ConsoleObject newObj = new ConsoleObject(x, y, zIndex, width, height, filePath);
-		//	consoleObjectList.Insert(findConsoleObjectPlace(newObj), newObj);
-		//	if (instantlyShow)
-		//	{
-		//		newObj.insertToMatrix(ref pixels);
-		//	}
-		//	return newObj;
-		//}
 		
 		public void RenderObjects()
 		{
-            foreach (ConsoleObject consoleObject in consoleObjectList)
-            {
-				consoleObject.insertToMatrix(ref pixels);
-            }
+			for (int i = 0; i < consoleObjectList.Count; i++)
+			{
+				ConsoleObject consoleObject = consoleObjectList[i];
+				if (consoleObject.IsDisposed)
+				{
+					consoleObjectList.Remove(consoleObject);
+				}
+				else
+				{
+					consoleObject.insertToMatrix(ref pixels);
+				}
+			}
         }
+		
 		
 	}
 }
