@@ -50,7 +50,7 @@ namespace Roketa.ConsoleObjectModules
 
 		public abstract void OnCollision(ConsoleObject otherObject);
 
-		public ConsoleObject(int x, int y, int zIndex, int? width, int? height,string? filePath = null)
+		public ConsoleObject(double x, double y, int zIndex, int? width, int? height,string? filePath = null)
         {
             X = x;
             Y = y;
@@ -124,58 +124,27 @@ namespace Roketa.ConsoleObjectModules
 					index++;
 				}            
         }
-        public void MoveRaw(double x, double y)
-        {
-            if (canMoveX(x))
-            {
-				X += x;
-			}
-            if(canMoveY(y))
-            {
-				//azert -= mert kulonben +ra le menne
-				Y -= y;
-			}
-		}
-        public void MoveMotion(double x, double y, int currentGameThicks)
+        public virtual void MoveRaw(double x, double y)
         {
 
-			if (canMoveX(x/currentGameThicks))
-            {
-                X += x / currentGameThicks;
-            }
-            if (canMoveY(y/currentGameThicks))
-            {
-                //azert -= mert kulonben +ra le menne
-                Y -= y / currentGameThicks;
-            }
+			X += x; 
+			//azert -= mert kulonben +ra le menne
+			Y -= y;
+            Snap();
+		}
+        public void MoveMotion(double x, double y, int currentGameThicks)
+        {           
+            X += x / currentGameThicks;
+            Y -= y / currentGameThicks;
+            Snap();
         }
-        public bool canMoveX(double x)
+        private void Snap()
         {
-            int offset;
-            if(int.TryParse(x.ToString(), out _)) offset = 0;
-			else offset = 1;
-			if (x + X + Width-offset <= Console.WindowWidth && x + X >= 0)
-            {
-                return true;
-            }
-            return false;
-		}
-        public bool canMoveY(double y)
-        {
-			int offset;
-            if (int.TryParse(y.ToString(), out _)) offset = 0;
-            else offset = 1;
-			if (Y + Height - y - offset <= Console.WindowHeight && Y - y >= 0)
-            {
-                return true;
-            }
-            return false;
-		}
-        public bool canMove(double x, double y)
-        {
-            if(canMoveX(x) && canMoveY(y)) return true;
-            return false;
-		}
+            X = Math.Min(X, Console.WindowWidth-Width);
+            X = Math.Max(X, 0);
+            Y = Math.Min(Y, Console.WindowHeight-Height);
+            Y = Math.Max(Y, 0);
+        }
         public void Fill(ConsoleColor color = ConsoleColor.Black)
         {
             CharInfo filledChar = new CharInfo(background: color);
@@ -187,17 +156,27 @@ namespace Roketa.ConsoleObjectModules
                 }
             }
         }
-        public void insertToMatrix(ref CharInfo[,] pixels)
+        public virtual void insertToMatrix(ref CharInfo[,] pixels)
         {
-            //ehhez lehet kell algoritmus amitol gyorsabb lesz????
+			Snap();
+			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
 			for (int i = 0; i < Height; i++)
 			{
 				for (int j = 0; j < Width; j++)
 				{
-                    if(CharInfos[i, j] != null)
+                    try
                     {
-					    pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+						if (CharInfos[i, j] != null)
+						{
+							pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+						}
 					}
+                    catch (IndexOutOfRangeException)
+                    {
+                        Debug.WriteLine(i + " " + j);
+					}
+                    
+                    
 				}
 			}
 		}

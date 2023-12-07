@@ -1,5 +1,6 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,29 @@ namespace Rokéta.ConsoleObjectModules
 		{
 			ConsoleObjectManager = consoleObjectManager;
 		}
-		public Player CreatePlayer(string name, int x, int y, int zIndex, int width, int height, string? filePath = null, bool instantlyShow = true)
+		public Player CreatePlayer(string name, int x, int y, int zIndex, int width, int height, Weapon weapon, string? filePath = null, bool instantlyShow = true)
 		{
-			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name);
+			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name, weapon);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
 			if (instantlyShow)
 			{
 				newPlayer.insertToMatrix(ref ConsoleObjectManager.pixels);
 			}
 			return newPlayer;
+		}
+		public Enemy CreateEnemy(int x, int y, int zIndex, int? width, int? height, string? filePath, bool instantlyShow = true)
+		{
+			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath);
+			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);
+            if (instantlyShow)
+            {
+				newEnemy.insertToMatrix(ref ConsoleObjectManager.pixels);
+            }
+			return newEnemy;
+        }
+		public void addBullet(Bullet bullet)
+		{
+			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(bullet), bullet);
 		}
 		public Background CreateBackground(ConsoleColor color)
 		{

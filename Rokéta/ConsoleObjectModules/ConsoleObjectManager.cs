@@ -29,11 +29,9 @@ namespace Roketa.ConsoleObjectModules
 					{
 						consoleObj.OnCollision(otherObject);
 					}
-					
 				}
 			}
 		}
-		
 		public void RenderObjects()
 		{
 			for (int i = 0; i < consoleObjectList.Count; i++)
@@ -48,8 +46,7 @@ namespace Roketa.ConsoleObjectModules
 					consoleObject.insertToMatrix(ref pixels);
 				}
 			}
-        }
-		
+        }	
 		
 	}
 }

@@ -10,7 +10,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 {
     internal class Enemy : ConsoleObject
     {
-        public Enemy(int x, int y, int zIndex, int? width, int? height, string? filePath)
+        public Enemy(double x, double y, int zIndex, int? width, int? height, string? filePath)
         : base(x, y, zIndex, width, height, filePath)
         {
             //width: console.windowwidth

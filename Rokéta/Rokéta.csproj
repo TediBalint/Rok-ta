@@ -11,6 +11,9 @@
     <None Update="SafeFiles\Default\defaultPlayer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="SafeFiles\Objects\Bullet1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SafeFiles\Objects\Enemy1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
