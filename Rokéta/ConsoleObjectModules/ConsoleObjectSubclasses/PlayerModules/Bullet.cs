@@ -26,7 +26,9 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 		public void moveAngle()
 		{
 			double moveX = Math.Sin(angle) * speed;
-			double moveY = -Math.Cos(angle) * speed;
+			double moveY;
+			if (angle > 0) moveY = -Math.Cos(angle + 90) * speed;
+			else moveY = -Math.Cos(angle - 90) * speed;
 			MoveMotion(moveX, moveY, StaticVars.currentGameThicks);
 		}
 		public Bullet DeepCopy()

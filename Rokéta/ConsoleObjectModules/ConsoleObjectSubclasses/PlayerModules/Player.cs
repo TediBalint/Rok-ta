@@ -23,14 +23,14 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         {
             Name = name;
             Weapon = weapon;
-			weapon.spawnPos = new double[2] { X + width / 2, Y};
-            savefilePath = $"SafeFiles\\Objects\\Players\\{name}.txt";
+			Weapon.spawnPos = new double[2] { X + Width - Weapon.Bullet.Width - 1, Y-1 };
+			savefilePath = $"SafeFiles\\Objects\\Players\\{name}.txt";
             //setStats();
         }
 		public override void MoveRaw(double x, double y)
 		{
 			base.MoveRaw(x, y);
-			Weapon.spawnPos = new double[2] { X + Width / 2, Y };
+			Weapon.spawnPos = new double[2] { X + Width - Weapon.Bullet.Width - 1, Y-1 };
 		}
 		//private void setStats()
 		//{
