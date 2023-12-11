@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32.SafeHandles;
+using Rokéta.ConsoleObjectModules.Animation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,11 +48,12 @@ namespace Roketa.ConsoleObjectModules
         public int Height { get; set; }
         public CharInfo?[,] CharInfos { get; set; }
         public string? FilePath;
-
+        public List<Animation> animations { get; set; }
 		public abstract void OnCollision(ConsoleObject otherObject);
 
 		public ConsoleObject(double x, double y, int zIndex, int? width, int? height,string? filePath = null)
         {
+            animations = new List<Animation>();
             X = x;
             Y = y;
             Z_Index = zIndex;
@@ -159,7 +161,9 @@ namespace Roketa.ConsoleObjectModules
         public virtual void insertToMatrix(ref CharInfo[,] pixels)
         {
 			Snap();
+
 			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
+
 			for (int i = 0; i < Height; i++)
 			{
 				for (int j = 0; j < Width; j++)
@@ -179,7 +183,14 @@ namespace Roketa.ConsoleObjectModules
                     
 				}
 			}
-		}
+
+            // render animations
+            foreach (Animation anim in animations)
+            {
+                anim.Render(ref pixels);
+            }
+        }
+        
         public bool isCollision(ConsoleObject otherObject)
         {
             if 
