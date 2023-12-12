@@ -140,6 +140,10 @@ namespace Roketa.ConsoleObjectModules
             Y -= y / currentGameThicks;
             Snap();
         }
+        public void Rotate(double angle)
+        {
+
+        }
         private void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
