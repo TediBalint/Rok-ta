@@ -48,7 +48,7 @@ namespace Rokéta.ConsoleObjectModules
 			newBullet.X = spawnPos[0];
 			newBullet.Y = spawnPos[1];
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBullet), newBullet);
-			Debug.WriteLine($"Instantiated Bullet Speed: {newBullet.speed} Width: {newBullet.Width} Height: {newBullet.Height} Z_Index: {newBullet.Z_Index} X: {newBullet.X} Y: {newBullet.Y}");
+			//Debug.WriteLine($"Instantiated Bullet Speed: {newBullet.speed} Width: {newBullet.Width} Height: {newBullet.Height} Z_Index: {newBullet.Z_Index} X: {newBullet.X} Y: {newBullet.Y}");
 		}
 		public Background CreateBackground(ConsoleColor color)
 		{

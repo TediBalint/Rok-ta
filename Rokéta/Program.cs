@@ -77,7 +77,6 @@ void main()
 		gameThicks++;
 		if (timer.Elapsed.TotalSeconds >= 1)
 		{
-			Debug.WriteLine($"{consoleObjectManager.consoleObjectList.Count}");
 			timer.Restart();
 			currentGameThicks = gameThicks;
 			StaticVars.currentGameThicks = currentGameThicks;

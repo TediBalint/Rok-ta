@@ -18,10 +18,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         {
             if(otherObject.GetType() == typeof(Background)) {
 				MoveMotion(speed, speed, StaticVars.currentGameThicks);
-                Debug.WriteLine(angle);
 				if (IsOutOfMap()) IsDisposed = true;
 			}
-            
 		}
         private bool IsOutOfMap()
         {
@@ -32,13 +30,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
                 return true;
             }
             return false;
-
 		}
 		public override void MoveMotion(double x, double y, int currentGameThicks)
 		{
 			double moveX = Math.Sin(angle / 180 * Math.PI) * x;
 			double moveY = Math.Cos(angle / 180 * Math.PI) * y;
-            Debug.WriteLine($"X: {moveX} Y: {moveY}");
 			base.MoveMotion(moveX, moveY, currentGameThicks);
 		}
 		//public void moveAngle()
