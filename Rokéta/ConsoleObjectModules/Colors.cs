@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Roketa.ConsoleObjectModules
 {
-	internal static class Colors
+	public static class Colors
 	{
 		//public static ConsoleColor[] colors = (ConsoleColor[])Enum.GetValues(typeof(ConsoleColor));
 		public static Dictionary<string, ConsoleColor?> colorDictionary = new Dictionary<string, ConsoleColor?>()

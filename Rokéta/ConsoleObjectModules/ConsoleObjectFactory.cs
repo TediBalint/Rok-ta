@@ -4,6 +4,7 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Rokéta.ConsoleObjectModules
 {
-	internal class ConsoleObjectFactory
+	public class ConsoleObjectFactory
 	{
 		private ConsoleObjectManager ConsoleObjectManager { get; set; }
 
@@ -40,9 +41,14 @@ namespace Rokéta.ConsoleObjectModules
             }
 			return newEnemy;
         }
-		public void addBullet(Bullet bullet)
+		public void AddBullet(Bullet bullet, double angle, double[] spawnPos)
 		{
-			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(bullet), bullet);
+			Bullet newBullet = bullet.DeepCopy();
+			newBullet.angle = angle;
+			newBullet.X = spawnPos[0];
+			newBullet.Y = spawnPos[1];
+			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBullet), newBullet);
+			Debug.WriteLine($"Instantiated Bullet Speed: {newBullet.speed} Width: {newBullet.Width} Height: {newBullet.Height} Z_Index: {newBullet.Z_Index} X: {newBullet.X} Y: {newBullet.Y}");
 		}
 		public Background CreateBackground(ConsoleColor color)
 		{

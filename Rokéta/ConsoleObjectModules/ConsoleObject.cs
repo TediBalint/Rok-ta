@@ -48,12 +48,12 @@ namespace Roketa.ConsoleObjectModules
         public int Height { get; set; }
         public CharInfo?[,] CharInfos { get; set; }
         public string? FilePath;
-        public List<Animation> animations { get; set; }
+        public List<Animation> Animations { get; set; }
 		public abstract void OnCollision(ConsoleObject otherObject);
 
 		public ConsoleObject(double x, double y, int zIndex, int? width, int? height,string? filePath = null)
         {
-            animations = new List<Animation>();
+            Animations = new List<Animation>();
             X = x;
             Y = y;
             Z_Index = zIndex;
@@ -134,7 +134,7 @@ namespace Roketa.ConsoleObjectModules
 			Y -= y;
             Snap();
 		}
-        public void MoveMotion(double x, double y, int currentGameThicks)
+        public virtual void MoveMotion(double x, double y, int currentGameThicks)
         {           
             X += x / currentGameThicks;
             Y -= y / currentGameThicks;
@@ -189,7 +189,7 @@ namespace Roketa.ConsoleObjectModules
 			}
 
             // render animations
-            foreach (Animation anim in animations)
+            foreach (Animation anim in Animations)
             {
                 anim.Render(ref pixels);
             }

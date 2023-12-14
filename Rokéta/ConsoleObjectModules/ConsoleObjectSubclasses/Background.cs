@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses
 {
-	internal class Background : ConsoleObject
+	public class Background : ConsoleObject
 	{
 		public Background(ConsoleColor color) : base(0, 0, 0, Console.WindowWidth, Console.WindowHeight, null)
 		{

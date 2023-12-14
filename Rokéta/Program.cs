@@ -77,6 +77,7 @@ void main()
 		gameThicks++;
 		if (timer.Elapsed.TotalSeconds >= 1)
 		{
+			Debug.WriteLine($"{consoleObjectManager.consoleObjectList.Count}");
 			timer.Restart();
 			currentGameThicks = gameThicks;
 			StaticVars.currentGameThicks = currentGameThicks;
@@ -106,7 +107,7 @@ void main()
 			}
 			else if (keyPress.KeyChar == 'k')
 			{
-				player.Weapon.Shoot(bulletTimer);
+				player.Weapon.Shoot(bulletTimer, consoleObjectFactory);
 			}
 		}
 	}

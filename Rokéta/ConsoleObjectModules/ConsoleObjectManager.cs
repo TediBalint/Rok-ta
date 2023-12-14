@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Roketa.ConsoleObjectModules
 {
-    internal class ConsoleObjectManager
+    public class ConsoleObjectManager
 	{
 		public List<ConsoleObject> consoleObjectList;
 		public CharInfo[,] pixels;
@@ -21,14 +21,22 @@ namespace Roketa.ConsoleObjectModules
 		}
 		public void HandleCollisions()
 		{
-			foreach (ConsoleObject consoleObj in consoleObjectList) 
+			// normal for loop so it doesnt crash when changing consoleObjectList while handling collisions
+			for (int i = 0; i < consoleObjectList.Count; i++)
 			{
-				foreach(ConsoleObject otherObject in consoleObjectList)
+				for (int j = 0; j < consoleObjectList.Count; j++)
 				{
-					if(consoleObj.isCollision(otherObject))
+					if (i != j)
 					{
-						consoleObj.OnCollision(otherObject);
+						ConsoleObject consoleObj = consoleObjectList[i];
+						ConsoleObject otherObject = consoleObjectList[j];
+						if(consoleObj.isCollision(otherObject))
+						{
+							consoleObj.OnCollision(otherObject);
+						}
 					}
+					
+					
 				}
 			}
 		}
