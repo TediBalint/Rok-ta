@@ -11,6 +11,18 @@
     <None Update="SafeFiles\Default\defaultPlayer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="SafeFiles\Objects\Animations\anim1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SafeFiles\Objects\Background\bg1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SafeFiles\Objects\Background\bg2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SafeFiles\Objects\Background\bg3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SafeFiles\Objects\Bullet1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -36,6 +48,7 @@
 
   <ItemGroup>
     <Folder Include="SafeFiles\Default\" />
+    <Folder Include="SafeFiles\Objects\Background\" />
     <Folder Include="SafeFiles\Objects\Players\" />
   </ItemGroup>
 

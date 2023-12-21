@@ -29,21 +29,20 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			double[] pos;
 			if(bulletTimer.Elapsed.TotalSeconds > 1/FireRate)
 			{
-				if(_bulletAmount % 2 == 1)
+				bulletTimer.Restart();
+				if (_bulletAmount % 2 == 1)
 				{
 					pos = new double[] { spawnPos[0], spawnPos[1] };
 					consoleObjectFactory.AddBullet(Bullet, 0, pos );
 					_bulletAmount--;
 				}
-
+				if(_bulletAmount <= 0)
+				{
+					return;
+				}
 				double leftSide = Spread /-2;
 				double rightSide = -leftSide;
 				double step = Spread / _bulletAmount;
-				Debug.WriteLine($"{leftSide}, {rightSide}, {step}");
-
-				//leftSide += step;
-				//rightSide -= step;
-				Debug.WriteLine($"{leftSide}, {rightSide}, {step}");
 				for (double angle = leftSide ; angle <= rightSide; angle+=step)
 				{
 					if (angle != 0)
@@ -51,15 +50,13 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 						//COULD BE USEFUL MAYBE
 						//double spawnX = spawnPos[0] + Spread / angle; 
 
-
 						pos = new double[] { spawnPos[0], spawnPos[1] };
 						consoleObjectFactory.AddBullet(Bullet, angle, pos );
-						Debug.WriteLine(angle);
                     }
 					
 				}
 				
-				bulletTimer.Restart();
+				
 
 			}
 

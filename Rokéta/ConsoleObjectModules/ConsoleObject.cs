@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32.SafeHandles;
-using Rokéta.ConsoleObjectModules.Animation;
+using Rokéta.ConsoleObjectModules.AnimationModules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,9 @@ namespace Roketa.ConsoleObjectModules
 {
     public abstract class ConsoleObject
     {
+        public bool isMovable { get;protected set; }
         public bool IsDisposed { get; protected set; }
+        public bool IsVissible { get; protected set; }
         public double X { get; set; }
         public double Y { get; set; }
         public double[] TR { 
@@ -53,6 +55,8 @@ namespace Roketa.ConsoleObjectModules
 
 		public ConsoleObject(double x, double y, int zIndex, int? width, int? height,string? filePath = null)
         {
+            IsVissible = true;
+            isMovable = true;
             Animations = new List<Animation>();
             X = x;
             Y = y;
@@ -107,38 +111,46 @@ namespace Roketa.ConsoleObjectModules
 				throw new Exception("File not found");
 			}
 			int index = 0;
-				while (!sr.EndOfStream)
-				{
-					string[] line = sr.ReadLine().Split(' ');
+			while (!sr.EndOfStream)
+			{
+				string[] line = sr.ReadLine().Split(' ');
 
-					for (int i = 0; i < line.Length; i++)
+				for (int i = 0; i < line.Length; i++)
+				{
+                    //Debug.WriteLine(line[i] + " " + i);
+					if (!(Colors.colorDictionary[line[i]] == null))
 					{
-						if (!(Colors.colorDictionary[line[i]] == null))
-						{
-							CharInfo newCharInfo = new CharInfo(background: Colors.colorDictionary[line[i]]);
-							CharInfos[index, i] = newCharInfo;
-						}
-						else
-						{
-							CharInfos[index, i] = null;
-						}
+						CharInfo newCharInfo = new CharInfo(background: Colors.colorDictionary[line[i]]);
+						CharInfos[index, i] = newCharInfo;
 					}
-					index++;
-				}            
+					else
+					{
+						CharInfos[index, i] = null;
+					}
+				}
+				index++;
+			}            
         }
         public virtual void MoveRaw(double x, double y)
         {
-
-			X += x; 
-			//azert -= mert kulonben +ra le menne
-			Y -= y;
-            Snap();
+            if(isMovable)
+            {
+				X += x;
+				//azert -= mert kulonben +ra le menne
+				Y -= y;
+				Snap();
+			}
+			
 		}
         public virtual void MoveMotion(double x, double y, int currentGameThicks)
-        {           
-            X += x / currentGameThicks;
-            Y -= y / currentGameThicks;
-            Snap();
+        {     
+            if(isMovable)
+            {
+				X += x / currentGameThicks;
+				Y -= y / currentGameThicks;
+				Snap();
+			}
+            
         }
         public void Rotate(double angle)
         {
@@ -167,26 +179,29 @@ namespace Roketa.ConsoleObjectModules
 			Snap();
 
 			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
-
-			for (int i = 0; i < Height; i++)
-			{
-				for (int j = 0; j < Width; j++)
+            if(IsVissible)
+            {
+				for (int i = 0; i < Height; i++)
 				{
-                    try
-                    {
-						if (CharInfos[i, j] != null)
+					for (int j = 0; j < Width; j++)
+					{
+						try
 						{
-							pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+							if (CharInfos[i, j] != null)
+							{
+								pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+							}
 						}
+						catch (IndexOutOfRangeException)
+						{
+							Debug.WriteLine(i + " " + j);
+						}
+
+
 					}
-                    catch (IndexOutOfRangeException)
-                    {
-                        Debug.WriteLine(i + " " + j);
-					}
-                    
-                    
 				}
 			}
+			
 
             // render animations
             foreach (Animation anim in Animations)

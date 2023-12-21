@@ -50,9 +50,9 @@ namespace Rokéta.ConsoleObjectModules
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBullet), newBullet);
 			//Debug.WriteLine($"Instantiated Bullet Speed: {newBullet.speed} Width: {newBullet.Width} Height: {newBullet.Height} Z_Index: {newBullet.Z_Index} X: {newBullet.X} Y: {newBullet.Y}");
 		}
-		public Background CreateBackground(ConsoleColor color)
+		public Background CreateBackground(ConsoleColor? color = null, string? filePath = null)
 		{
-			Background newBackgrond = new Background(color);
+			Background newBackgrond = new Background(color, filePath);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBackgrond), newBackgrond);
 			newBackgrond.insertToMatrix(ref ConsoleObjectManager.pixels);
 			return newBackgrond;

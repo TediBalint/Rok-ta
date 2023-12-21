@@ -1,4 +1,5 @@
 ﻿using Roketa.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         public Weapon Weapon { get; set; }
         public string Name { get; private set; }
         private string savefilePath;
-		
         public Player(double x, double y, int zIndex, int width, int height, string? filePath, string name, Weapon weapon)
         : base(x, y, zIndex, width, height, filePath)
         {
@@ -25,7 +25,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
             Weapon = weapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y - 2};
 			savefilePath = $"SafeFiles\\Objects\\Players\\{name}.txt";
-            //setStats();
+			//setStats();
+			Animations.Add(new Animation("SafeFiles\\Objects\\Animations\\anim1.txt", this));
         }
 		public override void MoveRaw(double x, double y)
 		{
@@ -81,7 +82,9 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			//}
             if (otherObject.GetType().Name == "Enemy") 
             {
-                IsDisposed = true;
+                IsVissible = false;
+				isMovable = false;
+				Animations[0].IsPaused = false;
             }
             else if(otherObject.GetType().Name == "Background")
             {

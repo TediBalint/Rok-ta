@@ -10,9 +10,12 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses
 {
 	public class Background : ConsoleObject
 	{
-		public Background(ConsoleColor color) : base(0, 0, 0, Console.WindowWidth, Console.WindowHeight, null)
+		public Background(ConsoleColor? color = null, string? filePath = null) : base(0, 0, 0, Console.WindowWidth, Console.WindowHeight, filePath)
 		{
-			Fill(color);		
+			if(color != null)
+			{
+				Fill(color.Value);
+			}
 		}
 		public override void OnCollision(ConsoleObject otherObject)
 		{
