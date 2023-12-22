@@ -33,21 +33,24 @@ void Performance_BenchMark()
 
 void main()
 {
+	int width = 150;
+	int height = 50;
 	Random r = new Random();
 	Console.CursorVisible=false;
 	Console.Title = "Rokéta";
-	int width = Console.WindowWidth;
-	int height = Console.WindowHeight;
+	Console.WindowWidth = width;
+	Console.WindowHeight = height;
+	//int width = Console.WindowWidth;
+	//int height = Console.WindowHeight;
 	Debug.WriteLine($"Width: {width} Height: {height}");
-	
 	Renderer renderer = new Renderer(width,height);
 
 	// ConsoleObjectList sorted by Zindex for render 
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SafeFiles\\Objects\\Background\\bg3.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SafeFiles\\Objects\\Background\\bg4.txt");
 	
-	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SafeFiles\\Objects\\Obj1.txt");
+	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SafeFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
 	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy1.txt");
 
@@ -81,7 +84,7 @@ void main()
 			timer.Restart();
 			currentGameThicks = gameThicks;
 			StaticVars.currentGameThicks = currentGameThicks;
-			//Debug.WriteLine(gameThicks);
+			Debug.WriteLine(gameThicks);
 			gameThicks = 0;
 		}
 	}

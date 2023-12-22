@@ -1,0 +1,11 @@
+-- -- bl bl -- -- -- -- dr dr dr -- -- -- -- bl bl -- --
+-- bl da da bl -- -- dr db da db dr -- -- bl da da bl --
+-- -- bl bl -- -- dr db da da da db dr -- -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
+-- -- bl bl -- dr db da da da da da db dr -- bl bl -- --
