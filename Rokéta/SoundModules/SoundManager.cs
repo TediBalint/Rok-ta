@@ -18,12 +18,11 @@ namespace Rokéta.SoundModules
 		{
 			try
 			{
-				if (SoundName.ToLower().Contains("music") && Globals.isMusicEnabled) Sounds[SoundName].Play();
-				else if (!SoundName.ToLower().Contains("music") && !Globals.isGameSoundEnabled) Sounds[SoundName].Play(); 
+				Sounds[SoundName].Play();
 			}
 			catch(KeyNotFoundException e) 
-			{ 
-			
+			{
+				Debug.WriteLine($"No Key {SoundName} in Sounds.keys (SoundManager.cs) Error:\n{e.Message}");
 			}
 			catch (Exception e)
 			{

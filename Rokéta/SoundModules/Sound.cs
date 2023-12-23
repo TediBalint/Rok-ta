@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rokéta.Statics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -25,15 +26,20 @@ namespace Rokéta.SoundModules
 				{
 					foreach (SoundNode soundNode in sounds)
 					{
-							
-						if (!soundNode.isSleep()) soundNode.Play();
-						else Thread.Sleep(soundNode.Duration);
+						if (sounds.Count > 20 && Globals.isMusicEnabled) PlaySound(soundNode);
+						else if (sounds.Count < 20 && !Globals.isGameSoundEnabled) PlaySound(soundNode);
+									
 					}
 				}
 				while (repeat);
 			});
 			t1.Start();
         }
+		private void PlaySound(SoundNode soundNode)
+		{
+			if (!soundNode.isSleep()) soundNode.Play();
+			else Thread.Sleep(soundNode.Duration);
+		}
 		private void ReadFile(string path)
 		{
 			try

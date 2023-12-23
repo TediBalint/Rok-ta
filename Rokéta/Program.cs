@@ -111,6 +111,10 @@ void main()
 			{
 				player.Weapon.Shoot(bulletTimer, consoleObjectFactory);
 			}
+			else if(keyPress.Key == ConsoleKey.M)
+			{
+				Globals.isMusicEnabled = !Globals.isMusicEnabled;
+			}
 		}
 	}
 	
