@@ -17,7 +17,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         public override void OnCollision(ConsoleObject otherObject)
         {
             if(otherObject.GetType() == typeof(Background)) {
-				MoveMotion(speed, speed, StaticVars.currentGameThicks);
+				MoveMotion(speed, speed, Statics.Globals.currentGameThicks);
 				if (IsOutOfMap()) IsDisposed = true;
 			}
 		}

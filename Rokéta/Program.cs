@@ -6,6 +6,7 @@ using Rokéta.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.Statics;
+using Rokéta.SoundModules;
 
 void Performance_BenchMark()
 {
@@ -53,16 +54,14 @@ void main()
 	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SafeFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
 	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy1.txt");
-
+	SoundManager.PlaySound("Music1");
 	// rendering
 	consoleObjectManager.RenderObjects();
 	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 	renderer.Render();
 
-
 	Stopwatch bulletTimer = Stopwatch.StartNew();
 	Thread thread2 = new Thread(inputThread);
-	
 	// thread for inputs
 	thread2.Start();
 
@@ -83,8 +82,7 @@ void main()
 		{
 			timer.Restart();
 			currentGameThicks = gameThicks;
-			StaticVars.currentGameThicks = currentGameThicks;
-			Debug.WriteLine(gameThicks);
+			Globals.currentGameThicks = currentGameThicks;
 			gameThicks = 0;
 		}
 	}

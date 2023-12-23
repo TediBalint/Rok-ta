@@ -8,6 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SafeFiles\Sound\Music1.txt" />
+    <None Remove="SafeFiles\Sound\SoundSetup.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SafeFiles\Sound\SoundSetup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SafeFiles\Sound\GameSounds\Music1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="SafeFiles\Default\defaultPlayer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
