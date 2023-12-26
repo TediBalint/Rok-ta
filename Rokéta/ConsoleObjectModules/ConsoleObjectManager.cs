@@ -12,7 +12,8 @@ namespace Roketa.ConsoleObjectModules
 {
     public class ConsoleObjectManager
 	{
-		// ConsoleObjectList sorted by Zindex for render 
+		// ConsoleObjectList sorted by Zindex for render
+		private string saveFilePath;
 		public List<ConsoleObject> consoleObjectList;
 
 		public CharInfo[,] pixels;
@@ -37,10 +38,18 @@ namespace Roketa.ConsoleObjectModules
 							consoleObj.OnCollision(otherObject);
 						}
 					}
-					
-					
 				}
 			}
+		}
+		public void SaveGameState()
+		{
+			using (StreamWriter sw = new StreamWriter(saveFilePath))
+			{
+                foreach (ConsoleObject obj in consoleObjectList)
+                {
+					obj.SaveToFile(sw);
+                }
+            }
 		}
 		public void RenderObjects()
 		{

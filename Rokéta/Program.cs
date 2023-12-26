@@ -41,15 +41,12 @@ void main()
 	Console.Title = "Rokéta";
 	Console.WindowWidth = width;
 	Console.WindowHeight = height;
-	Debug.WriteLine($"Width: {width} Height: {height}");
 	Renderer renderer = new Renderer(width,height);
-
-	
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	
-	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
 	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt");
 	SoundManager.PlaySound("Music1");
@@ -72,6 +69,7 @@ void main()
 	//gameloop
 	while (true)
 	{
+		
 		consoleObjectManager.HandleCollisions();
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
@@ -118,9 +116,12 @@ void main()
 			{
 				Globals.isGameSoundEnabled = !Globals.isGameSoundEnabled;
 			}
+			else if (Defaults.keyBinds["Save"].Contains(keyPress.Key))
+			{
+				consoleObjectManager.SaveGameState();
+			}
 		}
 	}
-	
 }
 
 CharInfo[] matrixToVector(CharInfo[,] charInfos)

@@ -63,7 +63,6 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			
 			animationObject.xOffset = double.Parse(line[0]);
 			animationObject.yOffset = double.Parse(line[1]);
-			Debug.WriteLine(animationObject.xOffset + " " + animationObject.yOffset);
 			return animationObject;
 		}
 		private AnimationObject? GetCurrentObject()
@@ -94,7 +93,6 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			}
 			else if(repeat) CurrentTick = 0;
 			CurrentTick++;
-
 		}
 		
 	}

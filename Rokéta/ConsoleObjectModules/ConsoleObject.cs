@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32.SafeHandles;
+using Rokéta.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
 using System;
 using System.Collections.Generic;
@@ -12,40 +13,14 @@ namespace Roketa.ConsoleObjectModules
 {
     public abstract class ConsoleObject
     {
-        public bool isMovable { get;protected set; }
-        public bool IsDisposed { get; protected set; }
-        public bool IsVissible { get; protected set; }
+        public bool isMovable { get; protected set; } = true;
+        public bool IsDisposed { get; protected set; } = false;
+        public bool IsVissible { get; protected set; } = true;
         public double X { get; set; }
         public double Y { get; set; }
-        public double[] TR { 
-            get 
-            {
-                return new double[] {X + Width, Y };    
-            }
-        }
-        public double[] TL
-        {
-            get
-            {
-                return new double[] { X, Y };
-            }
-        }
-        public double[] BR
-        {
-            get
-            {
-                return new double[] { X + Width, Y - Height};
-            }
-        }
-        public double[] BL
-        {
-            get
-            {
-                return new double[] { X, Y-Height};
-            }
-        }
-        // X = 0, Y = 0 a bal felső pont
-        public int Z_Index { get; set; }
+		
+		// X = 0, Y = 0 a bal felső pont
+		public int Z_Index { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public CharInfo?[,] CharInfos { get; set; }
@@ -55,8 +30,6 @@ namespace Roketa.ConsoleObjectModules
 
 		public ConsoleObject(double x, double y, int zIndex, int? width, int? height,string? filePath = null)
         {
-            IsVissible = true;
-            isMovable = true;
             Animations = new List<Animation>();
             X = x;
             Y = y;
@@ -117,7 +90,6 @@ namespace Roketa.ConsoleObjectModules
 
 				for (int i = 0; i < line.Length; i++)
 				{
-                    //Debug.WriteLine(line[i] + " " + i);
 					if (!(Colors.colorDictionary[line[i]] == null))
 					{
 						CharInfo newCharInfo = new CharInfo(background: Colors.colorDictionary[line[i]]);
@@ -154,8 +126,10 @@ namespace Roketa.ConsoleObjectModules
         }
         public void Rotate(double angle)
         {
+			
 
-        }
+
+		}
         private void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
@@ -209,7 +183,15 @@ namespace Roketa.ConsoleObjectModules
                 anim.Render(ref pixels);
             }
         }
-        
+        private string getSaveString()
+        {
+            // double x, double y, int zIndex, int? width, int? height,string? filePath
+            return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
+        }
+        public void SaveToFile(StreamWriter sw)
+        {
+            sw.WriteLine(Encrypter.Encrypt(getSaveString()));
+        }
         public bool isCollision(ConsoleObject otherObject)
         {
             if 

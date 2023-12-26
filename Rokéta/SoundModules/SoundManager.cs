@@ -41,7 +41,6 @@ namespace Rokéta.SoundModules
 		}
 		private static Dictionary<string, Sound> GetSounds(string pathToSounds)
 		{
-			Debug.WriteLine(Directory.GetFiles(pathToSounds).Length);
 			Dictionary<string, Sound> sounds = new Dictionary<string, Sound>();
             foreach (string path in Directory.GetFiles(pathToSounds))
             {

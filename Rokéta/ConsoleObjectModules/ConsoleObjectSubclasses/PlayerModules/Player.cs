@@ -15,16 +15,12 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
     public class Player : ConsoleObject
     {
         //public PlayerStats Stats { get; set; }
-        public Weapon Weapon { get; set; }
-        public string Name { get; private set; }
-        private string savefilePath;
-        public Player(double x, double y, int zIndex, int width, int height, string? filePath, string name, Weapon weapon)
+        public Weapon Weapon { get; set; }        
+        public Player(double x, double y, int zIndex, int width, int height, string? filePath, Weapon weapon)
         : base(x, y, zIndex, width, height, filePath)
         {
-            Name = name;
             Weapon = weapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y - 2};
-			savefilePath = $"SaveFiles\\Objects\\Players\\{name}.txt";
 			//setStats();
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim1.txt", this));
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim2.txt", this, true));

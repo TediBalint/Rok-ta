@@ -21,9 +21,9 @@ namespace Rokéta.ConsoleObjectModules
 		{
 			ConsoleObjectManager = consoleObjectManager;
 		}
-		public Player CreatePlayer(string name, int x, int y, int zIndex, int width, int height, Weapon weapon, string? filePath = null, bool instantlyShow = true)
+		public Player CreatePlayer(int x, int y, int zIndex, int width, int height, Weapon weapon, string? filePath = null, bool instantlyShow = true)
 		{
-			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, name, weapon);
+			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, weapon);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
 			if (instantlyShow)
 			{
@@ -48,7 +48,6 @@ namespace Rokéta.ConsoleObjectModules
 			newBullet.X = spawnPos[0];
 			newBullet.Y = spawnPos[1];
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBullet), newBullet);
-			//Debug.WriteLine($"Instantiated Bullet Speed: {newBullet.speed} Width: {newBullet.Width} Height: {newBullet.Height} Z_Index: {newBullet.Z_Index} X: {newBullet.X} Y: {newBullet.Y}");
 		}
 		public Background CreateBackground(ConsoleColor? color = null, string? filePath = null)
 		{
