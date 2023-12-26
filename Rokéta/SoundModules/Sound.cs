@@ -51,7 +51,7 @@ namespace Rokéta.SoundModules
 				while (!sr.EndOfStream)
 				{
 					string[] line = sr.ReadLine().Split();
-					Debug.WriteLine(line);
+					if (line.Count() == 0) continue;
 					int frequency;
 					if (!int.TryParse(line[0], out frequency))
 					{
@@ -61,7 +61,7 @@ namespace Rokéta.SoundModules
 						}
 						else
 						{
-							Debug.WriteLine($"Error in Sound.cs: ${line[0]} not in SoundManager.SoundNodeFreqPairs and not int");
+							Debug.WriteLine($"Error in Sound.cs: \n${line[0]} not in SoundManager.SoundNodeFreqPairs and not int");
 						}
 					}
 					 
@@ -75,7 +75,7 @@ namespace Rokéta.SoundModules
 			}
 			catch (Exception e)
 			{
-				Debug.Write($"Error in Sound.cs ReadFile :\n{e.Message}");
+				Debug.WriteLine($"Error in Sound.cs ReadFile :\n{e.Message}");
 			}
 			
 		}

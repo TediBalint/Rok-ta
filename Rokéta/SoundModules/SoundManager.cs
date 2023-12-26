@@ -12,8 +12,6 @@ namespace Rokéta.SoundModules
 	{
 		public static Dictionary<string, int> SoundNodeFreqPairs = GetPairs("SafeFiles\\Sound\\SoundSetup.txt");
 		public static Dictionary<string, Sound> Sounds = GetSounds("SafeFiles\\Sound\\GameSounds");
-		public static List<Thread> MusicThreads = new List<Thread>();
-		public static List<Thread> GameSoundThreads = new List<Thread>();
 		public static void PlaySound(string SoundName)
 		{
 			try
@@ -47,9 +45,7 @@ namespace Rokéta.SoundModules
 			Dictionary<string, Sound> sounds = new Dictionary<string, Sound>();
             foreach (string path in Directory.GetFiles(pathToSounds))
             {
-				Debug.WriteLine(path);
 				string name = path.Split("\\").Last().Split('.').First();
-				Debug.WriteLine(name);
 				sounds.Add(name,new Sound(path));
             }
 			return sounds;

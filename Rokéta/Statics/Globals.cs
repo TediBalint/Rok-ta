@@ -10,8 +10,8 @@ namespace Rokéta.Statics
 	public static class Globals
 	{
 		public static int currentGameThicks = 2000;
-		public static bool isMusicEnabled = true;
-		public static bool isGameSoundEnabled = true;
+		public static bool isMusicEnabled = false;
+		public static bool isGameSoundEnabled = false;
 		
 	}
 }

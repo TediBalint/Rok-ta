@@ -12,7 +12,9 @@ namespace Roketa.ConsoleObjectModules
 {
     public class ConsoleObjectManager
 	{
+		// ConsoleObjectList sorted by Zindex for render 
 		public List<ConsoleObject> consoleObjectList;
+
 		public CharInfo[,] pixels;
 		public ConsoleObjectManager(int width, int height)
 		{

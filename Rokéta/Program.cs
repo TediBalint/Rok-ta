@@ -41,15 +41,13 @@ void main()
 	Console.Title = "Rokéta";
 	Console.WindowWidth = width;
 	Console.WindowHeight = height;
-	//int width = Console.WindowWidth;
-	//int height = Console.WindowHeight;
 	Debug.WriteLine($"Width: {width} Height: {height}");
 	Renderer renderer = new Renderer(width,height);
 
-	// ConsoleObjectList sorted by Zindex for render 
+	
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SafeFiles\\Objects\\Background\\bg4.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SafeFiles\\Objects\\Background\\bg1.txt");
 	
 	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SafeFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
@@ -61,6 +59,7 @@ void main()
 	renderer.Render();
 
 	Stopwatch bulletTimer = Stopwatch.StartNew();
+
 	Thread thread2 = new Thread(inputThread);
 	// thread for inputs
 	thread2.Start();
@@ -91,29 +90,33 @@ void main()
 		while (true)
 		{
 			ConsoleKeyInfo keyPress = Console.ReadKey(true);
-			if (keyPress.KeyChar == 'w')
+			if (Defaults.keyBinds["Up"].Contains(keyPress.Key))
 			{
 				player.MoveRaw(0, 1.5);
 			}
-			else if (keyPress.KeyChar == 's')
+			else if (Defaults.keyBinds["Down"].Contains(keyPress.Key))
 			{
 				player.MoveRaw(0, -1.5);
 			}
-			else if (keyPress.KeyChar == 'd')
+			else if (Defaults.keyBinds["Right"].Contains(keyPress.Key))
 			{
 				player.MoveRaw(1.5, 0);
 			}
-			else if (keyPress.KeyChar == 'a')
+			else if (Defaults.keyBinds["Left"].Contains(keyPress.Key))
 			{
 				player.MoveRaw(-1.5, 0);
 			}
-			else if (keyPress.KeyChar == 'k')
+			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key))
 			{
 				player.Weapon.Shoot(bulletTimer, consoleObjectFactory);
 			}
-			else if(keyPress.Key == ConsoleKey.M)
+			else if(Defaults.keyBinds["MusicToggle"].Contains(keyPress.Key))
 			{
 				Globals.isMusicEnabled = !Globals.isMusicEnabled;
+			}
+			else if(Defaults.keyBinds["GameSoundToggle"].Contains(keyPress.Key))
+			{
+				Globals.isGameSoundEnabled = !Globals.isGameSoundEnabled;
 			}
 		}
 	}
