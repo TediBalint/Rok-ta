@@ -22,7 +22,7 @@ namespace Rokéta.Statics
 			{"Down", new ConsoleKey[] {ConsoleKey.DownArrow, ConsoleKey.S } },
 			{"MusicToggle", new ConsoleKey[] { ConsoleKey.M } },
 			{"GameSoundToggle", new ConsoleKey[] {ConsoleKey.N } },
-			{"Save", new ConsoleKey[] {ConsoleKey.L} }
+			{"Save", new ConsoleKey[] {ConsoleKey.V} }
 
 		};
 	}

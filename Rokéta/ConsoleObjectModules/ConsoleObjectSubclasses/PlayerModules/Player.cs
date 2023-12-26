@@ -67,11 +67,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
             {
                 return;
             }
-            else
-            {
-				Debug.WriteLine("Collided with " + otherObject.GetType().Name + DateTime.Now);
-
-			}
 		}
     }
 }

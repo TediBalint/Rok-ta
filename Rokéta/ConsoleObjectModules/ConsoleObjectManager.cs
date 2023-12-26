@@ -17,8 +17,9 @@ namespace Roketa.ConsoleObjectModules
 		public List<ConsoleObject> consoleObjectList;
 
 		public CharInfo[,] pixels;
-		public ConsoleObjectManager(int width, int height)
+		public ConsoleObjectManager(int width, int height, string _savefilepath)
 		{
+			saveFilePath = _savefilepath;
 			consoleObjectList = new List<ConsoleObject>();
 			pixels = new CharInfo[height, width];
 		}

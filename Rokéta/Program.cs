@@ -42,7 +42,7 @@ void main()
 	Console.WindowWidth = width;
 	Console.WindowHeight = height;
 	Renderer renderer = new Renderer(width,height);
-	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
+	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	

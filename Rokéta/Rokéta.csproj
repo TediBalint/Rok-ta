@@ -8,58 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SaveFiles\Objects\Animations\anim1.txt" />
-    <None Remove="SaveFiles\Objects\Animations\anim2.txt" />
-    <None Remove="SaveFiles\Objects\Players\Player2.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="SaveFiles\Objects\Animations\anim1.txt">
+    <EmbeddedResource Include="SaveFiles\**\*.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="SaveFiles\Objects\Animations\anim2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SaveFiles\Objects\Background\bg1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SaveFiles\Objects\Players\Player2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SaveFiles\Sound\SoundSetup.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="SaveFiles\Sound\GameSounds\Music1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="SaveFiles\Default\defaultPlayer.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SaveFiles\Objects\Bullet1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SaveFiles\Objects\Enemy1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SaveFiles\Objects\Enemy2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SaveFiles\Objects\Enemy3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SaveFiles\Objects\R.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SaveFiles\GameStates\" />
   </ItemGroup>
 
 </Project>
