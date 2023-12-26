@@ -2,6 +2,7 @@
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,29 +17,71 @@ namespace Rokéta.ConsoleObjectModules
 	public class ConsoleObjectFactory
 	{
 		private ConsoleObjectManager ConsoleObjectManager { get; set; }
+		public bool loadedGameState;
 
 		public ConsoleObjectFactory(ConsoleObjectManager consoleObjectManager)
 		{
 			ConsoleObjectManager = consoleObjectManager;
+			loadGameState(consoleObjectManager.saveFilePath);
 		}
-		public Player CreatePlayer(int x, int y, int zIndex, int width, int height, Weapon weapon, string? filePath = null, bool instantlyShow = true)
+		private void loadGameState(string filePath)
+		{
+			if(!File.Exists(filePath))
+			{
+				loadedGameState = false;
+			}
+			else
+			{
+				loadedGameState = true;
+				using (StreamReader reader = new StreamReader(filePath))
+				{
+					string[] firstLine = Encrypter.Decrypt(reader.ReadLine()).Split(';');
+					Globals.isMusicEnabled = bool.Parse(firstLine[0]);
+					Globals.isGameSoundEnabled = bool.Parse(firstLine[1]);
+					while (!reader.EndOfStream)
+					{
+
+						string[] line = Encrypter.Decrypt(reader.ReadLine()).Split(';');
+						string ObjType = line[0];
+						double Objx = double.Parse(line[1]);
+						double Objy = double.Parse(line[2]);
+						int ObjzIndex = int.Parse(line[3]);
+						int Objwidth = int.Parse(line[4]);
+						int Objheight = int.Parse(line[5]);
+						string ObjFilePath = line[6];
+						if (ObjType == "Player")
+						{
+							CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, Defaults.defaultWeapon, ObjFilePath);
+						}
+						else if (ObjType == "Enemy")
+						{
+							CreateEnemy(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
+						}
+						else if (ObjType == "Background")
+						{
+							CreateBackground(filePath: ObjFilePath);
+						}
+						else
+						{
+							Debug.WriteLine($"Error in ConsoleObjectFactory.cs: {ObjType} unkown!");
+						}
+
+						//return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
+					}
+				}
+			}
+			
+		}
+		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, Weapon weapon, string? filePath = null)
 		{
 			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, weapon);
-			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
-			if (instantlyShow)
-			{
-				newPlayer.insertToMatrix(ref ConsoleObjectManager.pixels);
-			}
+			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);	
 			return newPlayer;
 		}
-		public Enemy CreateEnemy(int x, int y, int zIndex, int? width, int? height, string? filePath, bool instantlyShow = true)
+		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath)
 		{
 			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath);
-			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);
-            if (instantlyShow)
-            {
-				newEnemy.insertToMatrix(ref ConsoleObjectManager.pixels);
-            }
+			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);            
 			return newEnemy;
         }
 		public void AddBullet(Bullet bullet, double angle, double[] spawnPos)

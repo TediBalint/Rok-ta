@@ -44,11 +44,20 @@ void main()
 	Renderer renderer = new Renderer(width,height);
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
+	Player player;
+	if(!consoleObjectFactory.loadedGameState)
+	{
+		Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
+
+		player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+		//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
+		Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt");
+	}
+	else
+	{
+		player = consoleObjectManager.consoleObjectList.OfType<Player>().First();
+	}
 	
-	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
-	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
-	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt");
 	SoundManager.PlaySound("Music1");
 	// rendering
 	consoleObjectManager.RenderObjects();

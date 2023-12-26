@@ -1,4 +1,6 @@
-﻿using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+﻿using Rokéta.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +15,7 @@ namespace Roketa.ConsoleObjectModules
     public class ConsoleObjectManager
 	{
 		// ConsoleObjectList sorted by Zindex for render
-		private string saveFilePath;
+		public string saveFilePath;
 		public List<ConsoleObject> consoleObjectList;
 
 		public CharInfo[,] pixels;
@@ -46,6 +48,7 @@ namespace Roketa.ConsoleObjectModules
 		{
 			using (StreamWriter sw = new StreamWriter(saveFilePath))
 			{
+				sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled}"));
                 foreach (ConsoleObject obj in consoleObjectList)
                 {
 					obj.SaveToFile(sw);
