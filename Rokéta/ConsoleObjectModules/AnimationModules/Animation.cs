@@ -1,5 +1,6 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
+using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,18 +13,18 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 {
 	public class Animation
 	{
-		private bool repeat = false;
-		private int CurrentTick = 0;
+		private bool repeat;
+		private double CurrentTick = 0;
 		public bool IsPaused = true;
 		private ConsoleObject Parent;
-		private Dictionary<int, AnimationObject> AnimationFrames;
-		private AnimationObject currObj;
-		public Animation(string filePath, ConsoleObject parent) 
+		private Dictionary<double, AnimationObject> AnimationFrames;
+		public Animation(string filePath, ConsoleObject parent, bool _repeat = false) 
 		{
+			repeat = _repeat;
 			Parent = parent;
 			StreamReader sr = new StreamReader(filePath);
-			int ticks = 0;
-			AnimationFrames = new Dictionary<int, AnimationObject>();
+			double ticks = 0;
+			AnimationFrames = new Dictionary<double, AnimationObject>();
 			int height;
 			while (!sr.EndOfStream)
 			{
@@ -31,10 +32,8 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 				string[] line = sr.ReadLine().Split(' ');
 				height = int.Parse(line[1]);
 				AnimationFrames.Add(ticks, ReadAnim(height, sr));
-				ticks += int.Parse(line[0]);
+				ticks +=  double.Parse(line[0]) / Globals.currentGameThicks;
 			}
-			currObj = AnimationFrames.Values.First();
-
         }
 		private AnimationObject ReadAnim(int height, StreamReader sr)
 		{
@@ -59,16 +58,20 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 
 				}
 			}
+			line = sr.ReadLine().Split(' ');
 			AnimationObject animationObject = new AnimationObject(Parent, charInfos);
+			
+			animationObject.xOffset = double.Parse(line[0]);
+			animationObject.yOffset = double.Parse(line[1]);
+			Debug.WriteLine(animationObject.xOffset + " " + animationObject.yOffset);
 			return animationObject;
 		}
 		private AnimationObject? GetCurrentObject()
 		{
-			
-			
-			foreach (int tick in AnimationFrames.Keys)
+			foreach (double tick in AnimationFrames.Keys)
 			{
-				if (CurrentTick <= tick)
+
+				if (CurrentTick/Globals.currentGameThicks <= tick)
 				{
 					return AnimationFrames[tick];
 				}
@@ -82,19 +85,14 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				return;
 			}
-			//if(CurrentTick < AnimationFrames.Last().Key)
-			//{
-			//	Debug.WriteLine("sad");
-			//}
 			AnimationObject? animationObject = GetCurrentObject();
 			if (animationObject != null)
 			{
-				animationObject.X = Parent.X;
-				animationObject.Y = Parent.Y - Parent.Height/2;	
-				//Debug.WriteLine(CurrentTick);
-
+				animationObject.X = Parent.X + animationObject.xOffset;
+				animationObject.Y = Parent.Y - Parent.Height/2 - animationObject.yOffset;
 				animationObject.insertToMatrix(ref pixels);
 			}
+			else if(repeat) CurrentTick = 0;
 			CurrentTick++;
 
 		}

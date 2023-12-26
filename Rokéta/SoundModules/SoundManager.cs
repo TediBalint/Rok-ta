@@ -10,8 +10,8 @@ namespace Rokéta.SoundModules
 {
 	public static class SoundManager
 	{
-		public static Dictionary<string, int> SoundNodeFreqPairs = GetPairs("SafeFiles\\Sound\\SoundSetup.txt");
-		public static Dictionary<string, Sound> Sounds = GetSounds("SafeFiles\\Sound\\GameSounds");
+		public static Dictionary<string, int> SoundNodeFreqPairs = GetPairs("SaveFiles\\Sound\\SoundSetup.txt");
+		public static Dictionary<string, Sound> Sounds = GetSounds("SaveFiles\\Sound\\GameSounds");
 		public static void PlaySound(string SoundName)
 		{
 			try

@@ -5,6 +5,3 @@ bl bl bl bl bl
 bl da ga da bl
 bl da ga da bl
 -- bl bl bl --
-re dy ye dy re
--- re ye re --
--- -- re -- --

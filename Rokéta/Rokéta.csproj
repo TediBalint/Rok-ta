@@ -8,56 +8,54 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SafeFiles\Objects\Background\bg1.txt" />
-    <None Remove="SafeFiles\Sound\Music1.txt" />
-    <None Remove="SafeFiles\Sound\SoundSetup.txt" />
+    <None Remove="SaveFiles\Objects\Animations\anim1.txt" />
+    <None Remove="SaveFiles\Objects\Animations\anim2.txt" />
+    <None Remove="SaveFiles\Objects\Players\Player2.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="SafeFiles\Objects\Background\bg1.txt">
+    <EmbeddedResource Include="SaveFiles\Objects\Animations\anim1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="SafeFiles\Sound\SoundSetup.txt">
+    <EmbeddedResource Include="SaveFiles\Objects\Animations\anim2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveFiles\Objects\Background\bg1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveFiles\Objects\Players\Player2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveFiles\Sound\SoundSetup.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="SafeFiles\Sound\GameSounds\Music1.txt">
+    <EmbeddedResource Include="SaveFiles\Sound\GameSounds\Music1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="SafeFiles\Default\defaultPlayer.txt">
+    <None Update="SaveFiles\Default\defaultPlayer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Animations\anim1.txt">
+    <None Update="SaveFiles\Objects\Bullet1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Bullet1.txt">
+    <None Update="SaveFiles\Objects\Enemy1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Enemy1.txt">
+    <None Update="SaveFiles\Objects\Enemy2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Enemy2.txt">
+    <None Update="SaveFiles\Objects\Enemy3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Enemy3.txt">
+    <None Update="SaveFiles\Objects\R.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SafeFiles\Objects\Players\Player2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SafeFiles\Objects\R.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SafeFiles\Default\" />
-    <Folder Include="SafeFiles\Objects\Players\" />
   </ItemGroup>
 
 </Project>

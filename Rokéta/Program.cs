@@ -47,11 +47,11 @@ void main()
 	
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height);
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SafeFiles\\Objects\\Background\\bg1.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	
-	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SafeFiles\\Objects\\Players\\Player2.txt");
-	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
-	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SafeFiles\\Objects\\Enemy1.txt");
+	Player player = consoleObjectFactory.CreatePlayer("Kindian", 20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
+	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt");
 	SoundManager.PlaySound("Music1");
 	// rendering
 	consoleObjectManager.RenderObjects();
@@ -76,8 +76,8 @@ void main()
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 		renderer.Render();
-		gameThicks+=10;
-		if (timer.Elapsed.TotalSeconds >= 0.1)
+		gameThicks+=50;
+		if (timer.Elapsed.TotalSeconds >= 0.02)
 		{
 			timer.Restart();
 			currentGameThicks = gameThicks;

@@ -10,7 +10,7 @@ namespace Rokéta.Statics
 {
 	public static class Defaults
 	{
-		public static string defaultBulletPath = "SafeFiles\\Objects\\Bullet1.txt";
+		public static string defaultBulletPath = "SaveFiles\\Objects\\Bullet1.txt";
 		public static Bullet defaultBullet = new Bullet(0,0,1,5,5,defaultBulletPath, 10);
 		public static Weapon defaultWeapon = new Weapon(defaultBullet, 90, 5, 5);
 		public static Dictionary<string, ConsoleKey[]> keyBinds = new Dictionary<string, ConsoleKey[]>() 

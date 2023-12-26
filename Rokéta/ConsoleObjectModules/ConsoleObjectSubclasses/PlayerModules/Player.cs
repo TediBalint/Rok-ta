@@ -24,9 +24,10 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
             Name = name;
             Weapon = weapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y - 2};
-			savefilePath = $"SafeFiles\\Objects\\Players\\{name}.txt";
+			savefilePath = $"SaveFiles\\Objects\\Players\\{name}.txt";
 			//setStats();
-			Animations.Add(new Animation("SafeFiles\\Objects\\Animations\\anim1.txt", this));
+			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim1.txt", this));
+			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim2.txt", this, true));
         }
 		public override void MoveRaw(double x, double y)
 		{
@@ -36,7 +37,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 		//private void setStats()
 		//{
 		//    string FilePath = savefilePath;
-		//    if (!File.Exists(FilePath)) FilePath = $"SafeFiles\\Default\\defaultPlayer.txt";
+		//    if (!File.Exists(FilePath)) FilePath = $"SaveFiles\\Default\\defaultPlayer.txt";
 		//    Stats = getStatsFromFile(FilePath);
 		//}
 		//private PlayerStats getStatsFromFile(string filePath)
@@ -56,35 +57,15 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 		//}
 
 
-		//public override void insertToMatrix(ref CharInfo[,] pixels)
-		//{
-		//	base.insertToMatrix(ref pixels);
-			
-		//	//foreach (Bullet bullet in Weapon.Bullets)
-		//	//{
-		//	//	bullet.insertToMatrix(ref pixels);
-		//	//}
-		//}
 		public override void OnCollision(ConsoleObject otherObject)
         {
-			//for (int i = 0; i < Weapon.Bullets.Count; i++)
-			//{
-			//	Bullet bullet = Weapon.Bullets[i];
-			//	// bullets onCollision
-			//	bullet.moveAngle();
-			//	if(bullet.X >= Console.WindowWidth-Width-1 || bullet.X <= 0 ||
-			//		bullet.Y <= 0 || bullet.Y >= Console.WindowHeight-Height-1
-			//	)
-			//	{
-			//		Weapon.Bullets.RemoveAt(i);
-			//		i--;
-			//	}
-			//}
+			Animations[1].IsPaused = false;
             if (otherObject.GetType().Name == "Enemy") 
             {
                 IsVissible = false;
 				isMovable = false;
 				Animations[0].IsPaused = false;
+				Animations[1].IsPaused = true;
             }
             else if(otherObject.GetType().Name == "Background")
             {
