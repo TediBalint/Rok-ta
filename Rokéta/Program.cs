@@ -45,18 +45,23 @@ void main()
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Player player;
-	if(!consoleObjectFactory.loadedGameState)
-	{
-		Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 
-		player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
-		//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
-		Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt");
-	}
-	else
-	{
-		player = consoleObjectManager.consoleObjectList.OfType<Player>().First();
-	}
+	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
+	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt", new double[] { 5, 5 });
+	//if (!consoleObjectFactory.loadedGameState)
+	//{
+	//	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
+
+	//	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	//	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
+	//	enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt", new double[] {20,20});
+	//}
+	//else
+	//{
+	//	player = consoleObjectManager.consoleObjectList.OfType<Player>().First();
+	//}
 	
 	SoundManager.PlaySound("Music1");
 	// rendering
@@ -78,13 +83,12 @@ void main()
 	//gameloop
 	while (true)
 	{
-		
 		consoleObjectManager.HandleCollisions();
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 		renderer.Render();
-		gameThicks+=50;
-		if (timer.Elapsed.TotalSeconds >= 0.02)
+		gameThicks+=100;
+		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
 			currentGameThicks = gameThicks;

@@ -15,7 +15,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 	{
 		private bool repeat;
 		private double CurrentTick = 0;
-		public bool IsPaused = true;
+		public bool IsPaused;
 		private ConsoleObject Parent;
 		private Dictionary<double, AnimationObject> AnimationFrames;
 		public Animation(string filePath, ConsoleObject parent, bool _repeat = false) 
@@ -23,6 +23,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			repeat = _repeat;
 			Parent = parent;
 			StreamReader sr = new StreamReader(filePath);
+			IsPaused = bool.Parse(sr.ReadLine());
 			double ticks = 0;
 			AnimationFrames = new Dictionary<double, AnimationObject>();
 			int height;
@@ -37,7 +38,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
         }
 		private AnimationObject ReadAnim(int height, StreamReader sr)
 		{
-
+			
 			if (height == 0) throw new Exception($"height is 0, could be error in the file ({GetType()}) typed object");
 			
 			string[] line = sr.ReadLine().Split(' ');

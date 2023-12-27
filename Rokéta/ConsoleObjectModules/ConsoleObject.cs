@@ -183,7 +183,7 @@ namespace Roketa.ConsoleObjectModules
                 anim.Render(ref pixels);
             }
         }
-        private string getSaveString()
+        protected virtual string getSaveString()
         {
             // double x, double y, int zIndex, int? width, int? height,string? filePath
             return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";

@@ -55,7 +55,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 
 		public override void OnCollision(ConsoleObject otherObject)
         {
-			Animations[1].IsPaused = false;
             if (otherObject.GetType().Name == "Enemy") 
             {
                 IsVissible = false;

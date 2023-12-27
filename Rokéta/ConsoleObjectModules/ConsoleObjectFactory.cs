@@ -22,7 +22,7 @@ namespace Rokéta.ConsoleObjectModules
 		public ConsoleObjectFactory(ConsoleObjectManager consoleObjectManager)
 		{
 			ConsoleObjectManager = consoleObjectManager;
-			loadGameState(consoleObjectManager.saveFilePath);
+			//loadGameState(consoleObjectManager.saveFilePath);
 		}
 		private void loadGameState(string filePath)
 		{
@@ -55,7 +55,8 @@ namespace Rokéta.ConsoleObjectModules
 						}
 						else if (ObjType == "Enemy")
 						{
-							CreateEnemy(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
+							double[] velocity = new double[] { double.Parse(line[7]), double.Parse(line[8]) };
+							CreateEnemy(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath, velocity);
 						}
 						else if (ObjType == "Background")
 						{
@@ -78,9 +79,9 @@ namespace Rokéta.ConsoleObjectModules
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);	
 			return newPlayer;
 		}
-		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath)
+		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity)
 		{
-			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath);
+			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath, velocity);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);            
 			return newEnemy;
         }
