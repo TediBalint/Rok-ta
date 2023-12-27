@@ -51,7 +51,15 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 		//    sw.WriteLine(Stats.ToString());
 		//    sw.Close();
 		//}
-
+		public override bool isCollision(ConsoleObject otherObject)
+		{
+			bool animIsColliding = false;
+			if(Animations[1].currObject != null)
+			{
+				animIsColliding = Animations[1].currObject.isCollision(otherObject);
+			}
+			return base.isCollision(otherObject) || animIsColliding;
+		}
 
 		public override void OnCollision(ConsoleObject otherObject)
         {

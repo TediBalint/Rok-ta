@@ -192,7 +192,7 @@ namespace Roketa.ConsoleObjectModules
         {
             sw.WriteLine(Encrypter.Encrypt(getSaveString()));
         }
-        public bool isCollision(ConsoleObject otherObject)
+        public virtual bool isCollision(ConsoleObject otherObject)
         {
             if 
             (

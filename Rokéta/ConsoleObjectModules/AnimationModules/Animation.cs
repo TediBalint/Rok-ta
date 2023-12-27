@@ -18,6 +18,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 		public bool IsPaused;
 		private ConsoleObject Parent;
 		private Dictionary<double, AnimationObject> AnimationFrames;
+		public AnimationObject? currObject { get; private set; }
 		public Animation(string filePath, ConsoleObject parent, bool _repeat = false) 
 		{
 			repeat = _repeat;
@@ -73,10 +74,11 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 
 				if (CurrentTick/Globals.currentGameThicks <= tick)
 				{
+					currObject = AnimationFrames[tick];
 					return AnimationFrames[tick];
 				}
 			}
-			
+			currObject = null;
 			return null;
 		}
 		public void Render(ref CharInfo[,] pixels)

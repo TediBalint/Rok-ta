@@ -47,7 +47,7 @@ void main()
 	Player player;
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 
-	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 5, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
 	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt", new double[] { 5, 5 });
 	//if (!consoleObjectFactory.loadedGameState)
