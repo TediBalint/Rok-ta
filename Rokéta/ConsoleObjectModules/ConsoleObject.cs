@@ -72,7 +72,7 @@ namespace Roketa.ConsoleObjectModules
             sr.Close();
             return new int[2] { width, height };
         }
-        private void readFile()
+        protected void readFile()
         {
             
             StreamReader sr;

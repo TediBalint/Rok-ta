@@ -15,7 +15,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
     public class Enemy : ConsoleObject
     {
         private double[] velocity;
-        private double Health;
+        public double Health;
 
         // stores bullets that hit this enemy already so bullets only hit it once
         private HashSet<ConsoleObject> hitBullets = new HashSet<ConsoleObject>();

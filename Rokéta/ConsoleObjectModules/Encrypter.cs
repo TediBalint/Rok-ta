@@ -18,7 +18,7 @@ namespace Rokéta.ConsoleObjectModules
 			string[] segments = line.Split(';');
 			len -= segments.Length - 1;
 			string key = getKey(len);
-			char splitKey = (char)(line.Length * 50);
+			char splitKey = (char)(line.Length * 25);
 			int index = 0;
 			string newLine = string.Empty;
 			for (int i = 0; i < segments.Length; i++)
@@ -57,7 +57,7 @@ namespace Rokéta.ConsoleObjectModules
 			{
 				startLine += (char)((int)line[i] - i);
 			}
-			char splitKey = (char)(startLine.Length * 50);
+			char splitKey = (char)(startLine.Length * 25);
 			string[] segments = startLine.Split(splitKey);
 			int len = startLine.Length;
 			len -= segments.Length - 1;

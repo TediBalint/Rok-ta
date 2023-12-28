@@ -2,6 +2,7 @@
 using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.SoundModules;
 using Rokéta.Statics;
+using System.Diagnostics;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
@@ -35,10 +36,19 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			}
 			else
 			{
-				X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
-				X = Math.Max(X, 0);
-				Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
-				Y = Math.Max(Y, 0);
+				try
+				{
+					X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
+					X = Math.Max(X, 0);
+					Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
+					Y = Math.Max(Y, 0);
+				}
+				catch (Exception e)
+				{
+					Debug.WriteLine("Player.cs/Snap Threw Error!\nSometimes Happens");
+					Debug.WriteLine(e.Message);
+				}
+				
 			}
 			
 		}
@@ -89,11 +99,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
             {
 				if (Globals.kills >= key) return Defaults.weapons[key];
             }
-			return Defaults.weapons.First().Value;
+			return Defaults.weapons.Last().Value;
         }
 		public override void OnCollision(ConsoleObject otherObject)
         {
-			ChangeWeapon(GetCurrentWeapon());
+			
 			if (canCollide)
 			{
 				if (otherObject.GetType().Name == "Enemy")
@@ -102,6 +112,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				}
 				else if (otherObject.GetType().Name == "Background")
 				{
+					ChangeWeapon(GetCurrentWeapon());
 					return;
 				}
 			}

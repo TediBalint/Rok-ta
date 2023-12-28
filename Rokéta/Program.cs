@@ -20,13 +20,16 @@ void main()
 	Renderer renderer = new Renderer(width,height);
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
+	
 	Player player;
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg5.txt");
-
-	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
-	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
-	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemies\\Enemy1.txt", new double[] { 5, 5 }, 50);
-	Enemy enemy2 = consoleObjectFactory.CreateEnemy(100, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemies\\Enemy1.txt", new double[] { 5, 5 }, 50);
+	Background background;
+	if (!consoleObjectFactory.loadedGameState)
+	{
+		background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg2.txt");
+		player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	}
+	else player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 
 
 	//if (!consoleObjectFactory.loadedGameState)
@@ -43,11 +46,6 @@ void main()
 	//}
 	
 	SoundManager.PlaySound("Music1");
-	// rendering
-	consoleObjectManager.RenderObjects();
-	renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
-	renderer.Render();
-
 	Stopwatch bulletTimer = Stopwatch.StartNew();
 
 	Thread thread2 = new Thread(inputThread);
@@ -56,22 +54,25 @@ void main()
 
 
 	int gameThicks = 0;
-	int currentGameThicks = 2000;
 	Stopwatch timer = Stopwatch.StartNew();
 	
 	//gameloop
 	while (true)
 	{
+		enemyGenerator.Generate();
 		consoleObjectManager.HandleCollisions();
+
+		//Rendering
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 		renderer.Render();
+
+		//Set Game Thicks
 		gameThicks+=100;
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
-			currentGameThicks = gameThicks;
-			Globals.currentGameThicks = currentGameThicks;
+			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}
 	}
@@ -96,7 +97,7 @@ void main()
 			{
 				player.MoveRaw(-1.5, 0);
 			}
-			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key))
+			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key) && player.IsVissible)
 			{
 				player.Weapon.Shoot(bulletTimer, consoleObjectFactory);
 			}
@@ -112,9 +113,13 @@ void main()
 			{
 				consoleObjectManager.SaveGameState();
 			}
-			else if(keyPress.Key == ConsoleKey.C)
+			else if (Defaults.keyBinds["Load"].Contains(keyPress.Key))
 			{
-				Globals.kills += 50;
+				player = consoleObjectFactory.loadGameState(player);
+			}
+			else if(Defaults.keyBinds["Cheat"].Contains(keyPress.Key))
+			{
+				Globals.kills += 100;
 			}
 		}
 	}

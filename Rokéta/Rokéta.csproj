@@ -35,6 +35,15 @@
     <None Remove="SaveFiles\Objects\Bullets\Bullet6.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet7.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet9.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy10.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy11.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy12.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy4.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy5.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy6.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy7.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy8.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy9.txt" />
     <None Remove="savefiles\sound\gamesounds\BulletExplosionSound.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound1.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound2.txt" />
