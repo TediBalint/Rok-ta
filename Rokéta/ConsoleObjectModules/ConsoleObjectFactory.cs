@@ -3,14 +3,8 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace Rokéta.ConsoleObjectModules
 {
@@ -38,6 +32,7 @@ namespace Rokéta.ConsoleObjectModules
 					string[] firstLine = Encrypter.Decrypt(reader.ReadLine()).Split(';');
 					Globals.isMusicEnabled = bool.Parse(firstLine[0]);
 					Globals.isGameSoundEnabled = bool.Parse(firstLine[1]);
+					Globals.kills = int.Parse(firstLine[2]);
 					while (!reader.EndOfStream)
 					{
 
@@ -51,12 +46,13 @@ namespace Rokéta.ConsoleObjectModules
 						string ObjFilePath = line[6];
 						if (ObjType == "Player")
 						{
-							CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, Defaults.defaultWeapon, ObjFilePath);
+							CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
 						}
 						else if (ObjType == "Enemy")
 						{
 							double[] velocity = new double[] { double.Parse(line[7]), double.Parse(line[8]) };
-							CreateEnemy(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath, velocity);
+							double health = double.Parse(line[9]);
+							CreateEnemy(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath, velocity, health);
 						}
 						else if (ObjType == "Background")
 						{
@@ -73,15 +69,15 @@ namespace Rokéta.ConsoleObjectModules
 			}
 			
 		}
-		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, Weapon weapon, string? filePath = null)
+		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, string? filePath = null)
 		{
-			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, weapon);
+			Player newPlayer = new Player(x, y, zIndex, width, height, filePath);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);	
 			return newPlayer;
 		}
-		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity)
+		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity, double health)
 		{
-			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath, velocity);
+			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath, velocity, health);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);            
 			return newEnemy;
         }

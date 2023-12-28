@@ -18,9 +18,11 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 		public bool IsPaused;
 		private ConsoleObject Parent;
 		private Dictionary<double, AnimationObject> AnimationFrames;
+		private bool destroyParent;
 		public AnimationObject? currObject { get; private set; }
-		public Animation(string filePath, ConsoleObject parent, bool _repeat = false) 
+		public Animation(string filePath, ConsoleObject parent, bool _repeat = false, bool _destroyParent = false) 
 		{
+			destroyParent = _destroyParent;
 			repeat = _repeat;
 			Parent = parent;
 			StreamReader sr = new StreamReader(filePath);
@@ -95,6 +97,10 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 				animationObject.insertToMatrix(ref pixels);
 			}
 			else if(repeat) CurrentTick = 0;
+			else if(destroyParent)
+			{
+				Parent.IsDisposed = true;
+			}
 			CurrentTick++;
 		}
 		

@@ -20,20 +20,19 @@ namespace Rokéta.SoundModules
 		}
 		public void Play()
 		{
-			Thread t1 = new Thread(() =>
+			Thread SoundThread = new Thread(() =>
 			{
 				do
 				{
 					foreach (SoundNode soundNode in sounds)
 					{
 						if (sounds.Count > 20 && Globals.isMusicEnabled) PlaySound(soundNode);
-						else if (sounds.Count < 20 && !Globals.isGameSoundEnabled) PlaySound(soundNode);
-									
+						else if (sounds.Count < 20 && Globals.isGameSoundEnabled) PlaySound(soundNode);
 					}
 				}
 				while (repeat);
 			});
-			t1.Start();
+			SoundThread.Start();
         }
 		private void PlaySound(SoundNode soundNode)
 		{

@@ -46,9 +46,14 @@ namespace Roketa.ConsoleObjectModules
 		}
 		public void SaveGameState()
 		{
+			//if(!File.Exists(saveFilePath))
+			//{
+			//	StreamWriter sw = new StreamWriter(saveFilePath);
+			//	sw.Close();
+			//}
 			using (StreamWriter sw = new StreamWriter(saveFilePath))
 			{
-				sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled}"));
+				sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills}"));
                 foreach (ConsoleObject obj in consoleObjectList)
                 {
 					obj.SaveToFile(sw);

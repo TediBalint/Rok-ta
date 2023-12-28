@@ -1,34 +1,46 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Rokéta.SoundModules;
+using Rokéta.Statics;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
     public class Player : ConsoleObject
     {
         //public PlayerStats Stats { get; set; }
-        public Weapon Weapon { get; set; }        
-        public Player(double x, double y, int zIndex, int width, int height, string? filePath, Weapon weapon)
+        public Weapon Weapon { get; private set; }        
+        public Player(double x, double y, int zIndex, int width, int height, string? filePath)
         : base(x, y, zIndex, width, height, filePath)
         {
-            Weapon = weapon;
-			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y - 2};
+			ChangeWeapon(GetCurrentWeapon());
 			//setStats();
-			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim1.txt", this));
-			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\anim2.txt", this, true));
+			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent:true));
+			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt", this, true));
         }
 		public override void MoveRaw(double x, double y)
 		{
 			base.MoveRaw(x, y);
-			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width)/2, Y-2};
+			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width)/2, Y};
+		}
+		public void ChangeWeapon(Weapon newWeapon)
+		{
+			Weapon = newWeapon;
+			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y };
+		}
+		protected override void Snap()
+		{
+			if (Animations[1].currObject == null)
+			{
+				base.Snap();
+			}
+			else
+			{
+				X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
+				X = Math.Max(X, 0);
+				Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
+				Y = Math.Max(Y, 0);
+			}
+			
 		}
 		//private void setStats()
 		//{
@@ -60,20 +72,40 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			}
 			return base.isCollision(otherObject) || animIsColliding;
 		}
-
+		private void Death()
+		{
+			canCollide = false;
+			IsVissible = false;
+			isMovable = false;
+			Animations[0].IsPaused = false;
+			Animations[1].IsPaused = true;
+			SoundManager.PlaySound("PlayerDeathSound1");
+			//SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1,5+1)}");
+		}
+		public static Weapon GetCurrentWeapon()
+		{
+            // weapons is backwards
+            foreach (int key in Defaults.weapons.Keys)
+            {
+				if (Globals.kills >= key) return Defaults.weapons[key];
+            }
+			return Defaults.weapons.First().Value;
+        }
 		public override void OnCollision(ConsoleObject otherObject)
         {
-            if (otherObject.GetType().Name == "Enemy") 
-            {
-                IsVissible = false;
-				isMovable = false;
-				Animations[0].IsPaused = false;
-				Animations[1].IsPaused = true;
-            }
-            else if(otherObject.GetType().Name == "Background")
-            {
-                return;
-            }
+			ChangeWeapon(GetCurrentWeapon());
+			if (canCollide)
+			{
+				if (otherObject.GetType().Name == "Enemy")
+				{
+					Death();
+				}
+				else if (otherObject.GetType().Name == "Background")
+				{
+					return;
+				}
+			}
+            
 		}
     }
 }

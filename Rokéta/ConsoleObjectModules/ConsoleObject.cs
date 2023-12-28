@@ -14,8 +14,9 @@ namespace Roketa.ConsoleObjectModules
     public abstract class ConsoleObject
     {
         public bool isMovable { get; protected set; } = true;
-        public bool IsDisposed { get; protected set; } = false;
+        public bool IsDisposed { get; set; } = false;
         public bool IsVissible { get; protected set; } = true;
+        public bool canCollide { get; protected set; } = true;
         public double X { get; set; }
         public double Y { get; set; }
 		
@@ -86,7 +87,7 @@ namespace Roketa.ConsoleObjectModules
 			int index = 0;
 			while (!sr.EndOfStream)
 			{
-				string[] line = sr.ReadLine().Split(' ');
+				string[] line = sr.ReadLine().Trim().Split(' ');
 
 				for (int i = 0; i < line.Length; i++)
 				{
@@ -130,11 +131,11 @@ namespace Roketa.ConsoleObjectModules
 
 
 		}
-        private void Snap()
+        protected virtual void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
             X = Math.Max(X, 0);
-            Y = Math.Min(Y, Console.WindowHeight-Height);
+            Y = Math.Min(Y, Console.WindowHeight-Height+1);
             Y = Math.Max(Y, 0);
         }
         public void Fill(ConsoleColor color = ConsoleColor.Black)
@@ -194,6 +195,7 @@ namespace Roketa.ConsoleObjectModules
         }
         public virtual bool isCollision(ConsoleObject otherObject)
         {
+            if(!canCollide) return false;
             if 
             (
                 // AABB algorithm

@@ -8,30 +8,6 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.Statics;
 using Rokéta.SoundModules;
 
-void Performance_BenchMark()
-{
-	int width = Console.WindowWidth;
-	Console.CursorVisible = false;
-
-	int height = Console.WindowHeight;
-	Stopwatch sw = Stopwatch.StartNew();
-	Renderer renderer = new Renderer(width, height);
-	double tests = 100;
-	CharInfo[,] pixels = new CharInfo[height, width];
-	for (int x = 0; x < tests; x++)
-	{
-		renderer.FillBufferRandom();
-		renderer.Render();
-		renderer.Buffer = matrixToVector(pixels);
-		renderer.Render();
-	}
-	sw.Stop();
-	double time = sw.Elapsed.TotalSeconds;
-	Debug.WriteLine($"{time} seconds =>\n{time / tests} per test => \n{(double)1 / (time / tests)} fps");
-	Console.ReadKey();
-}
-
-
 void main()
 {
 	int width = 150;
@@ -45,11 +21,14 @@ void main()
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Player player;
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg5.txt");
 
-	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, Defaults.defaultWeapon, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	//Enemy enemy = new Enemy(r.Next(120 - 5 + 1), 0, 2, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy{r.Next(3 + 1)}.txt");
-	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemy1.txt", new double[] { 5, 5 });
+	Enemy enemy = consoleObjectFactory.CreateEnemy(50, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemies\\Enemy1.txt", new double[] { 5, 5 }, 50);
+	Enemy enemy2 = consoleObjectFactory.CreateEnemy(100, 10, 1, 3, 3, filePath: $"SaveFiles\\Objects\\Enemies\\Enemy1.txt", new double[] { 5, 5 }, 50);
+
+
 	//if (!consoleObjectFactory.loadedGameState)
 	//{
 	//	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
@@ -133,6 +112,10 @@ void main()
 			{
 				consoleObjectManager.SaveGameState();
 			}
+			else if(keyPress.Key == ConsoleKey.C)
+			{
+				Globals.kills += 50;
+			}
 		}
 	}
 }
@@ -147,6 +130,33 @@ CharInfo[] matrixToVector(CharInfo[,] charInfos)
 	}
 	return output;
 }
+
+void Performance_BenchMark()
+{
+	int width = Console.WindowWidth;
+	Console.CursorVisible = false;
+
+	int height = Console.WindowHeight;
+	Stopwatch sw = Stopwatch.StartNew();
+	Renderer renderer = new Renderer(width, height);
+	double tests = 100;
+	CharInfo[,] pixels = new CharInfo[height, width];
+	for (int x = 0; x < tests; x++)
+	{
+		renderer.FillBufferRandom();
+		renderer.Render();
+		renderer.Buffer = matrixToVector(pixels);
+		renderer.Render();
+	}
+	sw.Stop();
+	double time = sw.Elapsed.TotalSeconds;
+	Debug.WriteLine($"{time} seconds =>\n{time / tests} per test => \n{(double)1 / (time / tests)} fps");
+	Console.ReadKey();
+}
+
+
+
+
 main();
 
 

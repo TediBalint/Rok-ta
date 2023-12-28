@@ -14,4 +14,36 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SaveFiles\GameStates\DONTDELETE.txt" />
+    <None Remove="savefiles\objects\animations\BulletExplosionAnim.txt" />
+    <None Remove="savefiles\objects\background\bg2.txt" />
+    <None Remove="savefiles\objects\background\bg3.txt" />
+    <None Remove="savefiles\objects\background\bg4.txt" />
+    <None Remove="SaveFiles\Objects\Background\bg5.txt" />
+    <None Remove="SaveFiles\Objects\Bullet2.txt" />
+    <None Remove="SaveFiles\Objects\Bullet4.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet10.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet11.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet12.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet13.txt" />
+    <None Remove="savefiles\objects\bullets\Bullet14.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet15.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet3.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet4.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet5.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet6.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet7.txt" />
+    <None Remove="SaveFiles\Objects\Bullets\Bullet9.txt" />
+    <None Remove="savefiles\sound\gamesounds\BulletExplosionSound.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound1.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound2.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound3.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound4.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound5.txt" />
+    <None Remove="savefiles\sound\gamesounds\ShootSound1.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound2.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound3.txt" />
+  </ItemGroup>
+
 </Project>

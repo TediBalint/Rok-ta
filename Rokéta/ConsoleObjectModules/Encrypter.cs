@@ -39,13 +39,27 @@ namespace Rokéta.ConsoleObjectModules
 
 
 			}
-			return newLine;
+			string outLine = string.Empty;
+			for (int i = 0; i < newLine.Length; i++)
+			{
+				outLine += (char)((int)newLine[i] + i);
+			}
+			return outLine;
+		}
+		public static void test(string testString)
+		{
+			Debug.WriteLine(Encrypt(Decrypt(testString)));
 		}
 		public static string Decrypt(string line)
 		{
-			char splitKey = (char)(line.Length * 50);
-			string[] segments = line.Split(splitKey);
-			int len = line.Length;
+			string startLine = string.Empty;
+			for (int i = 0; i < line.Length; i++)
+			{
+				startLine += (char)((int)line[i] - i);
+			}
+			char splitKey = (char)(startLine.Length * 50);
+			string[] segments = startLine.Split(splitKey);
+			int len = startLine.Length;
 			len -= segments.Length - 1;
            
 

@@ -1,8 +1,11 @@
 ﻿using Roketa.ConsoleObjectModules;
+using Rokéta.SoundModules;
+using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,13 +18,14 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 		private double FireRate;
 		private int BulletAmount;
 		public double[] spawnPos { get; set; }
-
-		public Weapon(Bullet bullet, double spread, double fire_rate, int bulletAmount) 
-		{ 
+		private string[] shootSounds;
+		public Weapon(Bullet bullet, double spread, double fire_rate, int bulletAmount, string[] _shootSounds) 
+		{
 			Bullet = bullet;
 			Spread = spread;
 			FireRate = fire_rate;
 			BulletAmount = bulletAmount;
+			shootSounds = _shootSounds;
 		}
 		public void Shoot(Stopwatch bulletTimer, ConsoleObjectFactory consoleObjectFactory)
 		{
@@ -29,6 +33,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			double[] pos;
 			if(bulletTimer.Elapsed.TotalSeconds > 1/FireRate)
 			{
+				SoundManager.PlaySound(GetRandomShootSound());
 				bulletTimer.Restart();
 				if (_bulletAmount % 2 == 1)
 				{
@@ -60,6 +65,10 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 
 			}
 
+		}
+		private string GetRandomShootSound()
+		{
+			return shootSounds[Globals.Random.Next(0, shootSounds.Length)];
 		}
 	}
 }
