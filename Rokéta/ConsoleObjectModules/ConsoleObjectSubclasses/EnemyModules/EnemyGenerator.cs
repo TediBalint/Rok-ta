@@ -2,6 +2,7 @@
 using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -27,8 +28,12 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 		{
 			if(stopwatch.Elapsed.Seconds > getTimeUntilNextGen())
 			{
-				GenerateEnemy();
-				stopwatch.Restart();
+				if(Globals.canGenerate)
+				{
+					GenerateEnemy();
+					stopwatch.Restart();
+				}
+				
 			}
 		}
 		private double getTimeUntilNextGen()
@@ -40,7 +45,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 
 			if (Globals.kills < 1600)
 			{
-				
 				return 0.1 + Math.Min(1 / Math.Pow(2, Globals.kills / pow), 5) + Math.Min((Globals.enemyCount / Globals.kills * 100), 3);
 			}
 			else if(Globals.kills < 1610)
@@ -53,20 +57,41 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 				return Math.Min(1 / Math.Pow(2, Globals.kills / pow), 5) + Math.Min((Globals.enemyCount / Globals.kills * 100), 3);
 			}
 		}
+		private double GetX(Enemy enemy)
+		{
+			double x;
+			if (enemy.Width >= (int)(player.X - player.Width - enemy.Width / 2)) x = random.Next((int)(player.X + player.Width + enemy.Width / 2), Console.WindowWidth - enemy.Width);
+			else if ((int)(player.X + player.Width + enemy.Width / 2) >= Console.WindowWidth - enemy.Width) x = random.Next(enemy.Width, (int)(player.X - player.Width - enemy.Width / 2));
+			else
+			{
+				x = new double[] {
+				random.Next(enemy.Width, (int)(player.X-player.Width - enemy.Width/2)),
+				random.Next((int)(player.X + player.Width + enemy.Width/2), Console.WindowWidth - enemy.Width)}[random.Next(0, 2)];
+			}
+			return x;
+		}
+		private double GetY(Enemy enemy)
+		{
+			double y;
+			if (enemy.Height >= (int)(player.Y - player.Height - enemy.Height / 2)) y = random.Next((int)(player.Y + player.Height + enemy.Height / 2), Console.WindowHeight - enemy.Height);
+			else if ((int)(player.Y + player.Height + enemy.Height / 2) >= Console.WindowHeight - enemy.Height) y = random.Next(enemy.Height, (int)(player.Y - player.Height - enemy.Height / 2));
+			else
+			{
+				y = new double[] {
+				random.Next(enemy.Height, (int)(player.Y - player.Height - enemy.Height/2)),
+				random.Next((int)(player.Y + player.Height + enemy.Height/2), Console.WindowHeight - enemy.Height)}[random.Next(0, 2)];
+			}
+			return y;
+		}
 		private void GenerateEnemy()
 		{
 			Globals.lastHealthBonus += random.NextDouble() * Globals.kills/100;	
 			Enemy enemy = GetEnemy();
-			double x = new double[] {
-				random.Next(1, (int)(player.X-player.Width - enemy.Width/2)), random.Next((int)(player.X + player.Width + enemy.Width/2),
-				Console.WindowWidth - enemy.Width)}[random.Next(0,2)];
-			double y = new double[] {
-				random.Next(1, (int)(player.Y - player.Height - enemy.Height/2)), 
-				random.Next(Math.Min((int)(player.Y + player.Height + enemy.Height/2), Console.WindowHeight - enemy.Height-1), Console.WindowHeight - enemy.Height)}[random.Next(0, 2)];
+			double x = GetX(enemy);
+			double y = GetY(enemy);
 
 			double[] velocity = new double[] { 3 + (random.NextDouble() * Globals.kills / 100), 3 + (random.NextDouble() * Globals.kills / 100) };
 			for(int i = 0; i < velocity.Length; i++) velocity[i] *= Math.Sign(random.Next(-1,1)+0.1);
-			Debug.WriteLine(velocity[0] + " " + velocity[1]);
 			if (Globals.kills > 2000) enemy.Health = 50000;
 			double health = enemy.Health + Globals.lastHealthBonus;
 			consoleObjectFactory.CreateEnemy(x,y, enemy.Z_Index, enemy.Width, enemy.Height,enemy.FilePath, velocity, health);

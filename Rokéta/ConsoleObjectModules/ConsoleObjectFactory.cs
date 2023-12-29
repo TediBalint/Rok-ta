@@ -19,8 +19,10 @@ namespace Rokéta.ConsoleObjectModules
 		}
 		public Player loadGameState(Player player)
 		{
+			Globals.enemyCount = 0;
 			string filePath = ConsoleObjectManager.saveFilePath;
 			ConsoleObjectManager.consoleObjectList.Clear();
+			Globals.canGenerate = false;
 			if (File.Exists(filePath))
 			{
 				loadedGameState = true;
@@ -30,16 +32,15 @@ namespace Rokéta.ConsoleObjectModules
 					Globals.isMusicEnabled = bool.Parse(firstLine[0]);
 					Globals.isGameSoundEnabled = bool.Parse(firstLine[1]);
 					Globals.kills = int.Parse(firstLine[2]);
-					Globals.enemyCount = int.Parse(firstLine[3]);
-					Globals.lastHealthBonus = double.Parse(firstLine[4]);
+					Globals.lastHealthBonus = double.Parse(firstLine[3]);
 					while (!reader.EndOfStream)
 					{
 
 						string[] line = Encrypter.Decrypt(reader.ReadLine()).Split(';');
-						foreach (string elem in line)
-						{
-							Debug.WriteLine(elem);
-						}
+						//foreach (string elem in line)
+						//{
+						//	Debug.WriteLine(elem);
+						//}
 						string ObjType = line[0];
 						double Objx = double.Parse(line[1]);
 						double Objy = double.Parse(line[2]);
@@ -74,6 +75,7 @@ namespace Rokéta.ConsoleObjectModules
 			{
 				Debug.WriteLine($"Error in ConsoleObjectFactory:\n{filePath} not found!");
 			}
+			Globals.canGenerate = true;
 			return player;
 
 

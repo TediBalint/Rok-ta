@@ -17,5 +17,6 @@ namespace Rokéta.Statics
 		public static int kills = 1;
 		public static int enemyCount = 0;
 		public static double lastHealthBonus = 1;
+		public static bool canGenerate = true;
 	}
 }

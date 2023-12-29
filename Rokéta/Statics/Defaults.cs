@@ -55,7 +55,7 @@ namespace Rokéta.Statics
 		};
 		public static Dictionary<int, string> backgrounds = new Dictionary<int, string>()
 		{
-			{2000, "SaveFiles\\Objects\\Background\\bg5.txt" },
+			{2000, "SaveFiles\\Objects\\Background\\bg6.txt" },
 			{1000, "SaveFiles\\Objects\\Background\\bg5.txt" },
 			{600, "SaveFiles\\Objects\\Background\\bg4.txt"},
 			{200, "SaveFiles\\Objects\\Background\\bg3.txt"},

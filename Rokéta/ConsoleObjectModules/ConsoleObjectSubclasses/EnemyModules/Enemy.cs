@@ -49,6 +49,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 			canCollide = false;
 			IsVissible = false;
 			isMovable = false;
+            Globals.enemyCount--;
 			Animations[0].IsPaused = false;
 			//SoundManager.PlaySound("PlayerDeathSound1");
 		}

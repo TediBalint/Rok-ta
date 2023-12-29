@@ -22,6 +22,7 @@
     <None Remove="savefiles\objects\background\bg3.txt" />
     <None Remove="savefiles\objects\background\bg4.txt" />
     <None Remove="SaveFiles\Objects\Background\bg5.txt" />
+    <None Remove="SaveFiles\Objects\Background\bg6.txt" />
     <None Remove="SaveFiles\Objects\Bullet2.txt" />
     <None Remove="SaveFiles\Objects\Bullet4.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet10.txt" />
@@ -54,6 +55,13 @@
     <None Remove="savefiles\sound\gamesounds\ShootSound1.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound2.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound3.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="SaveFiles\Objects\Background\bg6.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,7 @@
-dr bl dr
-bl dm bl
-bl bl bl
+-- -- -- dy dy -- -- --
+-- -- dy dy dy dy -- --
+-- dy dy dy dy dy dy --
+dy dy bl dy dy bl dy dy
+dy dy dy dy dy dy dy dy
+-- -- dy -- -- dy -- --
+-- dy dy -- -- dy dy --

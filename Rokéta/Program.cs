@@ -45,16 +45,17 @@ void main()
 	//gameloop
 	while (true)
 	{
-		enemyGenerator.Generate();
+		
 		consoleObjectManager.HandleCollisions();
 
 		//Rendering
 		consoleObjectManager.RenderObjects();
 		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
 		renderer.Render();
+		enemyGenerator.Generate();
 
 		//Set Game Thicks
-		gameThicks+=100;
+		gameThicks +=100;
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
@@ -69,19 +70,19 @@ void main()
 			ConsoleKeyInfo keyPress = Console.ReadKey(true);
 			if (Defaults.keyBinds["Up"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(0, 1.5);
+				player.MoveRaw(0, 1+Globals.kills/1000);
 			}
 			else if (Defaults.keyBinds["Down"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(0, -1.5);
+				player.MoveRaw(0, -(1 + Globals.kills / 1000));
 			}
 			else if (Defaults.keyBinds["Right"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(1.5, 0);
+				player.MoveRaw(1 + Globals.kills / 1000, 0);
 			}
 			else if (Defaults.keyBinds["Left"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(-1.5, 0);
+				player.MoveRaw(-(1 + Globals.kills / 1000), 0);
 			}
 			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key) && player.IsVissible)
 			{
@@ -105,7 +106,11 @@ void main()
 			}
 			else if(Defaults.keyBinds["Cheat"].Contains(keyPress.Key))
 			{
-				Globals.kills += 100;
+				Globals.kills = 1600;
+			}
+			else if(keyPress.Key == ConsoleKey.X)
+			{
+				Globals.kills += 50;
 			}
 		}
 	}
