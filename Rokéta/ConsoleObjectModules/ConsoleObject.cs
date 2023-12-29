@@ -187,11 +187,12 @@ namespace Roketa.ConsoleObjectModules
         protected virtual string getSaveString()
         {
             // double x, double y, int zIndex, int? width, int? height,string? filePath
-            return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
+            return $"{GetType().Name};{Math.Round(X,2)};{Math.Round(Y)};{Z_Index};{Width};{Height};{FilePath}";
         }
         public void SaveToFile(StreamWriter sw)
         {
             sw.WriteLine(Encrypter.Encrypt(getSaveString()));
+            Debug.WriteLine(Encrypter.Decrypt(Encrypter.Encrypt(getSaveString())));
         }
         public virtual bool isCollision(ConsoleObject otherObject)
         {

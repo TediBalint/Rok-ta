@@ -51,14 +51,16 @@ namespace Roketa.ConsoleObjectModules
 			//	StreamWriter sw = new StreamWriter(saveFilePath);
 			//	sw.Close();
 			//}
-			using (StreamWriter sw = new StreamWriter(saveFilePath))
+			using (StreamWriter sw = new StreamWriter(saveFilePath, false))
 			{
-				sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills}"));
+				Debug.WriteLine(Encrypter.Decrypt(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills};{Globals.enemyCount};{Globals.lastHealthBonus}")));
+				sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills};{Globals.enemyCount};{Globals.lastHealthBonus}"));
                 foreach (ConsoleObject obj in consoleObjectList)
                 {
 					obj.SaveToFile(sw);
                 }
             }
+			
 		}
 		public void RenderObjects()
 		{

@@ -27,11 +27,11 @@ namespace Rokéta.ConsoleObjectModules
 				{
 					if(j % 2 + i % 2 == 0)
 					{
-						newLine += (char)(segments[i][j] + key[index % key.Length]);
+						newLine += (char)(segments[i][j] + key[index % key.Length] + 5000) ;
 					}
 					else
 					{
-						newLine += (char)(segments[i][j] - key[index % key.Length]);
+						newLine += (char)(segments[i][j] - key[index % key.Length] + 5000);
 					}
 					index++;
 				}
@@ -72,11 +72,11 @@ namespace Rokéta.ConsoleObjectModules
 				{
 					if (j % 2 + i % 2 == 0)
 					{
-						newLine += (char)(segments[i][j] - key[index%key.Length]);
+						newLine += (char)(segments[i][j] - key[index%key.Length] - 5000);
 					}
 					else
 					{
-						newLine += (char)(segments[i][j] + key[index%key.Length]);
+						newLine += (char)(segments[i][j] + key[index % key.Length] - 5000);
 					}
 					index++;
 				}

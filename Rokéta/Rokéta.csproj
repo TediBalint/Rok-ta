@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Remove="SaveFiles\GameStates\DONTDELETE.txt" />
     <None Remove="savefiles\objects\animations\BulletExplosionAnim.txt" />
+    <None Remove="savefiles\objects\animations\EnemyDeathAnim.txt" />
     <None Remove="savefiles\objects\background\bg2.txt" />
     <None Remove="savefiles\objects\background\bg3.txt" />
     <None Remove="savefiles\objects\background\bg4.txt" />

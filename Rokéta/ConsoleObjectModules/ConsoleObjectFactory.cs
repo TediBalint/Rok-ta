@@ -4,7 +4,7 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
 using System.Diagnostics;
-
+using System.Text;
 
 namespace Rokéta.ConsoleObjectModules
 {
@@ -30,6 +30,8 @@ namespace Rokéta.ConsoleObjectModules
 					Globals.isMusicEnabled = bool.Parse(firstLine[0]);
 					Globals.isGameSoundEnabled = bool.Parse(firstLine[1]);
 					Globals.kills = int.Parse(firstLine[2]);
+					Globals.enemyCount = int.Parse(firstLine[3]);
+					Globals.lastHealthBonus = double.Parse(firstLine[4]);
 					while (!reader.EndOfStream)
 					{
 

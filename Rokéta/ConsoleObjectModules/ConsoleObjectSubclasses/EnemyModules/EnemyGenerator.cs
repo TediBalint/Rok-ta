@@ -58,10 +58,10 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 			Globals.lastHealthBonus += random.NextDouble() * Globals.kills/100;	
 			Enemy enemy = GetEnemy();
 			double x = new double[] {
-				random.Next(0, (int)(player.X-player.Width - enemy.Width/2)), random.Next((int)(player.X + player.Width + enemy.Width/2),
+				random.Next(1, (int)(player.X-player.Width - enemy.Width/2)), random.Next((int)(player.X + player.Width + enemy.Width/2),
 				Console.WindowWidth - enemy.Width)}[random.Next(0,2)];
 			double y = new double[] {
-				random.Next(0, (int)(player.Y - player.Height - enemy.Height/2)), 
+				random.Next(1, (int)(player.Y - player.Height - enemy.Height/2)), 
 				random.Next(Math.Min((int)(player.Y + player.Height + enemy.Height/2), Console.WindowHeight - enemy.Height-1), Console.WindowHeight - enemy.Height)}[random.Next(0, 2)];
 
 			double[] velocity = new double[] { 3 + (random.NextDouble() * Globals.kills / 100), 3 + (random.NextDouble() * Globals.kills / 100) };

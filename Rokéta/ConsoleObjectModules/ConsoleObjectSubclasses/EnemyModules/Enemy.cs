@@ -1,5 +1,7 @@
 ﻿using Roketa.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.SoundModules;
 using Rokéta.Statics;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 		{
             Health = health; 
 			velocity = _velocity;
+            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent:true));
 		}
         private void Movement()
         {
@@ -39,12 +42,15 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 		}
 		protected override string getSaveString()
 		{
-            return base.getSaveString() + $";{velocity[0]};{velocity[1]};{Health}";
+            return base.getSaveString() + $";{Math.Round(velocity[0], 2)};{Math.Round(velocity[1],2)};{Math.Round(Health), 2}";
 		}
         private void Death()
         {
-			Debug.WriteLine(Health);
-
+			canCollide = false;
+			IsVissible = false;
+			isMovable = false;
+			Animations[0].IsPaused = false;
+			//SoundManager.PlaySound("PlayerDeathSound1");
 		}
         private void TakeDamage(double damage)
         {
