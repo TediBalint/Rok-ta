@@ -99,7 +99,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				animationObject.X = Parent.X + animationObject.xOffset;
 				animationObject.Y = Parent.Y - Parent.Height/2 - animationObject.yOffset;
-				Debug.WriteLine(animationObject.Y + " " + animationObject.yOffset);
+				animationObject.Snap();
 				animationObject.insertToMatrix(ref pixels);
 			}
 			else if(destroyParent)

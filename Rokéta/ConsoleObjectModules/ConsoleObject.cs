@@ -131,7 +131,7 @@ namespace Roketa.ConsoleObjectModules
 
 
 		}
-        protected virtual void Snap()
+        public virtual void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
             X = Math.Max(X, 0);

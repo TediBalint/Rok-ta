@@ -14,7 +14,7 @@ public struct COORD
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public struct SMALL_RECT
+public struct Rect
 {
     public short Left;
     public short Top;

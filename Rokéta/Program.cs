@@ -12,7 +12,6 @@ void main()
 {
 	int width = 150;
 	int height = 50;
-	Random r = new Random();
 	Console.CursorVisible=false;
 	Console.Title = "Rokéta";
 	Console.WindowWidth = width;
@@ -20,15 +19,13 @@ void main()
 	Renderer renderer = new Renderer(width,height);
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
+	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg2.txt");
+
+
+
 	
-	Player player;
-	Background background;
-	if (!consoleObjectFactory.loadedGameState)
-	{
-		background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg2.txt");
-		player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
-	}
-	else player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 	
 	SoundManager.PlaySound("Music1");

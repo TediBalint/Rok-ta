@@ -28,7 +28,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			Weapon = newWeapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y };
 		}
-		protected override void Snap()
+		public override void Snap()
 		{
 			if (Animations[1].currObject == null)
 			{
