@@ -31,7 +31,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
         private void Movement()
         {
 			MoveMotion(velocity[0], velocity[1], Globals.currentGameThicks);
-            if(X >= Console.WindowWidth - Width || X <= Width)
+            if(X >= Console.WindowWidth - Width || X <= 0)
             {
                 velocity[0] *= -1;
             }

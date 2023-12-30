@@ -1,3 +1,8 @@
-cy wh cy
-bu re bu
-bu bu bu
+dy -- -- -- dy -- -- dy -- -- -- dy
+-- dy -- dy -- -- -- -- dy -- dy --
+-- -- dy -- -- -- -- -- -- dy -- --
+-- dy dy dy dy dy dy dy dy dy dy --
+dy dy bl bl bl dy dy bl bl bl dy dy
+-- dy dy dy dy dy dy dy dy dy dy --
+-- -- dy dy dy bl bl dy dy dy -- --
+dy dy -- -- -- dy dy -- -- -- dy dy 

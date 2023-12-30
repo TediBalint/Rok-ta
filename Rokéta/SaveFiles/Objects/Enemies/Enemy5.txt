@@ -1,3 +1,7 @@
-cy wh cy
-bu wh bu
-bu bu bu
+ye -- ye ye ye -- ye
+-- ye ye ye ye ye --
+-- ye bl ye bl ye --
+ye ye bl ye bl ye ye
+ye ye ye ye ye ye ye
+-- ye bl ye bl ye --
+-- -- ye -- ye -- --

@@ -1,3 +1,8 @@
-cy wh cy
-bu wh bu
-bu bu bu
+-- -- -- -- -- cy cy cy -- -- -- -- cy cy cy -- -- -- -- --
+-- -- -- -- -- cy bl cy -- -- -- -- cy bl cy -- -- -- -- --
+-- -- cy -- -- -- cy -- -- cy cy -- -- cy -- -- -- cy -- --
+-- cy cy cy -- cy cy cy cy cy cy cy cy cy cy -- cy cy cy --
+-- cy bl cy cy cy cy cy bl cy cy bl cy cy cy cy cy bl cy --
+cy cy cy -- cy cy cy cy cy cy cy cy cy cy cy cy -- cy cy cy
+cy cy cy -- -- -- cy cy -- cy cy -- cy cy -- -- -- cy cy cy
+-- cy cy -- -- cy cy -- -- -- -- -- -- cy cy -- -- cy cy --

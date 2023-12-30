@@ -1,3 +1,8 @@
-cy wh cy
-bu wh bu
-bu bu bu
+-- -- re -- re -- --
+-- re re re re re --
+re re bl re bl re re
+re re re re re re re
+-- re re bl re re --
+-- -- re re re -- --
+-- re re -- re re --
+re -- re -- re -- re

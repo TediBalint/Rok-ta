@@ -1,3 +1,8 @@
-cy wh cy
-bu wh bu
-bu bu bu
+-- -- dg dg dg dg dg -- --
+-- dg dg dg dg dg dg dg --
+-- dg bl dg dg dg bl dg --
+dg dg dg dg dg dg dg dg dg
+dg -- dg bl bl bl dg -- dg
+dg -- -- dg dg dg -- -- dg
+dg -- dg -- -- -- dg -- dg
+dg -- dg -- -- -- dg -- dg

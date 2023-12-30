@@ -38,6 +38,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			{
 				try
 				{
+					if (Animations[1].currObject == null)
+					{
+						Debug.WriteLine("IT WOULD ERROR HERE");
+						return;
+					}
 					X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
 					X = Math.Max(X, 0);
 					Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
@@ -52,27 +57,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			}
 			
 		}
-		//private void setStats()
-		//{
-		//    string FilePath = savefilePath;
-		//    if (!File.Exists(FilePath)) FilePath = $"SaveFiles\\Default\\defaultPlayer.txt";
-		//    Stats = getStatsFromFile(FilePath);
-		//}
-		//private PlayerStats getStatsFromFile(string filePath)
-		//{
-		//    StreamReader streamReader = new StreamReader(filePath);
-		//    int health = int.Parse(streamReader.ReadLine());
-		//    int Damage = int.Parse(streamReader.ReadLine());
-		//    int Speed = int.Parse(streamReader.ReadLine());
-		//    streamReader.Close();
-		//    return new PlayerStats(health, Damage, Speed);
-		//}
-		//public void savePlayerStats()
-		//{
-		//    StreamWriter sw = new StreamWriter(savefilePath);
-		//    sw.WriteLine(Stats.ToString());
-		//    sw.Close();
-		//}
 		public override bool isCollision(ConsoleObject otherObject)
 		{
 			bool animIsColliding = false;
