@@ -78,6 +78,7 @@ namespace Rokéta.Statics
 			new Enemy(0,0,2,3,4, "SaveFiles\\Objects\\Enemies\\Enemy10.txt", new double[]{0,0},10000), // 10
 			new Enemy(0,0,2,3,4, "SaveFiles\\Objects\\Enemies\\Enemy11.txt", new double[]{0,0},50000), // 11
 			new Enemy(0,0,2,3,4, "SaveFiles\\Objects\\Enemies\\Enemy12.txt", new double[]{0,0},100000), // 12
+			new Enemy(0,0,2,3,4, "SaveFiles\\Objects\\Enemies\\Enemy13.txt", new double[]{0,0},130000), // 13
 		};
 		public static Dictionary<int, Enemy[]> enemies = new Dictionary<int, Enemy[]>()
 		{
