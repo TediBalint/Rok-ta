@@ -1,13 +1,5 @@
-﻿using Rokéta.ConsoleObjectModules.AnimationModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
+﻿using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rokéta.Statics
 {
@@ -37,7 +29,7 @@ namespace Rokéta.Statics
 		public static Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>()
 		{
 			{2000, new Weapon(bullets[15], 90, 1, 6, new string[] {"ShootSound16"})},
-			{1610, new Weapon(bullets[14], 90, 100, 3, new string[] {"ShootSoun15"})},
+			{1610, new Weapon(bullets[14], 90, 100, 3, new string[] {"ShootSound15"})},
 			{1600, new Weapon(bullets[13], 90, 25, 1, new string[] {"ShootSound14"})},
 			{1500, new Weapon(bullets[12], 90, 100, 1, new string[] {"ShootSound13"})},
 			{1000, new Weapon(bullets[11], 360, 0.2, 50, new string[] {"ShootSound12"})},

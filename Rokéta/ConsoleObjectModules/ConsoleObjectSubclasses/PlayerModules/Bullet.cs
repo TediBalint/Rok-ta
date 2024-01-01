@@ -75,7 +75,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
         }
 		//public void moveAngle()
   //      {
-  //          Debug.WriteLine(angle);
+  //          
   //          double moveX = Math.Sin(angle/180*Math.PI) * speed;
   //          double moveY = Math.Cos(angle / 180 * Math.PI) * speed;
   //          //if (angle > 0) moveY =;

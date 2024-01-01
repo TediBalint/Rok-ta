@@ -1,14 +1,6 @@
 ﻿using Rokéta.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Roketa.ConsoleObjectModules
 {
@@ -27,7 +19,6 @@ namespace Roketa.ConsoleObjectModules
 		}
 		public void HandleCollisions()
 		{
-			// normal for loop so it doesnt crash when changing consoleObjectList while handling collisions
 			for (int i = 0; i < consoleObjectList.Count; i++)
 			{
 				for (int j = 0; j < consoleObjectList.Count; j++)
@@ -46,11 +37,6 @@ namespace Roketa.ConsoleObjectModules
 		}
 		public void SaveGameState()
 		{
-			//if(!File.Exists(saveFilePath))
-			//{
-			//	StreamWriter sw = new StreamWriter(saveFilePath);
-			//	sw.Close();
-			//}
 			using (StreamWriter sw = new StreamWriter(saveFilePath, false))
 			{
 				Debug.WriteLine(Encrypter.Decrypt(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills};{Globals.lastHealthBonus}")));
@@ -60,7 +46,6 @@ namespace Roketa.ConsoleObjectModules
 					obj.SaveToFile(sw);
                 }
             }
-			
 		}
 		public void RenderObjects()
 		{

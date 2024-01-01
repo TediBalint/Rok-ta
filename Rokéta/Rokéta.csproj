@@ -53,6 +53,7 @@
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound4.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound5.txt" />
     <None Remove="savefiles\sound\gamesounds\ShootSound1.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound16.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound2.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound3.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound4.txt" />

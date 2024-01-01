@@ -1,13 +1,6 @@
-﻿using Microsoft.Win32.SafeHandles;
-using Rokéta.ConsoleObjectModules;
+﻿using Rokéta.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Roketa.ConsoleObjectModules
 {
@@ -169,7 +162,7 @@ namespace Roketa.ConsoleObjectModules
 						}
 						catch (IndexOutOfRangeException)
 						{
-							Debug.WriteLine(i + " " + j);
+							
 						}
 
 

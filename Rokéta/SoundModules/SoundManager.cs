@@ -1,10 +1,4 @@
-﻿using Rokéta.Statics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace Rokéta.SoundModules
 {
@@ -24,7 +18,7 @@ namespace Rokéta.SoundModules
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine($"Error in SoundManager PlaySound[{SoundName}]:\n{e.Message}");
+				
 			}
 			
 		}

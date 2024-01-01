@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-
+﻿using System.Runtime.InteropServices;
 
 namespace Roketa.Renderer
 {
@@ -66,12 +64,12 @@ namespace Roketa.Renderer
 
 		//			int windowWidth = (rect.Right - rect.Left);
 		//			int windowHeight = rect.Bottom - rect.Top;
-		//			Debug.WriteLine(windowHeight + " " + windowWidth);
+		//			
 		//			int newX = (screenWidth - windowWidth) / 2;
 		//			int newY = (screenHeight - windowHeight) / 2;
 
 		//			MoveWindow(consoleHandle, newX, newY, windowWidth, windowHeight, true);
-		//			Debug.WriteLine(newX + " " + newY);
+		//			
 		//		}
 		//		else
 		//		{

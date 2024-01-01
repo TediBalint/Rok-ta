@@ -1,16 +1,7 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
-using Rokéta.SoundModules;
 using Rokéta.Statics;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 {

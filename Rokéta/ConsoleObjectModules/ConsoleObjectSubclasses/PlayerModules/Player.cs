@@ -28,6 +28,16 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			Weapon = newWeapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y };
 		}
+		private void Death()
+		{
+			canCollide = false;
+			IsVissible = false;
+			isMovable = false;
+			Animations[0].IsPaused = false;
+			Animations[1].IsPaused = true;
+			SoundManager.PlaySound("PlayerDeathSound1");
+			//SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1,5+1)}");
+		}
 		public override void Snap()
 		{
 			if (Animations[1].currObject == null)
@@ -40,7 +50,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				{
 					if (Animations[1].currObject == null)
 					{
-						Debug.WriteLine("IT WOULD ERROR HERE");
+						
 						return;
 					}
 					X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
@@ -50,8 +60,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				}
 				catch (Exception e)
 				{
-					Debug.WriteLine("Player.cs/Snap Threw Error!\nSometimes Happens");
-					Debug.WriteLine(e.Message);
+					
+					
 				}
 				
 			}
@@ -66,16 +76,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			}
 			return base.isCollision(otherObject) || animIsColliding;
 		}
-		private void Death()
-		{
-			canCollide = false;
-			IsVissible = false;
-			isMovable = false;
-			Animations[0].IsPaused = false;
-			Animations[1].IsPaused = true;
-			SoundManager.PlaySound("PlayerDeathSound1");
-			//SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1,5+1)}");
-		}
+		
 		public static Weapon GetCurrentWeapon()
 		{
             // weapons is backwards

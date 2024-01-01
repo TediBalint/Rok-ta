@@ -1,12 +1,4 @@
-﻿using Rokéta.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rokéta.Statics
+﻿namespace Rokéta.Statics
 {
 	public static class Globals
 	{

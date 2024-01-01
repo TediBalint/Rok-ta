@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 
-
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
 public struct CharUnion
 {

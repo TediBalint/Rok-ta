@@ -20,12 +20,7 @@ void main()
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
-	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg2.txt");
-
-
-
-	
-	
+	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 	
 	SoundManager.PlaySound("Music1");
@@ -111,14 +106,15 @@ void main()
 			}
 		}
 	}
+	
 }
 
 CharInfo[] matrixToVector(CharInfo[,] charInfos)
 {
 	CharInfo[] output = new CharInfo[charInfos.Length];
 	int index = 0;
-    foreach (CharInfo chr in charInfos)
-    {
+	foreach (CharInfo chr in charInfos)
+	{
 		output[index++] = chr;
 	}
 	return output;

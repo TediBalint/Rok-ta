@@ -4,7 +4,6 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
 using System.Diagnostics;
-using System.Text;
 
 namespace Rokéta.ConsoleObjectModules
 {
@@ -39,7 +38,7 @@ namespace Rokéta.ConsoleObjectModules
 						string[] line = Encrypter.Decrypt(reader.ReadLine()).Split(';');
 						//foreach (string elem in line)
 						//{
-						//	Debug.WriteLine(elem);
+						//	
 						//}
 						string ObjType = line[0];
 						double Objx = double.Parse(line[1]);
@@ -64,7 +63,7 @@ namespace Rokéta.ConsoleObjectModules
 						}
 						else
 						{
-							Debug.WriteLine($"Error in ConsoleObjectFactory.cs: {ObjType} unkown!");
+							
 						}
 
 						//return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
@@ -73,7 +72,7 @@ namespace Rokéta.ConsoleObjectModules
 			}
 			else
 			{
-				Debug.WriteLine($"Error in ConsoleObjectFactory:\n{filePath} not found!");
+				
 			}
 			Globals.canGenerate = true;
 			return player;

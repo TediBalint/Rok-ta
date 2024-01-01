@@ -1,10 +1,5 @@
 ﻿using Rokéta.Statics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rokéta.SoundModules
 {
@@ -60,7 +55,7 @@ namespace Rokéta.SoundModules
 						}
 						else
 						{
-							Debug.WriteLine($"Error in Sound.cs: \n${line[0]} not in SoundManager.SoundNodeFreqPairs and not int");
+							
 						}
 					}
 					 
@@ -70,11 +65,11 @@ namespace Rokéta.SoundModules
 			}
 			catch(FileNotFoundException) 
 			{
-				Debug.WriteLine($"No File {path}");
+				
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine($"Error in Sound.cs ReadFile :\n{e.Message}");
+				
 			}
 			
 		}
