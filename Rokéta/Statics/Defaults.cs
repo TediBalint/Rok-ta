@@ -34,22 +34,21 @@ namespace Rokéta.Statics
 		public static Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>()
 		{
 			{750, new Weapon(bullets[15], 90, 1, 6, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-
 			{700, new Weapon(bullets[14], 90, 150, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
 			{650, new Weapon(bullets[13], 90, 25, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
 			{600, new Weapon(bullets[12], 90, 100, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
 			{550, new Weapon(bullets[11], 360, 0.2, 50, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
 			{500, new Weapon(bullets[10], 360, 0.5, 50, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
 			{450, new Weapon(bullets[9], 180, 1, 25, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{400, new Weapon(bullets[8], 135, 2, 10, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{350, new Weapon(bullets[7], 135, 2, 6, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{300, new Weapon(bullets[6], 90, 2, 4, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{250, new Weapon(bullets[5], 90, 2, 4, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{200, new Weapon(bullets[4], 60, 5, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{150, new Weapon(bullets[3], 45, 3, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{100, new Weapon(bullets[2], 45, 2, 2, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{50, new Weapon(bullets[1], 45, 2, 2, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{0, new Weapon(bullets[0], 90, 2, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})}
+			{400, new Weapon(bullets[8], 135, 2, 10, new string[] {"ShootSound9"})},
+			{350, new Weapon(bullets[7], 135, 2, 6, new string[] {"ShootSound8"})},
+			{300, new Weapon(bullets[6], 90, 2, 4, new string[] {"ShootSound7"})},
+			{250, new Weapon(bullets[5], 90, 2, 4, new string[] {"ShootSound6"})},
+			{200, new Weapon(bullets[4], 60, 5, 3, new string[] {"ShootSound5"})},
+			{150, new Weapon(bullets[3], 45, 3, 3, new string[] {"ShootSound4"})},
+			{100, new Weapon(bullets[2], 45, 2, 2, new string[] {"ShootSound3"})},
+			{50, new Weapon(bullets[1], 45, 2, 2, new string[] {"ShootSound2"})},
+			{0, new Weapon(bullets[0], 90, 2, 1, new string[] {"ShootSound1"})}
 		};
 		
 		public static Dictionary<string, ConsoleKey[]> keyBinds = new Dictionary<string, ConsoleKey[]>() 

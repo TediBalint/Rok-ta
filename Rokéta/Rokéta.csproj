@@ -44,6 +44,12 @@
     <None Remove="savefiles\sound\gamesounds\ShootSound1.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound2.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound3.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound4.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound5.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound6.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound7.txt" />
+    <None Remove="SaveFiles\Sound\GameSounds\ShootSound8.txt" />
+    <None Remove="savefiles\sound\gamesounds\ShootSound9.txt" />
   </ItemGroup>
 
 </Project>
