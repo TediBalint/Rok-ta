@@ -2,6 +2,7 @@
 using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.SoundModules;
 using Rokéta.Statics;
+using System.Diagnostics;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
@@ -27,7 +28,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			Weapon = newWeapon;
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width) / 2, Y };
 		}
-		protected override void Snap()
+		public override void Snap()
 		{
 			if (Animations[1].currObject == null)
 			{
@@ -35,34 +36,27 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			}
 			else
 			{
-				X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
-				X = Math.Max(X, 0);
-				Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
-				Y = Math.Max(Y, 0);
+				try
+				{
+					if (Animations[1].currObject == null)
+					{
+						Debug.WriteLine("IT WOULD ERROR HERE");
+						return;
+					}
+					X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
+					X = Math.Max(X, 0);
+					Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
+					Y = Math.Max(Y, 0);
+				}
+				catch (Exception e)
+				{
+					Debug.WriteLine("Player.cs/Snap Threw Error!\nSometimes Happens");
+					Debug.WriteLine(e.Message);
+				}
+				
 			}
 			
 		}
-		//private void setStats()
-		//{
-		//    string FilePath = savefilePath;
-		//    if (!File.Exists(FilePath)) FilePath = $"SaveFiles\\Default\\defaultPlayer.txt";
-		//    Stats = getStatsFromFile(FilePath);
-		//}
-		//private PlayerStats getStatsFromFile(string filePath)
-		//{
-		//    StreamReader streamReader = new StreamReader(filePath);
-		//    int health = int.Parse(streamReader.ReadLine());
-		//    int Damage = int.Parse(streamReader.ReadLine());
-		//    int Speed = int.Parse(streamReader.ReadLine());
-		//    streamReader.Close();
-		//    return new PlayerStats(health, Damage, Speed);
-		//}
-		//public void savePlayerStats()
-		//{
-		//    StreamWriter sw = new StreamWriter(savefilePath);
-		//    sw.WriteLine(Stats.ToString());
-		//    sw.Close();
-		//}
 		public override bool isCollision(ConsoleObject otherObject)
 		{
 			bool animIsColliding = false;
@@ -89,11 +83,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
             {
 				if (Globals.kills >= key) return Defaults.weapons[key];
             }
-			return Defaults.weapons.First().Value;
+			return Defaults.weapons.Last().Value;
         }
 		public override void OnCollision(ConsoleObject otherObject)
         {
-			ChangeWeapon(GetCurrentWeapon());
+			
 			if (canCollide)
 			{
 				if (otherObject.GetType().Name == "Enemy")
@@ -102,6 +96,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				}
 				else if (otherObject.GetType().Name == "Background")
 				{
+					ChangeWeapon(GetCurrentWeapon());
 					return;
 				}
 			}

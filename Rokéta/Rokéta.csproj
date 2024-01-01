@@ -17,10 +17,12 @@
   <ItemGroup>
     <None Remove="SaveFiles\GameStates\DONTDELETE.txt" />
     <None Remove="savefiles\objects\animations\BulletExplosionAnim.txt" />
+    <None Remove="savefiles\objects\animations\EnemyDeathAnim.txt" />
     <None Remove="savefiles\objects\background\bg2.txt" />
     <None Remove="savefiles\objects\background\bg3.txt" />
     <None Remove="savefiles\objects\background\bg4.txt" />
     <None Remove="SaveFiles\Objects\Background\bg5.txt" />
+    <None Remove="SaveFiles\Objects\Background\bg6.txt" />
     <None Remove="SaveFiles\Objects\Bullet2.txt" />
     <None Remove="SaveFiles\Objects\Bullet4.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet10.txt" />
@@ -35,6 +37,15 @@
     <None Remove="SaveFiles\Objects\Bullets\Bullet6.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet7.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet9.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy10.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy11.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy12.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy4.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy5.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy6.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy7.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy8.txt" />
+    <None Remove="SaveFiles\Objects\Enemies\Enemy9.txt" />
     <None Remove="savefiles\sound\gamesounds\BulletExplosionSound.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound1.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound2.txt" />
@@ -50,6 +61,13 @@
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound7.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\ShootSound8.txt" />
     <None Remove="savefiles\sound\gamesounds\ShootSound9.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="SaveFiles\Objects\Background\bg6.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

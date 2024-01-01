@@ -1,0 +1,8 @@
+dy -- -- -- dy -- -- dy -- -- -- dy
+-- dy -- dy -- -- -- -- dy -- dy --
+-- -- dy -- -- -- -- -- -- dy -- --
+-- dy dy dy dy dy dy dy dy dy dy --
+dy dy bl bl bl dy dy bl bl bl dy dy
+-- dy dy dy dy dy dy dy dy dy dy --
+-- -- dy dy dy bl bl dy dy dy -- --
+dy dy -- -- -- dy dy -- -- -- dy dy 

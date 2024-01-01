@@ -1,0 +1,8 @@
+-- -- -- -- -- cy cy cy -- -- -- -- cy cy cy -- -- -- -- --
+-- -- -- -- -- cy bl cy -- -- -- -- cy bl cy -- -- -- -- --
+-- -- cy -- -- -- cy -- -- cy cy -- -- cy -- -- -- cy -- --
+-- cy cy cy -- cy cy cy cy cy cy cy cy cy cy -- cy cy cy --
+-- cy bl cy cy cy cy cy bl cy cy bl cy cy cy cy cy bl cy --
+cy cy cy -- cy cy cy cy cy cy cy cy cy cy cy cy -- cy cy cy
+cy cy cy -- -- -- cy cy -- cy cy -- cy cy -- -- -- cy cy cy
+-- cy cy -- -- cy cy -- -- -- -- -- -- cy cy -- -- cy cy --

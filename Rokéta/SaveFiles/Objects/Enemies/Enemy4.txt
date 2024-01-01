@@ -1,0 +1,8 @@
+-- -- dg dg dg dg dg -- --
+-- dg dg dg dg dg dg dg --
+-- dg bl dg dg dg bl dg --
+dg dg dg dg dg dg dg dg dg
+dg -- dg bl bl bl dg -- dg
+dg -- -- dg dg dg -- -- dg
+dg -- dg -- -- -- dg -- dg
+dg -- dg -- -- -- dg -- dg

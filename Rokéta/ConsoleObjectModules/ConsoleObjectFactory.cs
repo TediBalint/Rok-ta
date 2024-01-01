@@ -4,27 +4,26 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
 using System.Diagnostics;
-
+using System.Text;
 
 namespace Rokéta.ConsoleObjectModules
 {
 	public class ConsoleObjectFactory
 	{
 		private ConsoleObjectManager ConsoleObjectManager { get; set; }
-		public bool loadedGameState;
+		public bool loadedGameState = false;
 
 		public ConsoleObjectFactory(ConsoleObjectManager consoleObjectManager)
 		{
 			ConsoleObjectManager = consoleObjectManager;
-			//loadGameState(consoleObjectManager.saveFilePath);
 		}
-		private void loadGameState(string filePath)
+		public Player loadGameState(Player player)
 		{
-			if(!File.Exists(filePath))
-			{
-				loadedGameState = false;
-			}
-			else
+			Globals.enemyCount = 0;
+			string filePath = ConsoleObjectManager.saveFilePath;
+			ConsoleObjectManager.consoleObjectList.Clear();
+			Globals.canGenerate = false;
+			if (File.Exists(filePath))
 			{
 				loadedGameState = true;
 				using (StreamReader reader = new StreamReader(filePath))
@@ -33,10 +32,15 @@ namespace Rokéta.ConsoleObjectModules
 					Globals.isMusicEnabled = bool.Parse(firstLine[0]);
 					Globals.isGameSoundEnabled = bool.Parse(firstLine[1]);
 					Globals.kills = int.Parse(firstLine[2]);
+					Globals.lastHealthBonus = double.Parse(firstLine[3]);
 					while (!reader.EndOfStream)
 					{
 
 						string[] line = Encrypter.Decrypt(reader.ReadLine()).Split(';');
+						//foreach (string elem in line)
+						//{
+						//	Debug.WriteLine(elem);
+						//}
 						string ObjType = line[0];
 						double Objx = double.Parse(line[1]);
 						double Objy = double.Parse(line[2]);
@@ -46,7 +50,7 @@ namespace Rokéta.ConsoleObjectModules
 						string ObjFilePath = line[6];
 						if (ObjType == "Player")
 						{
-							CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
+							player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
 						}
 						else if (ObjType == "Enemy")
 						{
@@ -67,7 +71,15 @@ namespace Rokéta.ConsoleObjectModules
 					}
 				}
 			}
-			
+			else
+			{
+				Debug.WriteLine($"Error in ConsoleObjectFactory:\n{filePath} not found!");
+			}
+			Globals.canGenerate = true;
+			return player;
+
+
+
 		}
 		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, string? filePath = null)
 		{
@@ -77,6 +89,7 @@ namespace Rokéta.ConsoleObjectModules
 		}
 		public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity, double health)
 		{
+			Globals.enemyCount++;
 			Enemy newEnemy = new Enemy(x,y,zIndex, width, height, filePath, velocity, health);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);            
 			return newEnemy;

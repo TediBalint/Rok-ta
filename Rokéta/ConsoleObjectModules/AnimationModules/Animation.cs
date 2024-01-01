@@ -80,7 +80,12 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 					return AnimationFrames[tick];
 				}
 			}
-			currObject = null;
+			if (repeat)
+			{
+				CurrentTick = 0;
+				currObject = AnimationFrames.Values.ToArray()[2];
+				return currObject;
+			}
 			return null;
 		}
 		public void Render(ref CharInfo[,] pixels)
@@ -94,9 +99,9 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				animationObject.X = Parent.X + animationObject.xOffset;
 				animationObject.Y = Parent.Y - Parent.Height/2 - animationObject.yOffset;
+				animationObject.Snap();
 				animationObject.insertToMatrix(ref pixels);
 			}
-			else if(repeat) CurrentTick = 0;
 			else if(destroyParent)
 			{
 				Parent.IsDisposed = true;

@@ -72,7 +72,7 @@ namespace Roketa.ConsoleObjectModules
             sr.Close();
             return new int[2] { width, height };
         }
-        private void readFile()
+        protected void readFile()
         {
             
             StreamReader sr;
@@ -131,7 +131,7 @@ namespace Roketa.ConsoleObjectModules
 
 
 		}
-        protected virtual void Snap()
+        public virtual void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
             X = Math.Max(X, 0);
@@ -187,11 +187,12 @@ namespace Roketa.ConsoleObjectModules
         protected virtual string getSaveString()
         {
             // double x, double y, int zIndex, int? width, int? height,string? filePath
-            return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
+            return $"{GetType().Name};{Math.Round(X,2)};{Math.Round(Y)};{Z_Index};{Width};{Height};{FilePath}";
         }
         public void SaveToFile(StreamWriter sw)
         {
             sw.WriteLine(Encrypter.Encrypt(getSaveString()));
+            Debug.WriteLine(Encrypter.Decrypt(Encrypter.Encrypt(getSaveString())));
         }
         public virtual bool isCollision(ConsoleObject otherObject)
         {
