@@ -36,22 +36,22 @@ namespace Rokéta.Statics
 		// you get value weapon after you have key or more kills
 		public static Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>()
 		{
-			{2000, new Weapon(bullets[15], 90, 1, 6, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{1610, new Weapon(bullets[14], 90, 100, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{1600, new Weapon(bullets[13], 90, 25, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{1500, new Weapon(bullets[12], 90, 100, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{1000, new Weapon(bullets[11], 360, 0.2, 50, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{750, new Weapon(bullets[10], 360, 0.5, 50, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{500, new Weapon(bullets[9], 180, 1, 25, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{400, new Weapon(bullets[8], 135, 2, 10, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{300, new Weapon(bullets[7], 135, 2, 6, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{200, new Weapon(bullets[6], 90, 2, 4, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{150, new Weapon(bullets[5], 90, 2, 4, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{100, new Weapon(bullets[4], 60, 5, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{50, new Weapon(bullets[3], 45, 3, 3, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{30, new Weapon(bullets[2], 45, 2, 2, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{10, new Weapon(bullets[1], 45, 2, 2, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})},
-			{0, new Weapon(bullets[0], 90, 2, 1, new string[] {"ShootSound1", "ShootSound2", "ShootSound3"})}
+			{2000, new Weapon(bullets[15], 90, 1, 6, new string[] {"ShootSound16"})},
+			{1610, new Weapon(bullets[14], 90, 100, 3, new string[] {"ShootSoun15"})},
+			{1600, new Weapon(bullets[13], 90, 25, 1, new string[] {"ShootSound14"})},
+			{1500, new Weapon(bullets[12], 90, 100, 1, new string[] {"ShootSound13"})},
+			{1000, new Weapon(bullets[11], 360, 0.2, 50, new string[] {"ShootSound12"})},
+			{750, new Weapon(bullets[10], 360, 0.5, 50, new string[] {"ShootSound11"})},
+			{500, new Weapon(bullets[9], 180, 1, 25, new string[] {"ShootSound10"})},
+			{400, new Weapon(bullets[8], 135, 2, 10, new string[] {"ShootSound9"})},
+			{300, new Weapon(bullets[7], 135, 2, 6, new string[] {"ShootSound8"})},
+			{200, new Weapon(bullets[6], 90, 2, 4, new string[] {"ShootSound7"})},
+			{150, new Weapon(bullets[5], 90, 2, 4, new string[] {"ShootSound6"})},
+			{100, new Weapon(bullets[4], 60, 5, 3, new string[] {"ShootSound5"})},
+			{50, new Weapon(bullets[3], 45, 3, 3, new string[] {"ShootSound4"})},
+			{30, new Weapon(bullets[2], 45, 2, 2, new string[] {"ShootSound3"})},
+			{10, new Weapon(bullets[1], 45, 2, 2, new string[] {"ShootSound2"})},
+			{0, new Weapon(bullets[0], 90, 2, 1, new string[] {"ShootSound1"})}
 		};
 		public static Dictionary<int, string> backgrounds = new Dictionary<int, string>()
 		{
