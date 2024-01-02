@@ -12,17 +12,17 @@ namespace Rokéta.SoundModules
 			{
 				Sounds[SoundName].Play();
 			}
-			catch(KeyNotFoundException e) 
+			catch (KeyNotFoundException e)
 			{
 				Debug.WriteLine($"No Key {SoundName} in Sounds.keys (SoundManager.cs) Error:\n{e.Message}");
 			}
 			catch (Exception e)
 			{
-				
+
 			}
-			
+
 		}
-		private static Dictionary<string,int> GetPairs(string setupPath)
+        private static Dictionary<string,int> GetPairs(string setupPath)
 		{
 			Dictionary<string, int> _soundNodeFreqPairs = new Dictionary<string, int>();
 			StreamReader sr = new StreamReader(setupPath);

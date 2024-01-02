@@ -35,8 +35,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			isMovable = false;
 			Animations[0].IsPaused = false;
 			Animations[1].IsPaused = true;
-			SoundManager.PlaySound("PlayerDeathSound1");
-			//SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1,5+1)}");
+			//SoundManager.PlaySound("PlayerDeathSound1");
+			SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1, 5 + 1)}");
 		}
 		public override void Snap()
 		{
