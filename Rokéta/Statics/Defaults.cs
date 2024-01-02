@@ -7,7 +7,7 @@ namespace Rokéta.Statics
 	{
 		public static List<Bullet> bullets = new List<Bullet>() 
 		{
-			new Bullet(0,0,2,1,1,"SaveFiles\\Objects\\Bullets\\Bullet1.txt", 10, 1, 1, false),
+			new Bullet(0,0,2,1,1,"SaveFiles\\Objects\\Bullets\\Bullet1.txt", 10, 2, 1, false),
 			new Bullet(0,0,2,2,1,"SaveFiles\\Objects\\Bullets\\Bullet2.txt", 15, 5, 1, false),
 			new Bullet(0,0,2,2,2,"SaveFiles\\Objects\\Bullets\\Bullet3.txt", 15, 15, 1, false),
 			new Bullet(0,0,2,3,2,"SaveFiles\\Objects\\Bullets\\Bullet4.txt", 20, 15, 2, false),
