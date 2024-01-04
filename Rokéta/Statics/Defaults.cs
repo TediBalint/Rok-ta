@@ -104,7 +104,6 @@ namespace Rokéta.Statics
 			{"Save", new ConsoleKey[] {ConsoleKey.V} },
 			{"Load", new ConsoleKey[] {ConsoleKey.L } },
 			{"Cheat", new ConsoleKey[] {ConsoleKey.C } }
-
 		};
 		
 	}

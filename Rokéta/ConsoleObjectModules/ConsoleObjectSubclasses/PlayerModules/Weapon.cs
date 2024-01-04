@@ -52,9 +52,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				{
 					if (angle != 0)
 					{
-						//COULD BE USEFUL MAYBE
-						//double spawnX = spawnPos[0] + Spread / angle; 
-
 						pos = new double[] { spawnPos[0], spawnPos[1] };
 						consoleObjectFactory.AddBullet(Bullet, angle, pos );
                     }

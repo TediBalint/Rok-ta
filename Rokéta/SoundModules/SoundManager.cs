@@ -18,7 +18,7 @@ namespace Rokéta.SoundModules
 			}
 			catch (Exception e)
 			{
-
+				Debug.WriteLine($"Error in PlaySound (SoundManager.cs) Error: \n{e.Message}");
 			}
 
 		}

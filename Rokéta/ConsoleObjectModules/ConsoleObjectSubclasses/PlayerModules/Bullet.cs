@@ -73,15 +73,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			isMovable = false;
 			Animations[0].IsPaused = false;
         }
-		//public void moveAngle()
-  //      {
-  //          
-  //          double moveX = Math.Sin(angle/180*Math.PI) * speed;
-  //          double moveY = Math.Cos(angle / 180 * Math.PI) * speed;
-  //          //if (angle > 0) moveY =;
-  //          //else moveY = -Math.Cos(angle) * speed;
-  //          MoveMotion(moveX, moveY, StaticVars.currentGameThicks);
-  //      }
         public Bullet DeepCopy()
         {
             Bullet copy = new Bullet(X, Y, Z_Index, Width, Height, FilePath, speed, damage, pierce, bounce)

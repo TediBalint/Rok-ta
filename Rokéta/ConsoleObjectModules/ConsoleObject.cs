@@ -118,12 +118,6 @@ namespace Roketa.ConsoleObjectModules
 			}
             
         }
-        public void Rotate(double angle)
-        {
-			
-
-
-		}
         public virtual void Snap()
         {
             X = Math.Min(X, Console.WindowWidth-Width);
@@ -145,7 +139,6 @@ namespace Roketa.ConsoleObjectModules
         public virtual void insertToMatrix(ref CharInfo[,] pixels)
         {
 			Snap();
-
 			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
             if(IsVissible)
             {
@@ -185,7 +178,6 @@ namespace Roketa.ConsoleObjectModules
         public void SaveToFile(StreamWriter sw)
         {
             sw.WriteLine(Encrypter.Encrypt(getSaveString()));
-            Debug.WriteLine(Encrypter.Decrypt(Encrypter.Encrypt(getSaveString())));
         }
         public virtual bool isCollision(ConsoleObject otherObject)
         {

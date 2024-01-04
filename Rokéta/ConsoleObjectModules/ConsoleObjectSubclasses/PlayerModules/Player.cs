@@ -8,13 +8,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
     public class Player : ConsoleObject
     {
-        //public PlayerStats Stats { get; set; }
         public Weapon Weapon { get; private set; }        
         public Player(double x, double y, int zIndex, int width, int height, string? filePath)
         : base(x, y, zIndex, width, height, filePath)
         {
 			ChangeWeapon(GetCurrentWeapon());
-			//setStats();
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent:true));
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt", this, true));
         }
@@ -35,7 +33,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 			isMovable = false;
 			Animations[0].IsPaused = false;
 			Animations[1].IsPaused = true;
-			//SoundManager.PlaySound("PlayerDeathSound1");
 			SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1, 5 + 1)}");
 		}
 		public override void Snap()
@@ -58,10 +55,9 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 					Y = Math.Min(Y, Console.WindowHeight - Height - Animations[1].currObject.Height + 1);
 					Y = Math.Max(Y, 0);
 				}
-				catch (Exception e)
+				catch (NullReferenceException e)
 				{
-					
-					
+					Debug.WriteLine($"Common error in Snap (Player.cs):\n{e.Message}");	
 				}
 				
 			}

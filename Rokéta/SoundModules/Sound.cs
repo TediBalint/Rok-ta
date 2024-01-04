@@ -55,7 +55,7 @@ namespace Rokéta.SoundModules
 						}
 						else
 						{
-							
+							Debug.WriteLine($"No Key {line[0]} in SoundNodeFreqPairs");
 						}
 					}
 					 
@@ -65,11 +65,11 @@ namespace Rokéta.SoundModules
 			}
 			catch(FileNotFoundException) 
 			{
-				
+				Debug.WriteLine($"Error in ReadFile(Sound.cs) {path} file not found");
 			}
 			catch (Exception e)
 			{
-				
+				Debug.WriteLine($"Error in ReadFile(Sound.cs):\n{e.Message}");
 			}
 			
 		}

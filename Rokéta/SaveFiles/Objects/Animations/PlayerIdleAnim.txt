@@ -1,17 +1,17 @@
 ﻿false
-100 4
+70 4
 -- -- -- -- --
 re dy ye dy re
 -- re ye re --
 -- -- re -- --
 0 -9
-100 4
+70 4
 -- -- -- -- --
 re dy ye dy re
 -- re ye re --
 -- -- re -- --
 0 -9
-100 4
+70 4
 -- -- -- -- --
 re dy ye dy re
 -- re ye re --

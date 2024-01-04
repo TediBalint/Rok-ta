@@ -36,10 +36,6 @@ namespace Rokéta.ConsoleObjectModules
 					{
 
 						string[] line = Encrypter.Decrypt(reader.ReadLine()).Split(';');
-						//foreach (string elem in line)
-						//{
-						//	
-						//}
 						string ObjType = line[0];
 						double Objx = double.Parse(line[1]);
 						double Objy = double.Parse(line[2]);
@@ -63,10 +59,8 @@ namespace Rokéta.ConsoleObjectModules
 						}
 						else
 						{
-							
+							Debug.WriteLine($"No such type as {ObjType} LoadGameState(ConsoleObjectFactory.cs)");
 						}
-
-						//return $"{GetType().Name};{X};{Y};{Z_Index};{Width};{Height};{FilePath}";
 					}
 				}
 			}
@@ -76,9 +70,6 @@ namespace Rokéta.ConsoleObjectModules
 			}
 			Globals.canGenerate = true;
 			return player;
-
-
-
 		}
 		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, string? filePath = null)
 		{

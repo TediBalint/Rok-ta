@@ -1,13 +1,27 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.Statics;
+using System.Diagnostics;
 
 namespace Rokéta.ConsoleObjectModules.AnimationModules
 {
 	public class Animation
 	{
 		private bool repeat;
-		private double CurrentTick = 0;
-		public bool IsPaused;
+		private Stopwatch Sw = new Stopwatch();
+		public bool IsPaused
+		{
+			get
+			{
+				return !Sw.IsRunning;
+			}
+			set
+			{
+				if (!value && !Sw.IsRunning)
+				{
+					Sw.Start(); 
+				}
+			}
+		}
 		private ConsoleObject Parent;
 		private Dictionary<double, AnimationObject> AnimationFrames;
 		private bool destroyParent;
@@ -28,7 +42,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 				string[] line = sr.ReadLine().Split(' ');
 				height = int.Parse(line[1]);
 				AnimationFrames.Add(ticks, ReadAnim(height, sr));
-				ticks +=  double.Parse(line[0]) / Globals.currentGameThicks;
+				ticks +=  double.Parse(line[0]);
 			}
         }
 		private AnimationObject ReadAnim(int height, StreamReader sr)
@@ -66,7 +80,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			foreach (double tick in AnimationFrames.Keys)
 			{
 
-				if (CurrentTick/Globals.currentGameThicks <= tick)
+				if (Sw.ElapsedMilliseconds <= tick)
 				{
 					currObject = AnimationFrames[tick];
 					return AnimationFrames[tick];
@@ -74,7 +88,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			}
 			if (repeat)
 			{
-				CurrentTick = 0;
+				Sw.Restart();
 				currObject = AnimationFrames.Values.ToArray()[2];
 				return currObject;
 			}
@@ -98,7 +112,6 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				Parent.IsDisposed = true;
 			}
-			CurrentTick++;
 		}
 		
 	}
