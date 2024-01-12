@@ -68,7 +68,7 @@ namespace Rokéta.ConsoleObjectModules
 			}
 			else
 			{
-				
+				Debug.WriteLine("SaveFile Doesnt exist");
 			}
 			Globals.canGenerate = true;
 			return player;

@@ -1,0 +1,10 @@
+-- -- dr dr dr dr dr dr -- --
+-- dr re re re dy dy re dr --
+-- dr re re re re re re dr --
+-- -- dr re re re re dr -- --
+-- dr dy dy dy dy dy dy dr --
+dr re re re re re re re dy dr
+dr re re re re dy dy re dy dr
+dr re re re re dy dy re dy dr
+dr re re re re re re re re dr
+-- dr dr dr dr dr dr dr dr --
