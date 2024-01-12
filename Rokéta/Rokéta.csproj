@@ -46,6 +46,7 @@
     <None Remove="SaveFiles\Objects\Enemies\Enemy7.txt" />
     <None Remove="SaveFiles\Objects\Enemies\Enemy8.txt" />
     <None Remove="SaveFiles\Objects\Enemies\Enemy9.txt" />
+    <None Remove="savefiles\objects\pickupobjects\Pickup1.txt" />
     <None Remove="savefiles\sound\gamesounds\BulletExplosionSound.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound1.txt" />
     <None Remove="SaveFiles\Sound\GameSounds\PlayerDeathSound2.txt" />
@@ -69,6 +70,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SaveFiles\Objects\PickupObjects\" />
   </ItemGroup>
 
 </Project>

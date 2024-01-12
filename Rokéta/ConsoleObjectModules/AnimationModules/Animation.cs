@@ -1,5 +1,6 @@
 ﻿using Roketa.ConsoleObjectModules;
 using Rokéta.Statics;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Rokéta.ConsoleObjectModules.AnimationModules
@@ -103,10 +104,13 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			AnimationObject? animationObject = GetCurrentObject();
 			if (animationObject != null)
 			{
-				animationObject.X = Parent.X + animationObject.xOffset;
-				animationObject.Y = Parent.Y - Parent.Height/2 - animationObject.yOffset;
-				animationObject.Snap();
-				animationObject.insertToMatrix(ref pixels);
+				if((repeat && Parent.IsVissible) || (!repeat))
+				{
+					animationObject.X = Parent.X + animationObject.xOffset;
+					animationObject.Y = Parent.Y - Parent.Height / 2 - animationObject.yOffset;
+					animationObject.Snap();
+					animationObject.insertToMatrix(ref pixels);
+				}
 			}
 			else if(destroyParent)
 			{

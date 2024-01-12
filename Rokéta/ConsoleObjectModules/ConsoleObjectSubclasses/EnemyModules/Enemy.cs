@@ -5,31 +5,17 @@ using Rokéta.Statics;
 
 namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 {
-    public class Enemy : ConsoleObject
+    public class Enemy : MovableObject
     {
-        private double[] velocity;
         public double Health;
 
         // stores bullets that hit this enemy already so bullets only hit it once
         private HashSet<ConsoleObject> hitBullets = new HashSet<ConsoleObject>();
         public Enemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] _velocity, double health)
-		: base(x, y, zIndex, width, height, filePath)
+		: base(x, y, zIndex, width, height, filePath, _velocity)
 		{
             Health = health; 
-			velocity = _velocity;
             Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent:true));
-		}
-        private void Movement()
-        {
-			MoveMotion(velocity[0], velocity[1], Globals.currentGameThicks);
-            if(X >= Console.WindowWidth - Width || X <= 0)
-            {
-                velocity[0] *= -1;
-            }
-            if(Y >= Console.WindowHeight - Height || Y <= 0) 
-            {
-                velocity[1] *= -1;
-            }
 		}
 		protected override string getSaveString()
 		{
@@ -56,6 +42,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
         }
 		public override void OnCollision(ConsoleObject otherObject)
         {
+            base.OnCollision(otherObject);
             if(otherObject.GetType() == typeof(Bullet))
             {
                 if (!hitBullets.Contains(otherObject))
@@ -70,11 +57,6 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
                     hitBullets.Add(otherObject);
 				}
             }
-            else
-            {
-				Movement();
-
-			}
 		}
     }
 }

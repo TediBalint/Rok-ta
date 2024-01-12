@@ -45,7 +45,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
 
 			if (Globals.kills < 1600)
 			{
-				return 0.1 + Math.Min(1 / Math.Pow(2, Globals.kills / pow), 5) + Math.Min((Globals.enemyCount / Globals.kills * 100), 3);
+				return 2 + Math.Min(1 / Math.Pow(2, Globals.kills / pow), 5) + Math.Min((Globals.enemyCount / Globals.kills * 100), 3);
 			}
 			else if(Globals.kills < 1610)
 			{
