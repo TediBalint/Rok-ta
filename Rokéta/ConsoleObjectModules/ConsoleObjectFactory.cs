@@ -16,10 +16,12 @@ namespace Rokéta.ConsoleObjectModules
 		{
 			ConsoleObjectManager = consoleObjectManager;
 		}
-		public Player loadGameState(Player player)
+		public Player loadGameState(Player player, string? _filePath = null)
 		{
+			string filePath;
+			if (_filePath != null && File.Exists(_filePath)) filePath = _filePath;
+			else filePath = ConsoleObjectManager.saveFilePath;
 			Globals.enemyCount = 0;
-			string filePath = ConsoleObjectManager.saveFilePath;
 			ConsoleObjectManager.consoleObjectList.Clear();
 			Globals.canGenerate = false;
 			if (File.Exists(filePath))

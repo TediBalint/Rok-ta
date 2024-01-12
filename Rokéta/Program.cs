@@ -7,6 +7,7 @@ using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.Statics;
 using Rokéta.SoundModules;
+using System.Security.Cryptography;
 
 void main()
 {
@@ -95,6 +96,10 @@ void main()
 			else if (Defaults.keyBinds["Load"].Contains(keyPress.Key))
 			{
 				player = consoleObjectFactory.loadGameState(player);
+			}
+			else if (Defaults.keyBinds["Restart"].Contains(keyPress.Key) && player.IsDisposed)
+			{
+				player = consoleObjectFactory.loadGameState(player, "SaveFiles\\GameStates\\RESTART.txt");
 			}
 			else if(Defaults.keyBinds["Cheat"].Contains(keyPress.Key))
 			{

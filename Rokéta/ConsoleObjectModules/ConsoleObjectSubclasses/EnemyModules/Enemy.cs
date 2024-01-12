@@ -49,7 +49,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules
         {
             Health -= damage;
             
-            if(Health < 0 )
+            if(Health <= 0 )
             {
                 Death();
             }

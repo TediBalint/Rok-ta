@@ -103,7 +103,8 @@ namespace Rokéta.Statics
 			{"GameSoundToggle", new ConsoleKey[] {ConsoleKey.N } },
 			{"Save", new ConsoleKey[] {ConsoleKey.V} },
 			{"Load", new ConsoleKey[] {ConsoleKey.L } },
-			{"Cheat", new ConsoleKey[] {ConsoleKey.C } }
+			{"Cheat", new ConsoleKey[] {ConsoleKey.C } },
+			{"Restart", new ConsoleKey[] {ConsoleKey.R}}
 		};
 		
 	}
