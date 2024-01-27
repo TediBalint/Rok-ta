@@ -97,17 +97,7 @@ namespace Roketa.ConsoleObjectModules
 				index++;
 			}            
         }
-        public virtual void MoveRaw(double x, double y)
-        {
-            if(isMovable)
-            {
-				X += x;
-				//azert -= mert kulonben +ra le menne
-				Y -= y;
-				Snap();
-			}
-			
-		}
+        
         public virtual void MoveMotion(double x, double y, int currentGameThicks)
         {     
             if(isMovable)

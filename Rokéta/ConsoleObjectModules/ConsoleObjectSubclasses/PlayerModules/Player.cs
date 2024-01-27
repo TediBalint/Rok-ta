@@ -8,19 +8,27 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
     public class Player : ConsoleObject
     {
-        public Weapon Weapon { get; private set; }        
-        public Player(double x, double y, int zIndex, int width, int height, string? filePath)
+        public Weapon Weapon { get; private set; }
+		public double[] MovementSpeed { get; set; }
+        public Player(double x, double y, int zIndex, int width, int height, string? filePath, double[] _movementSpeed)
         : base(x, y, zIndex, width, height, filePath)
         {
+			MovementSpeed = _movementSpeed;
 			ChangeWeapon(GetCurrentWeapon());
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent:true));
 			Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt", this, true));
         }
-		public override void MoveRaw(double x, double y)
+		public void MoveRaw(int[] sgn)
 		{
-			base.MoveRaw(x, y);
+			if (isMovable)
+			{
+				X += MovementSpeed[0] * sgn[0];
+				Y -= MovementSpeed[1] * sgn[1];
+				Snap();
+			}
 			Weapon.spawnPos = new double[2] { X + (Width - Weapon.Bullet.Width)/2, Y};
 		}
+		
 		public void ChangeWeapon(Weapon newWeapon)
 		{
 			Weapon = newWeapon;
@@ -62,6 +70,10 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 				
 			}
 			
+		}
+		protected override string getSaveString()
+		{
+			return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]}";
 		}
 		public override bool isCollision(ConsoleObject otherObject)
 		{

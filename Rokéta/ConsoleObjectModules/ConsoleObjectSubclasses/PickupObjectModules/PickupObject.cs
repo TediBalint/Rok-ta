@@ -5,11 +5,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PickupObjectModul
 {
     public abstract class PickupObject : MovableObject
     {
-        public PickupObject(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] _velocity)
-		: base(x, y, zIndex, width, height, filePath, _velocity)
-		{
-            
-        }
+		public PickupObject(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] _velocity)
+		: base(x, y, zIndex, width, height, filePath, _velocity) { }
 		protected abstract void Effect(Player player);
 		public override void OnCollision(ConsoleObject otherObject)
 		{

@@ -47,7 +47,8 @@ namespace Rokéta.ConsoleObjectModules
 						string ObjFilePath = line[6];
 						if (ObjType == "Player")
 						{
-							player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, ObjFilePath);
+							double[] movementSpeed = new double[2] { double.Parse(line[7]), double.Parse(line[8]) };
+							player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, movementSpeed,ObjFilePath);
 						}
 						else if (ObjType == "Enemy")
 						{
@@ -73,9 +74,9 @@ namespace Rokéta.ConsoleObjectModules
 			Globals.canGenerate = true;
 			return player;
 		}
-		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, string? filePath = null)
+		public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed, string? filePath = null)
 		{
-			Player newPlayer = new Player(x, y, zIndex, width, height, filePath);
+			Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed);
 			ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);	
 			return newPlayer;
 		}

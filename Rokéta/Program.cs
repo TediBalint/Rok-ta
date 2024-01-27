@@ -20,7 +20,7 @@ void main()
 	Renderer renderer = new Renderer(width,height);
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
-	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 	
@@ -63,19 +63,19 @@ void main()
 			ConsoleKeyInfo keyPress = Console.ReadKey(true);
 			if (Defaults.keyBinds["Up"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(0, 1+Globals.kills/1000);
+				player.MoveRaw(MovementMatrixes.Up);
 			}
 			else if (Defaults.keyBinds["Down"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(0, -(1 + Globals.kills / 1000));
+				player.MoveRaw(MovementMatrixes.Down);
 			}
 			else if (Defaults.keyBinds["Right"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(1 + Globals.kills / 1000, 0);
+				player.MoveRaw(MovementMatrixes.Right);
 			}
 			else if (Defaults.keyBinds["Left"].Contains(keyPress.Key))
 			{
-				player.MoveRaw(-(1 + Globals.kills / 1000), 0);
+				player.MoveRaw(MovementMatrixes.Left);
 			}
 			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key) && player.IsVissible)
 			{
