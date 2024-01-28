@@ -4,10 +4,10 @@ using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.Statics;
 using Rokéta.SoundModules;
 using System.Security.Cryptography;
+using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
 
 void main()
 {
@@ -23,7 +23,7 @@ void main()
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
-	
+	enemyGenerator.test(1000);
 	SoundManager.PlaySound("Music1");
 	Stopwatch bulletTimer = Stopwatch.StartNew();
 
