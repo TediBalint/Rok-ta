@@ -1,11 +1,12 @@
 ﻿using Roketa.ConsoleObjectModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules;
 using Rokéta.Statics;
 using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Rokéta.ConsoleObjectModules.AnimationModules
 {
-	public class Animation
+    public class Animation
 	{
 		private bool repeat;
 		private Stopwatch Sw = new Stopwatch();
