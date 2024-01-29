@@ -19,7 +19,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
             stopwatch = new Stopwatch();
             stopwatch.Start();
             consoleObjectFactory = _consoleObjectFactory;
-            PosGenContext posGenContext = new PosGenContext();
+
+            posGenContext = new PosGenContext(posGenQuick);
         }
         public void Generate()
         {
@@ -66,14 +67,12 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
         {
             Globals.lastHealthBonus += random.NextDouble() * Globals.kills / 100;
             Enemy enemy = GetEnemy();
-            double x = GetX(enemy);
-            double y = GetY(enemy);
-
+            int[] pos = posGenContext.GetPos(enemy, player);
             double[] velocity = new double[] { 3 + random.NextDouble() * Globals.kills / 100, 3 + random.NextDouble() * Globals.kills / 100 };
             for (int i = 0; i < velocity.Length; i++) velocity[i] *= Math.Sign(random.Next(-1, 1) + 0.1);
             if (Globals.kills > 2000) enemy.Health = 50000;
             double health = enemy.Health + Globals.lastHealthBonus;
-            consoleObjectFactory.CreateEnemy(x, y, enemy.Z_Index, enemy.Width, enemy.Height, enemy.FilePath, velocity, health);
+            consoleObjectFactory.CreateEnemy(pos[0], pos[1], enemy.Z_Index, enemy.Width, enemy.Height, enemy.FilePath, velocity, health);
         }
         private Enemy GetEnemy()
         {

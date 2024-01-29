@@ -4,7 +4,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
 {
     public interface IPosGenStrategy
     {
-        void GetX(Enemy enemy, Player player);
-        void GetY(Enemy enemy, Player player);
+        int GetX(Enemy enemy, Player player);
+        int GetY(Enemy enemy, Player player);
     }
 }
