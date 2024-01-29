@@ -10,7 +10,11 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
 	public class PosGenQuick : IPosGenStrategy
 	{
 		Random random = new Random();
-		public int GetX(Enemy enemy, Player player)
+		public int[] GetPos(Enemy enemy, Player player)
+		{
+			return new int[] { GetX(enemy, player), GetY(enemy)};
+		}
+		private int GetX(Enemy enemy, Player player)
 		{
 			int x;
 			if (enemy.Width >= (int)(player.X - player.Width - enemy.Width / 2)) x = random.Next((int)(player.X + player.Width + enemy.Width / 2), Console.WindowWidth - enemy.Width);
@@ -23,19 +27,9 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
 			}
 			return x;
 		}
-		public int GetY(Enemy enemy, Player player)
+		private int GetY(Enemy enemy)
 		{
 			return random.Next(enemy.Height, Console.WindowHeight - enemy.Height);
-			//double y;
-			//if (enemy.Height >= (int)(player.Y - player.Height - enemy.Height / 2)) y = random.Next((int)(player.Y + player.Height + enemy.Height / 2), Console.WindowHeight - enemy.Height);
-			//else if ((int)(player.Y + player.Height + enemy.Height / 2) >= Console.WindowHeight - enemy.Height) y = random.Next(enemy.Height, (int)(player.Y - player.Height - enemy.Height / 2));
-			//else
-			//{
-			//	y = new double[] {
-			//	random.Next(enemy.Height, (int)(player.Y - player.Height - enemy.Height/2)),
-			//	random.Next((int)(player.Y + player.Height + enemy.Height/2), Console.WindowHeight - enemy.Height)}[random.Next(0, 2)];
-			//}
-			//return y;
 		}
 	}
 }

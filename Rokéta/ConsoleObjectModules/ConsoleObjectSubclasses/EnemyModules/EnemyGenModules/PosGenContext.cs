@@ -21,7 +21,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
         }
         public int[] GetPos(Enemy enemy, Player player)
         {
-            return new int[] { posGenStrategy.GetX(enemy, player), posGenStrategy.GetY(enemy, player) };
+            return posGenStrategy.GetPos(enemy, player);
         }
 
     }

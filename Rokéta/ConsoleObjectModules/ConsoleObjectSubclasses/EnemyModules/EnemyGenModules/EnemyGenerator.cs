@@ -12,6 +12,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
         private Stopwatch stopwatch;
 
         private PosGenQuick posGenQuick = new PosGenQuick();
+        private PosGenDistance posGenDistance = new PosGenDistance();
+
         private PosGenContext posGenContext;
         public EnemyGenerator(ConsoleObjectFactory _consoleObjectFactory, Player _player)
         {
@@ -20,7 +22,8 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
             stopwatch.Start();
             consoleObjectFactory = _consoleObjectFactory;
 
-            posGenContext = new PosGenContext(posGenQuick);
+            posGenContext = new PosGenContext(posGenDistance);
+            
         }
         public void Generate()
         {
