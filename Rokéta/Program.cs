@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics;
 using Roketa.Renderer;
-using Roketa.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
-using Rokéta.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.Statics;
 using Rokéta.SoundModules;
 using System.Security.Cryptography;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
 
 void main()
 {

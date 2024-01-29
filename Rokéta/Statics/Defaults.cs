@@ -1,9 +1,9 @@
-﻿using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
-using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+﻿using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 
 namespace Rokéta.Statics
 {
-	public static class Defaults
+    public static class Defaults
 	{
 		public static double[] DefaultSpeed = new double[2] {1,1};
 		public static List<Bullet> bullets = new List<Bullet>() 

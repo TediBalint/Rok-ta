@@ -1,8 +1,10 @@
-﻿using Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+﻿using Rokéta.GameObjectModules.ConsoleObjectModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
+using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
 using System.Diagnostics;
 
-namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules
+namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules
 {
     public class EnemyGenerator
     {
@@ -23,7 +25,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
             consoleObjectFactory = _consoleObjectFactory;
 
             posGenContext = new PosGenContext(posGenDistance);
-            
+
         }
         public void Generate()
         {
@@ -58,7 +60,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.Enem
                 return Math.Min(1 / Math.Pow(2, Globals.kills / pow), 5) + Math.Min(Globals.enemyCount / Globals.kills * 100, 3);
             }
         }
-       
+
         public void test(int n)
         {
             for (int i = 0; i < n; i++)

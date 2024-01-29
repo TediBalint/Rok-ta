@@ -1,8 +1,8 @@
-﻿using Roketa.ConsoleObjectModules;
+﻿using Rokéta.GameObjectModules.ConsoleObjectModules;
 
 namespace Rokéta.ConsoleObjectModules.AnimationModules
 {
-	public class AnimationObject : ConsoleObject
+    public class AnimationObject : ConsoleObject
 	{
 		public double xOffset { get;set; }
 		public double yOffset { get;set; }
