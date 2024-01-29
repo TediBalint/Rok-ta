@@ -17,7 +17,7 @@ namespace Rokéta.ConsoleObjectModules.ConsoleObjectSubclasses.PickupObjectModul
         }
 		protected override void Effect(Player player)
 		{
-			player.MovementSpeed[0] += speedBouns; 
+			player.MovementSpeed[0] += speedBouns;
 			player.MovementSpeed[1] += speedBouns;
 		}
 	}

@@ -65,6 +65,12 @@ namespace Roketa.ConsoleObjectModules
             sr.Close();
             return new int[2] { width, height };
         }
+        public double GetDistance(int[] pos)
+        {
+            double distanceX = Math.Abs(pos[0] - X);
+            double distanceY = Math.Abs(pos[1] - Y);
+            return Math.Sqrt(Math.Pow(distanceX, 2) + Math.Pow(distanceY, 2));
+		}
         protected void readFile()
         {
             
