@@ -1,6 +1,7 @@
 ﻿using Rokéta.ConsoleObjectModules;
 using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
+using Rokéta.Statics;
 using System.Diagnostics;
 
 namespace Rokéta.GameObjectModules.ConsoleObjectModules
@@ -11,7 +12,6 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         public bool IsDisposed { get; set; } = false;
         public bool IsVissible { get; protected set; } = true;
         public bool canCollide { get; protected set; } = true;
-        
         public List<Animation> Animations { get; set; }
         public abstract void OnCollision(ConsoleObject otherObject);
 
@@ -19,15 +19,14 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         {
             Animations = new List<Animation>();
         }
-        public virtual void MoveMotion(double x, double y, int currentGameThicks)
+        public virtual void MoveMotion(double x, double y)
         {
             if (isMovable)
             {
-                X += x / currentGameThicks;
-                Y -= y / currentGameThicks;
+                X += x / Globals.currentGameThicks;
+                Y -= y / Globals.currentGameThicks;
                 Snap();
             }
-
         }
         public virtual void Snap()
         {

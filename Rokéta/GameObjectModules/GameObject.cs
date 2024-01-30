@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Rokéta.GameObjectModules
 {
-	public class GameObject
+	public abstract class GameObject
 	{
 		public double X { get; set; }
 		public double Y { get; set; }
