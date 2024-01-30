@@ -13,7 +13,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         private void Movement()
         {
-            MoveMotion(velocity[0], velocity[1], Globals.currentGameThicks);
+            MoveMotion(velocity[0], velocity[1]);
             if (X >= Console.WindowWidth - Width || X <= 0)
             {
                 velocity[0] *= -1;

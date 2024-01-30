@@ -72,7 +72,11 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         {
             Globals.lastHealthBonus += random.NextDouble() * Globals.kills / 100;
             Enemy enemy = GetEnemy();
+
+            if (Globals.currentGameThicks >= 100) posGenContext.SetStrategy(posGenDistance);
+            else posGenContext.SetStrategy(posGenQuick);
             int[] pos = posGenContext.GetPos(enemy, player);
+
             double[] velocity = new double[] { 3 + random.NextDouble() * Globals.kills / 100, 3 + random.NextDouble() * Globals.kills / 100 };
             for (int i = 0; i < velocity.Length; i++) velocity[i] *= Math.Sign(random.Next(-1, 1) + 0.1);
             if (Globals.kills > 2000) enemy.Health = 50000;
