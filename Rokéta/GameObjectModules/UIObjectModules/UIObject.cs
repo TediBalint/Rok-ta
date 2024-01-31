@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rokéta.GameObjectModules.ConsoleObjectModules;
+using Rokéta.GameObjectModules.UIObjectModules.UIEventArgs;
+using System;
 
 namespace Rokéta.GameObjectModules.UIObjectModules
 {
@@ -6,18 +8,19 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 	{
 		public bool IsFocused { get; set; } = false;
 
-		public delegate void UIEvent(object sender);
+		public delegate void UIEventHandler(object sender);
+		public delegate void UIKeyEventHandler(object sender, UIKeyEventArgs e);
 
-		public event UIEvent OnEnter;
-		public event UIEvent OnChanged;
-		public event UIEvent OnFocus;
-		public event UIEvent OnBlur;
+		public event UIEventHandler OnEnter;
+		public event UIEventHandler OnChanged;
+		public event UIEventHandler OnFocus;
+		public event UIEventHandler OnBlur;
+		public event UIKeyEventHandler OnKeyDown;
 
 		public UIObject(double x, double y, int zIndex, int? width, int? height, string? filePath) : base (x,y,zIndex,width,height,filePath) 
 		{
 			
 		}
-
 		public void Enter()
 		{
 			OnEnter?.Invoke(this);
@@ -35,6 +38,10 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 		{
 			IsFocused = false;
 			OnBlur?.Invoke(this);
+		}
+		public void KeyDown(ConsoleKey consoleKey)
+		{
+			OnKeyDown?.Invoke(this, new UIKeyEventArgs { ConsoleKey = consoleKey });
 		}
 	}
 }
