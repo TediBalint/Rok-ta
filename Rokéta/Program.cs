@@ -22,7 +22,7 @@ void main()
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
-	enemyGenerator.test(1000);
+	//enemyGenerator.test(1000);
 	SoundManager.PlaySound("Music1");
 	Stopwatch bulletTimer = Stopwatch.StartNew();
 
