@@ -41,7 +41,7 @@ void main()
 	//gameloop
 	while (true)
 	{
-		
+		uIObjectManager.UpdateObjects();
 		consoleObjectManager.UpdateObjects();
 		
 

@@ -9,10 +9,12 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 {
 	public class UIObjectManager
 	{
-		public List<UIObject> UIObjects;
+		public List<UIObject> UIObjects = new List<UIObject>();
 
-		public CharInfo[,]? Pixels;
-		public UIObjectManager(CharInfo[,]? pixels)
+		public CharInfo[,] Pixels;
+		public UIObject ActiveObject { get; private set; }
+		private 
+		public UIObjectManager(CharInfo[,] pixels)
 		{
 			Pixels = pixels;
 		}
@@ -30,6 +32,10 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 					uiObject.Update(ref Pixels);
 				}
 			}
+		}
+		public void ChangeActiveObject(ConsoleKey consoleKey)
+		{
+
 		}
 	}
 }
