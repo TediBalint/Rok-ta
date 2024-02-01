@@ -7,6 +7,7 @@ using Rokéta.GameObjectModules.ConsoleObjectModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
+using Rokéta.GameObjectModules.UIObjectModules;
 
 void main()
 {
@@ -19,6 +20,9 @@ void main()
 	Renderer renderer = new Renderer(width,height);
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
+
+	UIObjectManager uIObjectManager = new UIObjectManager(consoleObjectManager.Pixels);
+
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
@@ -39,7 +43,7 @@ void main()
 	{
 		
 		consoleObjectManager.UpdateObjects();
-
+		
 
 		Render();
 		//Set Game Thicks
