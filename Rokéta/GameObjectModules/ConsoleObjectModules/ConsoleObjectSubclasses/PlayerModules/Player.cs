@@ -20,7 +20,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         public void MoveRaw(int[] sgn)
         {
-            if (isMovable)
+            if (IsMovable)
             {
                 X += MovementSpeed[0] * sgn[0];
                 Y -= MovementSpeed[1] * sgn[1];
@@ -36,9 +36,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         private void Death()
         {
-            canCollide = false;
+            CanCollide = false;
             IsVissible = false;
-            isMovable = false;
+            IsMovable = false;
             Animations[0].IsPaused = false;
             Animations[1].IsPaused = true;
             SoundManager.PlaySound($"PlayerDeathSound{Globals.Random.Next(1, 5 + 1)}");
@@ -55,7 +55,6 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 {
                     if (Animations[1].currObject == null)
                     {
-
                         return;
                     }
                     X = Math.Min(X, Console.WindowWidth - Math.Max(Width, Animations[1].currObject.Width));
@@ -75,14 +74,14 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         {
             return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]}";
         }
-        public override bool isCollision(ConsoleObject otherObject)
+        public override bool IsCollision(ConsoleObject otherObject)
         {
             bool animIsColliding = false;
             if (Animations[1].currObject != null)
             {
-                animIsColliding = Animations[1].currObject.isCollision(otherObject);
+                animIsColliding = Animations[1].currObject.IsCollision(otherObject);
             }
-            return base.isCollision(otherObject) || animIsColliding;
+            return base.IsCollision(otherObject) || animIsColliding;
         }
 
         public static Weapon GetCurrentWeapon()
@@ -94,22 +93,20 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             }
             return Defaults.weapons.Last().Value;
         }
-        public override void OnCollision(ConsoleObject otherObject)
+		public override void Update(ref CharInfo[,] pixels)
+		{
+			base.Update(ref pixels);
+			ChangeWeapon(GetCurrentWeapon());
+		}
+		public override void OnCollision(ConsoleObject otherObject)
         {
-
-            if (canCollide)
+            if (CanCollide)
             {
                 if (otherObject.GetType().Name == "Enemy")
                 {
                     Death();
                 }
-                else if (otherObject.GetType().Name == "Background")
-                {
-                    ChangeWeapon(GetCurrentWeapon());
-                    return;
-                }
             }
-
         }
     }
 }

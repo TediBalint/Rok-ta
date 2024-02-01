@@ -8,20 +8,18 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
 {
     public abstract class ConsoleObject : GameObject
     {
-        public bool isMovable { get; protected set; } = true;
-        public bool IsDisposed { get; set; } = false;
+        public bool IsMovable { get; protected set; } = true;
         public bool IsVissible { get; protected set; } = true;
-        public bool canCollide { get; protected set; } = true;
+        public bool CanCollide { get; protected set; } = true;
         public List<Animation> Animations { get; set; }
         public abstract void OnCollision(ConsoleObject otherObject);
-
         public ConsoleObject(double x, double y, int zIndex, int? width, int? height, string? filePath = null):base(x,y,zIndex,width,height,filePath)
         {
             Animations = new List<Animation>();
         }
         public virtual void MoveMotion(double x, double y)
         {
-            if (isMovable)
+            if (IsMovable)
             {
                 X += x / Globals.currentGameThicks;
                 Y -= y / Globals.currentGameThicks;
@@ -35,13 +33,12 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Y = Math.Min(Y, Console.WindowHeight - Height + 1);
             Y = Math.Max(Y, 0);
         }
-       
-		public override void insertToMatrix(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[,] pixels)
 		{
 			Snap();
-            if (IsVissible)
-            {
-				base.insertToMatrix(ref pixels);
+			if (IsVissible)
+			{
+				base.Update(ref pixels);
 			}
 			// render animations
 			foreach (Animation anim in Animations)
@@ -58,9 +55,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         {
             sw.WriteLine(Encrypter.Encrypt(getSaveString()));
         }
-        public virtual bool isCollision(ConsoleObject otherObject)
+        public virtual bool IsCollision(ConsoleObject otherObject)
         {
-            if (!canCollide) return false;
+            if (!CanCollide) return false;
             if
             (
                 // AABB algorithm

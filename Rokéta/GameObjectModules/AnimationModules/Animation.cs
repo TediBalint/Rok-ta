@@ -73,8 +73,8 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			line = sr.ReadLine().Split(' ');
 			AnimationObject animationObject = new AnimationObject(Parent, charInfos);
 			
-			animationObject.xOffset = double.Parse(line[0]);
-			animationObject.yOffset = double.Parse(line[1]);
+			animationObject.Xoffset = double.Parse(line[0]);
+			animationObject.Yoffset = double.Parse(line[1]);
 			return animationObject;
 		}
 		private AnimationObject? GetCurrentObject()
@@ -107,10 +107,9 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				if((repeat && Parent.IsVissible) || (!repeat))
 				{
-					animationObject.X = Parent.X + animationObject.xOffset;
-					animationObject.Y = Parent.Y - Parent.Height / 2 - animationObject.yOffset;
-					animationObject.Snap();
-					animationObject.insertToMatrix(ref pixels);
+					animationObject.X = Parent.X + animationObject.Xoffset;
+					animationObject.Y = Parent.Y - Parent.Height / 2 - animationObject.Yoffset;
+					animationObject.Update(ref pixels);
 				}
 			}
 			else if(destroyParent)

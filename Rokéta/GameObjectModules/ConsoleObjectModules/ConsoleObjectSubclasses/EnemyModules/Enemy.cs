@@ -1,6 +1,4 @@
 ﻿using Rokéta.ConsoleObjectModules.AnimationModules;
-using Rokéta.GameObjectModules.ConsoleObjectModules;
-using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.Statics;
 
@@ -24,9 +22,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         private void Death()
         {
-            canCollide = false;
+            CanCollide = false;
             IsVissible = false;
-            isMovable = false;
+            IsMovable = false;
             Globals.enemyCount--;
             Globals.kills++;
             Animations[0].IsPaused = false;
@@ -50,11 +48,6 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 {
                     Bullet obj = (Bullet)otherObject;
                     TakeDamage(obj.damage);
-                    obj.pierce--;
-                    if (obj.pierce <= 0)
-                    {
-                        obj.Delete();
-                    }
                     hitBullets.Add(otherObject);
                 }
             }

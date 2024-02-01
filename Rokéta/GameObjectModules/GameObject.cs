@@ -12,9 +12,9 @@ namespace Rokéta.GameObjectModules
 {
 	public abstract class GameObject
 	{
+		public bool IsDisposed { get; set; } = false;
 		public double X { get; set; }
 		public double Y { get; set; }
-
 		// X = 0, Y = 0 a bal felső pont
 		public int Z_Index { get; set; }
 		public int Width { get; set; }
@@ -96,6 +96,10 @@ namespace Rokéta.GameObjectModules
 				index++;
 			}
 		}
+		public virtual void Update(ref CharInfo[,] pixels)
+		{
+			insertToMatrix(ref pixels);
+		}
 		public void Fill(ConsoleColor color = ConsoleColor.Black)
 		{
 			CharInfo filledChar = new CharInfo(background: color);
@@ -113,7 +117,7 @@ namespace Rokéta.GameObjectModules
 			double distanceY = Math.Abs(pos[1] - Y);
 			return Math.Sqrt(Math.Pow(distanceX, 2) + Math.Pow(distanceY, 2));
 		}
-		public virtual void insertToMatrix(ref CharInfo[,] pixels)
+		private void insertToMatrix(ref CharInfo[,] pixels)
 		{
 			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
 			for (int i = 0; i < Height; i++)

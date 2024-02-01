@@ -38,14 +38,10 @@ void main()
 	while (true)
 	{
 		
-		consoleObjectManager.HandleCollisions();
+		consoleObjectManager.UpdateObjects();
 
-		//Rendering
-		consoleObjectManager.RenderObjects();
-		renderer.Buffer = matrixToVector(consoleObjectManager.pixels);
-		renderer.Render();
-		enemyGenerator.Generate();
 
+		Render();
 		//Set Game Thicks
 		gameThicks +=100;
 		if (timer.Elapsed.TotalSeconds >= 0.01)
@@ -54,6 +50,12 @@ void main()
 			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}
+	}
+	void Render()
+	{
+		renderer.Buffer = matrixToVector(consoleObjectManager.Pixels);
+		renderer.Render();
+		enemyGenerator.Generate();
 	}
 	void inputThread()
 	{
