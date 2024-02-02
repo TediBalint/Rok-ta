@@ -7,9 +7,8 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     public class Enemy : MovableObject
     {
         public double Health;
-
-        // stores bullets that hit this enemy already so bullets only hit it once
-        private HashSet<ConsoleObject> hitBullets = new HashSet<ConsoleObject>();
+		// stores bullets that hit this enemy already so bullets only hit it once
+		private HashSet<ConsoleObject> hitBullets = new HashSet<ConsoleObject>();
         public Enemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] _velocity, double health)
         : base(x, y, zIndex, width, height, filePath, _velocity)
         {

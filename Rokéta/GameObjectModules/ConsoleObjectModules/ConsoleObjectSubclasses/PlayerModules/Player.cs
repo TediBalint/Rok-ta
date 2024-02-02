@@ -9,7 +9,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     public class Player : ConsoleObject
     {
         public Weapon Weapon { get; private set; }
-        public double[] MovementSpeed { get; set; }
+		public double[] MovementSpeed { get; set; }
         public Player(double x, double y, int zIndex, int width, int height, string? filePath, double[] _movementSpeed)
         : base(x, y, zIndex, width, height, filePath)
         {

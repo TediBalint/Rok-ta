@@ -91,8 +91,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         {
             Bullet newBullet = bullet.DeepCopy();
             newBullet.angle = angle;
-            newBullet.X = spawnPos[0];
-            newBullet.Y = spawnPos[1];
+            newBullet.SetPos(spawnPos);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newBullet), newBullet);
         }
         public Background CreateBackground(ConsoleColor? color = null, string? filePath = null)

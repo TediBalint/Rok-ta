@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rokéta.GameObjectModules.UIObjectModules
+﻿namespace Rokéta.GameObjectModules.UIObjectModules
 {
 	public class ActiveObjectContext
 	{
-		private IActiveObjectStrategy currStrategy;	
-		public ActiveObjectContext(IActiveObjectStrategy defaultStrategy)
+		private ActiveObjectStrategy currStrategy;	
+		public ActiveObjectContext(ActiveObjectStrategy defaultStrategy)
 		{
 			currStrategy = defaultStrategy;
 		}
-		public void SetStrategy(IActiveObjectStrategy activeObjectStrategy)
+		public ActiveObjectContext() 
+		{
+			return;
+		}
+		public void SetStrategy(ActiveObjectStrategy activeObjectStrategy)
 		{
 			currStrategy = activeObjectStrategy;
 		}
 		public UIObject GetActiveGameObject(List<UIObject> uiObjects, UIObject currentObject)
 		{
 			return currStrategy.GetActive(uiObjects, currentObject);
-		} 
+		}
 	}
 }

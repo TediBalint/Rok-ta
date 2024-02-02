@@ -1,8 +1,6 @@
 ﻿using Rokéta.ConsoleObjectModules;
-using Roketa.ConsoleObjectModules;
 using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.Statics;
-using System.Diagnostics;
 
 namespace Rokéta.GameObjectModules.ConsoleObjectModules
 {
@@ -11,7 +9,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         public bool IsMovable { get; protected set; } = true;
         public bool IsVissible { get; protected set; } = true;
         public bool CanCollide { get; protected set; } = true;
-        public List<Animation> Animations { get; set; }
+		public List<Animation> Animations { get; set; }
         public abstract void OnCollision(ConsoleObject otherObject);
         public ConsoleObject(double x, double y, int zIndex, int? width, int? height, string? filePath = null):base(x,y,zIndex,width,height,filePath)
         {
@@ -25,6 +23,14 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
                 Y -= y / Globals.currentGameThicks;
                 Snap();
             }
+        }
+        public virtual void MoveMotion(double[] cords)
+        {
+            if(IsMovable)
+            {
+                X += cords[0] / Globals.currentGameThicks;
+                X += cords[1] / Globals.currentGameThicks;
+			}
         }
         public virtual void Snap()
         {
@@ -61,11 +67,15 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             if
             (
                 // AABB algorithm
-                otherObject != this &&
-                (int)X < (int)(otherObject.X + otherObject.Width) &&
-                (int)(X + Width) > (int)otherObject.X &&
-                (int)Y < (int)(otherObject.Y + otherObject.Height) &&
-                (int)(Y + Height) > (int)otherObject.Y
+                 otherObject != this &&
+                 IsXOverlapping(otherObject) &&
+                 IsYOverlapping(otherObject)
+
+                //otherObject != this &&
+                //(int)X < (int)(otherObject.X + otherObject.Width) &&
+                //(int)(X + Width) > (int)otherObject.X &&
+                //(int)Y < (int)(otherObject.Y + otherObject.Height) &&
+                //(int)(Y + Height) > (int)otherObject.Y
             )
             {
                 return true;

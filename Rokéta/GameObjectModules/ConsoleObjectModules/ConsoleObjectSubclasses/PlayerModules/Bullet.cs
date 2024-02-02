@@ -1,13 +1,10 @@
 ﻿using Rokéta.ConsoleObjectModules.AnimationModules;
-using Rokéta.GameObjectModules.ConsoleObjectModules;
-using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
-using Rokéta.Statics;
-using System.Diagnostics;
+
 
 namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules
 {
-    public class Bullet : ConsoleObject
+    public class Bullet : PosPublicSet
     {
         public double angle { get; set; }
         private double speed;
@@ -15,7 +12,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         private int pierce;
         private bool bounce;
 
-        private HashSet<Enemy> CollidedEnemies = new HashSet<Enemy>();
+        private readonly HashSet<Enemy> CollidedEnemies = new HashSet<Enemy>();
         public Bullet(double x, double y, int z_Index, int width, int height, string? filePath, double _speed, double _damage, int _pierce, bool _bounce)
         : base(x, y, z_Index, width, height, filePath)
         {

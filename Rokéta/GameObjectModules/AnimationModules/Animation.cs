@@ -107,8 +107,9 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			{
 				if((repeat && Parent.IsVissible) || (!repeat))
 				{
-					animationObject.X = Parent.X + animationObject.Xoffset;
-					animationObject.Y = Parent.Y - Parent.Height / 2 - animationObject.Yoffset;
+					double x = Parent.X + animationObject.Xoffset;
+					double y = Parent.Y - Parent.Height / 2 - animationObject.Yoffset;
+					animationObject.SetPos(x,y);
 					animationObject.Update(ref pixels);
 				}
 			}
