@@ -23,12 +23,14 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 velocity[1] *= -1;
             }
         }
-        public override void OnCollision(ConsoleObject otherObject)
+		public override void Update(ref CharInfo[,] pixels)
+		{
+			base.Update(ref pixels);
+            Movement();
+		}
+		public override void OnCollision(ConsoleObject otherObject)
         {
-            if (otherObject.GetType() == typeof(Background))
-            {
-                Movement();
-            }
+            return;
         }
     }
 }

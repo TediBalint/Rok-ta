@@ -26,7 +26,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 			OnEnter?.Invoke(this);
 		}
 		public void Change() 
-		{ 
+		{
 			OnChanged?.Invoke(this);
 		}
 		public void Focus()

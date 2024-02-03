@@ -20,9 +20,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         {
             string filePath;
             if (_filePath != null && File.Exists(_filePath)) filePath = _filePath;
-            else filePath = ConsoleObjectManager.saveFilePath;
+            else filePath = ConsoleObjectManager.SaveFilePath;
             Globals.enemyCount = 0;
-            ConsoleObjectManager.consoleObjectList.Clear();
+            ConsoleObjectManager.ConsoleObjects.Clear();
             Globals.canGenerate = false;
             if (File.Exists(filePath))
             {
@@ -77,45 +77,43 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed, string? filePath = null)
         {
             Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed);
-            ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
+            ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
             return newPlayer;
         }
         public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity, double health)
         {
             Globals.enemyCount++;
             Enemy newEnemy = new Enemy(x, y, zIndex, width, height, filePath, velocity, health);
-            ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newEnemy), newEnemy);
+            ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newEnemy), newEnemy);
             return newEnemy;
         }
         public void AddBullet(Bullet bullet, double angle, double[] spawnPos)
         {
             Bullet newBullet = bullet.DeepCopy();
             newBullet.angle = angle;
-            newBullet.X = spawnPos[0];
-            newBullet.Y = spawnPos[1];
-            ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBullet), newBullet);
+            newBullet.SetPos(spawnPos);
+            ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newBullet), newBullet);
         }
         public Background CreateBackground(ConsoleColor? color = null, string? filePath = null)
         {
             Background newBackgrond = new Background(color, filePath);
-            ConsoleObjectManager.consoleObjectList.Insert(findConsoleObjectPlace(newBackgrond), newBackgrond);
-            newBackgrond.insertToMatrix(ref ConsoleObjectManager.pixels);
+            ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newBackgrond), newBackgrond);
             return newBackgrond;
         }
         private int findConsoleObjectPlace(ConsoleObject consoleObj)
         {
-            int len = ConsoleObjectManager.consoleObjectList.Count;
+            int len = ConsoleObjectManager.ConsoleObjects.Count;
             int thisIndex = consoleObj.Z_Index;
             //szelsoesetek
             if (len == 0)
             {
                 return 0;
             }
-            if (thisIndex >= ConsoleObjectManager.consoleObjectList.Last().Z_Index)
+            if (thisIndex >= ConsoleObjectManager.ConsoleObjects.Last().Z_Index)
             {
                 return len;
             }
-            if (thisIndex <= ConsoleObjectManager.consoleObjectList.First().Z_Index)
+            if (thisIndex <= ConsoleObjectManager.ConsoleObjects.First().Z_Index)
             {
                 return 0;
             }
@@ -125,15 +123,15 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             while (left < right)
             {
                 int middle = (left + right) / 2;
-                if (ConsoleObjectManager.consoleObjectList[middle].Z_Index <= thisIndex && ConsoleObjectManager.consoleObjectList[middle + 1].Z_Index >= thisIndex)
+                if (ConsoleObjectManager.ConsoleObjects[middle].Z_Index <= thisIndex && ConsoleObjectManager.ConsoleObjects[middle + 1].Z_Index >= thisIndex)
                 {
                     return middle + 1;
                 }
-                else if (ConsoleObjectManager.consoleObjectList[middle].Z_Index <= thisIndex)
+                else if (ConsoleObjectManager.ConsoleObjects[middle].Z_Index <= thisIndex)
                 {
                     left = middle + 1;
                 }
-                else if (ConsoleObjectManager.consoleObjectList[middle].Z_Index <= thisIndex)
+                else if (ConsoleObjectManager.ConsoleObjects[middle].Z_Index <= thisIndex)
                 {
                     right = middle - 1;
                 }

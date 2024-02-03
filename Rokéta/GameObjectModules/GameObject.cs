@@ -1,33 +1,31 @@
 ﻿using Roketa.ConsoleObjectModules;
-using Rokéta.ConsoleObjectModules.AnimationModules;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rokéta.GameObjectModules
 {
 	public abstract class GameObject
 	{
-		public double X { get; set; }
-		public double Y { get; set; }
-
+		public bool IsDisposed { get; set; } = false;
+		public double X { get; protected set; }
+		public double Y { get; protected set; }
 		// X = 0, Y = 0 a bal felső pont
-		public int Z_Index { get; set; }
-		public int Width { get; set; }
-		public int Height { get; set; }
+		public int Z_Index { get; protected set; }
+		public int Width { get; protected set; }
+		public int Height { get; protected set; }
 		protected CharInfo?[,] CharInfos { get; set; }
-		public string? FilePath { get; set; }
+		public string? FilePath { get; protected set; }
 
+		public int Top => (int)Y;
+		public int Left => (int)X;
+		public int Bot => (int)(Y + Height);
+		public double Right => (int)(X+Width);
+		public double[] Mid => new double[] {(int)(X+Width/2), (int)(Y+Height/2) };
 		public GameObject(double x, double y, int zIndex, int? width, int? height, string? filePath)
 		{
 			X = x;
 			Y = y;
 			Z_Index = zIndex;
-
+			
 			if (filePath != null && File.Exists(filePath))
 			{
 				FilePath = filePath;
@@ -35,7 +33,6 @@ namespace Rokéta.GameObjectModules
 				Width = sizes[0];
 				Height = sizes[1];
 				CharInfos = new CharInfo?[Height, Width];
-
 				readFile();
 			}
 			else if (width == null || height == null)
@@ -48,7 +45,22 @@ namespace Rokéta.GameObjectModules
 				Height = height.Value;
 				CharInfos = new CharInfo?[height.Value, width.Value];
 			}
-
+		}
+		protected bool IsXOverlapping(GameObject otherObject)
+		{
+			return Left <= otherObject.Right && Right >= otherObject.Left;
+		}
+		protected bool IsYOverlapping(GameObject otherObject)
+		{
+			return Top <= otherObject.Bot && Bot >= otherObject.Top;
+		}
+		public bool IsXOverlapping(GameObject otherObject, int Offset)
+		{
+			return Left - Offset <= otherObject.Right && Right + Offset >= otherObject.Left;
+		}
+		public bool IsYOverlapping(GameObject otherObject, int Offset)
+		{
+			return Top - Offset <= otherObject.Bot && Bot + Offset >= otherObject.Top;
 		}
 		private int[] getWidthHeightFromFile()
 		{
@@ -96,6 +108,10 @@ namespace Rokéta.GameObjectModules
 				index++;
 			}
 		}
+		public virtual void Update(ref CharInfo[,] pixels)
+		{
+			insertToMatrix(ref pixels);
+		}
 		public void Fill(ConsoleColor color = ConsoleColor.Black)
 		{
 			CharInfo filledChar = new CharInfo(background: color);
@@ -113,7 +129,11 @@ namespace Rokéta.GameObjectModules
 			double distanceY = Math.Abs(pos[1] - Y);
 			return Math.Sqrt(Math.Pow(distanceX, 2) + Math.Pow(distanceY, 2));
 		}
-		public virtual void insertToMatrix(ref CharInfo[,] pixels)
+		public double GetDistance(GameObject gameObject)
+		{
+			return GetDistance(new int[] { (int)gameObject.X, (int)gameObject.Y });
+		}
+		private void insertToMatrix(ref CharInfo[,] pixels)
 		{
 			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
 			for (int i = 0; i < Height; i++)
