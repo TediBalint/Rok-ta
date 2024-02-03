@@ -17,7 +17,9 @@ void main()
 	Console.Title = "Rokéta";
 	Console.WindowWidth = width;
 	Console.WindowHeight = height;
+
 	Renderer renderer = new Renderer(width,height);
+
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 
@@ -41,9 +43,9 @@ void main()
 	//gameloop
 	while (true)
 	{
-		uIObjectManager.UpdateObjects();
-		consoleObjectManager.UpdateObjects();
 		
+		if(uIObjectManager.IsActive) uIObjectManager.UpdateObjects();
+		consoleObjectManager.UpdateObjects();
 
 		Render();
 		//Set Game Thicks

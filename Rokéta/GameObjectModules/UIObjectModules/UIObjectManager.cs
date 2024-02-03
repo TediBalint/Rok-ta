@@ -15,21 +15,22 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 		public CharInfo[,] Pixels;
 		public UIObject ActiveObject { get; private set; }
 		private readonly Stack<UIObject> lastObjects = new Stack<UIObject>();
-		
+		public bool IsActive { get; private set; }
 		private Dictionary<ConsoleKey, ActiveObjectStrategy> activeObjectStrategies = new Dictionary<ConsoleKey, ActiveObjectStrategy>()
 		{
-			{ ConsoleKey.S, new BottomStrat()},
+			{ConsoleKey.S, new BottomStrat()},
 			{ConsoleKey.D, new RightStrat()},
 			{ConsoleKey.A, new LeftStrat()},
 			{ConsoleKey.W, new TopStrat()},
-			{ ConsoleKey.Z, new LastUIObjectStrat()}
+			{ConsoleKey.Z, new LastUIObjectStrat()}
+		};
 
-	};
 		private ActiveObjectContext activeObjectContext;
-		public UIObjectManager(CharInfo[,] pixels)
+		public UIObjectManager(CharInfo[,] pixels, bool isActive = false)
 		{
+			IsActive = isActive;
 			activeObjectContext = new ActiveObjectContext();
-			Pixels = pixels;			
+			Pixels = pixels;
 		}
 		public void UpdateObjects()
 		{
@@ -54,5 +55,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 			ActiveObject = activeObjectContext.GetActiveGameObject(UIObjects, lastObjects);
 			ActiveObject.Focus();
 		}
+		public void Activate() => IsActive = true;
+		public void Deactivate() => IsActive = false;
 	}
 }
