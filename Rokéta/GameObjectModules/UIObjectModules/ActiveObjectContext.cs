@@ -15,9 +15,9 @@
 		{
 			currStrategy = activeObjectStrategy;
 		}
-		public UIObject GetActiveGameObject(List<UIObject> uiObjects, UIObject currentObject)
+		public UIObject GetActiveGameObject(List<UIObject> uiObjects, Stack<UIObject> lastObjects)
 		{
-			return currStrategy.GetActive(uiObjects, currentObject);
+			return currStrategy.GetActive(uiObjects, lastObjects);
 		}
 	}
 }

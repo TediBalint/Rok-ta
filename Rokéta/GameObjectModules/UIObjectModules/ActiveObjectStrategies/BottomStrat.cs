@@ -9,8 +9,10 @@ namespace Rokéta.GameObjectModules.UIObjectModules.ActiveObjectStrategies
 {
 	public class BottomStrat : ActiveObjectStrategy
 	{
-		public override UIObject GetActive(List<UIObject> uiObjects, UIObject activeObject)
+		public override UIObject GetActive(List<UIObject> uiObjects, Stack<UIObject> lastObjects)
 		{
+			UIObject activeObject = lastObjects.Peek();
+
 			List<UIObject> overLappingX = new List<UIObject>();
 			for (int i = 0; i < uiObjects.Count; i++)
 			{

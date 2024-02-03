@@ -6,7 +6,35 @@ using System.Threading.Tasks;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.ActiveObjectStrategies
 {
-	internal class TopStrat
+	public class TopStrat : ActiveObjectStrategy
 	{
+		public override UIObject GetActive(List<UIObject> uiObjects, Stack<UIObject> lastObjects)
+		{
+			UIObject activeObject = lastObjects.Peek();
+
+			List<UIObject> overLappingX = new List<UIObject>();
+			for (int i = 0; i < uiObjects.Count; i++)
+			{
+				if (uiObjects[i].Bot > activeObject.Top) overLappingX.Add(uiObjects[i]);
+			}
+
+			if (overLappingX.Count < 2) return activeObject;
+			int offset = 0;
+			do
+			{
+				overLappingX = GetXOverlapping(overLappingX, activeObject, offset);
+				offset += 5;
+			} while (overLappingX.Count < 1);
+
+			if (overLappingX.Count == 1) return overLappingX[0];
+
+			UIObject minDistanceObject = overLappingX[0];
+			for (int i = 1; i < overLappingX.Count; i++)
+			{
+				UIObject currObject = overLappingX[i];
+				if (activeObject.GetDistance(currObject) < activeObject.GetDistance(minDistanceObject)) minDistanceObject = currObject;
+			}
+			return minDistanceObject;
+		}
 	}
 }

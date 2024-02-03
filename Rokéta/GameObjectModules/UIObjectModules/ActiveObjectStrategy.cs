@@ -2,7 +2,7 @@
 {
 	public abstract class ActiveObjectStrategy
 	{
-		public abstract UIObject GetActive(List<UIObject> uiObjects, UIObject activeObject);
+		public abstract UIObject GetActive(List<UIObject> uiObjects, Stack<UIObject> lastObjects);
 		protected List<UIObject> GetXOverlapping(List<UIObject> uiObjects, UIObject activeObject, int offset)
 		{
 			List<UIObject> overlappingXObjects = new List<UIObject>();
@@ -13,7 +13,7 @@
 			}
 			return overlappingXObjects;
 		}
-		protected List<UIObject> GetYOverlapping(List<UIObject> uiObjects, UIObject activeObject, int offset, bool checkLeftCondition)
+		protected List<UIObject> GetYOverlapping(List<UIObject> uiObjects, UIObject activeObject, int offset)
 		{
 			List<UIObject> overlappingYObjects = new List<UIObject>();
 			for (int i = 0; i < uiObjects.Count; i++)

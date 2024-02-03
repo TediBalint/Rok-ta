@@ -1,4 +1,5 @@
 ﻿using Rokéta.GameObjectModules.ConsoleObjectModules;
+using Rokéta.GameObjectModules.UIObjectModules.ActiveObjectStrategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,22 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 
 		public CharInfo[,] Pixels;
 		public UIObject ActiveObject { get; private set; }
-
-		private Dictionary<ConsoleKey, ActiveObjectStrategy> activeObjectStrategies = new Dictionary<ConsoleKey, ActiveObjectStrategy>() { };
-		private ActiveObjectContext activeObjectContext;
+		private readonly Stack<UIObject> lastObjects = new Stack<UIObject>();
 		
+		private Dictionary<ConsoleKey, ActiveObjectStrategy> activeObjectStrategies = new Dictionary<ConsoleKey, ActiveObjectStrategy>()
+		{
+			{ ConsoleKey.S, new BottomStrat()},
+			{ConsoleKey.D, new RightStrat()},
+			{ConsoleKey.A, new LeftStrat()},
+			{ConsoleKey.W, new TopStrat()},
+			{ ConsoleKey.Z, new LastUIObjectStrat()}
+
+	};
+		private ActiveObjectContext activeObjectContext;
 		public UIObjectManager(CharInfo[,] pixels)
 		{
 			activeObjectContext = new ActiveObjectContext();
-			Pixels = pixels;
+			Pixels = pixels;			
 		}
 		public void UpdateObjects()
 		{
@@ -39,9 +48,10 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 		}
 		public void ChangeActiveObject(ConsoleKey consoleKey)
 		{
+			lastObjects.Push(ActiveObject);
 			ActiveObject.Blur();
 			activeObjectContext.SetStrategy(activeObjectStrategies[consoleKey]);
-			ActiveObject = activeObjectContext.GetActiveGameObject(UIObjects, ActiveObject);
+			ActiveObject = activeObjectContext.GetActiveGameObject(UIObjects, lastObjects);
 			ActiveObject.Focus();
 		}
 	}
