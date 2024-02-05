@@ -46,11 +46,6 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
 			{
 				base.Update(ref pixels);
 			}
-			// render animations
-			foreach (Animation anim in Animations)
-			{
-				anim.Render(ref pixels);
-			}
 		}
 		protected virtual string getSaveString()
         {

@@ -1,4 +1,5 @@
 ﻿using Rokéta.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
@@ -79,6 +80,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         {
             Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed, _boosterDamage);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
+            handleAnimation(newPlayer);
             return newPlayer;
         }
         public Enemy CreateEnemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] velocity, double health)
@@ -86,13 +88,15 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Globals.enemyCount++;
             Enemy newEnemy = new Enemy(x, y, zIndex, width, height, filePath, velocity, health);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newEnemy), newEnemy);
-            return newEnemy;
+            handleAnimation(newEnemy);
+			return newEnemy;
         }
         public void AddBullet(Bullet bullet, double angle, double[] spawnPos)
         {
             Bullet newBullet = bullet.DeepCopy();
             newBullet.angle = angle;
             newBullet.SetPos(spawnPos);
+            handleAnimation(newBullet);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newBullet), newBullet);
         }
         public Background CreateBackground(ConsoleColor? color = null, string? filePath = null)
@@ -100,6 +104,13 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Background newBackgrond = new Background(color, filePath);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newBackgrond), newBackgrond);
             return newBackgrond;
+        }
+        private void handleAnimation(ConsoleObject consoleObject)
+        {
+            foreach (Animation anim in consoleObject.Animations)
+            {
+                ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(anim), anim);
+            }
         }
         private int findConsoleObjectPlace(ConsoleObject consoleObj)
         {

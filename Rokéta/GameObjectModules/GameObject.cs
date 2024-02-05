@@ -5,7 +5,7 @@ namespace Rokéta.GameObjectModules
 {
 	public abstract class GameObject
 	{
-		public bool IsDisposed { get; set; } = false;
+		public bool IsDisposed { get; protected set; } = false;
 		public double X { get; protected set; }
 		public double Y { get; protected set; }
 		// X = 0, Y = 0 a bal felső pont
