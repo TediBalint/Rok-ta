@@ -17,7 +17,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             BoosterDamage = _boosterDamage;
             MovementSpeed = _movementSpeed;
             ChangeWeapon(GetCurrentWeapon());
-            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent: true));
+            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this));
             Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt", this, true));
         }
         public void MoveRaw(int[] sgn)

@@ -20,7 +20,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             speed = _speed;
             pierce = _pierce;
             bounce = _bounce;
-            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\BulletExplosionAnim.txt", this, _destroyParent: true));
+            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\BulletExplosionAnim.txt", this,false));
         }
 		public override void Update(ref CharInfo[,] pixels)
 		{

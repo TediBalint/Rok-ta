@@ -13,7 +13,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         : base(x, y, zIndex, width, height, filePath, _velocity)
         {
             Health = health;
-            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, _destroyParent: true));
+            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this, false));
         }
         protected override string getSaveString()
         {
