@@ -10,10 +10,11 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     {
         public Weapon Weapon { get; private set; }
 		public double[] MovementSpeed { get; private set; }
-
+        private readonly Booster booster;
         public Player(double x, double y, int zIndex, int width, int height, string? filePath, double[] _movementSpeed, Booster _booster)
         : base(x, y, zIndex, width, height, filePath)
         {
+            booster = _booster;
             MovementSpeed = _movementSpeed;
             ChangeWeapon(GetCurrentWeapon());
             Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this));
@@ -70,7 +71,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         protected override string getSaveString()
         {
-            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{BoosterDamage}";
+            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{booster.FilePath}";
         }
         public override bool IsCollision(ConsoleObject otherObject)
         {
