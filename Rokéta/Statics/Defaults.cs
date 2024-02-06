@@ -90,9 +90,13 @@ namespace Rokéta.Statics
 			{10, new Enemy[]{EnemyList[0], EnemyList[1], EnemyList[2] } },
 			{0, new Enemy[]{EnemyList[0], EnemyList[1] } },
 			
-			
-			
 		};
+
+		public static List<Booster> boosters = new List<Booster>()
+		{
+			new Booster(10, 500, "SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt")
+		};
+
 		public static Dictionary<string, ConsoleKey[]> keyBinds = new Dictionary<string, ConsoleKey[]>() 
 		{
 			{"Shoot", new ConsoleKey[] { ConsoleKey.Spacebar} },

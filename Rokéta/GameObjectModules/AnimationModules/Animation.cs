@@ -112,7 +112,12 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 				}
 			}
 		}
-		public override void OnCollision(ConsoleObject otherObject)
+        public override bool IsCollision(ConsoleObject otherObject)
+        {
+			if(currObject!= null) return currObject.IsCollision(otherObject);
+			return false;
+        }
+        public override void OnCollision(ConsoleObject otherObject)
 		{
 			return;
 		}

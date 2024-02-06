@@ -76,9 +76,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Globals.canGenerate = true;
             return player;
         }
-        public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed,int _boosterDamage, string? filePath = null)
+        public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed,Booster booster, string? filePath = null)
         {
-            Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed, _boosterDamage);
+            Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed, booster);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
             handleAnimation(newPlayer);
             return newPlayer;

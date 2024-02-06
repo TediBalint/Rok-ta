@@ -1,5 +1,5 @@
 ﻿using Rokéta.ConsoleObjectModules.AnimationModules;
-using Rokéta.GameObjectModules.ConsoleObjectModules;
+using Rokéta.GameObjectModules.AnimationModules.AnimationSubclasses;
 using Rokéta.SoundModules;
 using Rokéta.Statics;
 using System.Diagnostics;
@@ -10,15 +10,14 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     {
         public Weapon Weapon { get; private set; }
 		public double[] MovementSpeed { get; private set; }
-        public double BoosterDamage { get; private set; }
-        public Player(double x, double y, int zIndex, int width, int height, string? filePath, double[] _movementSpeed, int _boosterDamage)
+
+        public Player(double x, double y, int zIndex, int width, int height, string? filePath, double[] _movementSpeed, Booster _booster)
         : base(x, y, zIndex, width, height, filePath)
         {
-            BoosterDamage = _boosterDamage;
             MovementSpeed = _movementSpeed;
             ChangeWeapon(GetCurrentWeapon());
             Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerDeathAnim.txt", this));
-            Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt", this, true));
+            Animations.Add(new BoosterAnim(this,_booster));
         }
         public void MoveRaw(int[] sgn)
         {
@@ -67,9 +66,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 {
                     Debug.WriteLine($"Common error in Snap (Player.cs):\n{e.Message}");
                 }
-
             }
-
         }
         protected override string getSaveString()
         {

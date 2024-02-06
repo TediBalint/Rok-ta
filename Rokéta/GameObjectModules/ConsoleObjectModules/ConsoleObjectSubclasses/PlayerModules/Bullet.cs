@@ -8,7 +8,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     {
         public double angle { get; set; }
         private double speed;
-        public double damage { get; set; }
+        private double damage;
         private int pierce;
         private bool bounce;
 
@@ -26,8 +26,11 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
 		{
 			base.Update(ref pixels);
 			MoveMotion(speed, speed);
-			if (IsOutOfMap()) IsDisposed = true;
-            CollidedEnemies.Clear();
+            if (IsOutOfMap()) {
+                IsDisposed = true;
+                CollidedEnemies.Clear();
+            }
+            
 		}
 		public override void OnCollision(ConsoleObject otherObject)
 		{
@@ -38,6 +41,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 if(!CollidedEnemies.Contains(enemy))
                 {
 					CollidedEnemies.Add(enemy);
+                    enemy.TakeDamage(damage);
 					pierce--;
 					if (pierce <= 0)
 					{
