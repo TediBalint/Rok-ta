@@ -1,4 +1,5 @@
 ﻿using Rokéta.ConsoleObjectModules;
+using Rokéta.ConsoleObjectModules.AnimationModules;
 using Rokéta.Statics;
 using System.Diagnostics;
 
@@ -72,8 +73,8 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
                 sw.WriteLine(Encrypter.Encrypt($"{Globals.isMusicEnabled};{Globals.isGameSoundEnabled};{Globals.kills};{Globals.lastHealthBonus}"));
                 foreach (ConsoleObject obj in ConsoleObjects)
                 {
-                    obj.SaveToFile(sw);
-                }
+                    if(obj.GetType() != typeof(Animation)) obj.SaveToFile(sw);
+				}
             }
         }
 

@@ -71,18 +71,9 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         protected override string getSaveString()
         {
-            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{booster.FilePath}";
+            Debug.WriteLine(booster.FilePath);
+            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{booster.}";
         }
-        public override bool IsCollision(ConsoleObject otherObject)
-        {
-            bool animIsColliding = false;
-            if (Animations[1].currObject != null)
-            {
-                animIsColliding = Animations[1].currObject.IsCollision(otherObject);
-            }
-            return base.IsCollision(otherObject) || animIsColliding;
-        }
-
         public static Weapon GetCurrentWeapon()
         {
             // weapons is backwards
