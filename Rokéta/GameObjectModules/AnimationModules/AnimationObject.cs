@@ -12,10 +12,6 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 		{
 			CharInfos = charInfos;
 		}
-		public override bool IsCollision(ConsoleObject otherObject)
-		{
-			return false;
-		}
 		public override void OnCollision(ConsoleObject otherObject)
 		{
 			// no collision detection needed with animations

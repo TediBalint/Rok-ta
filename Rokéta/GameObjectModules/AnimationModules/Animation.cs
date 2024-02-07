@@ -43,7 +43,6 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 				ticks += double.Parse(line[0]);
 			}
 		}
-
 		private AnimationObject ReadAnim(int height, StreamReader sr)
 		{
 			
@@ -114,7 +113,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 		}
         public override bool IsCollision(ConsoleObject otherObject)
         {
-			if(currObject!= null) return currObject.IsCollision(otherObject);
+			if (currObject!= null) return currObject.IsCollision(otherObject);
 			return false;
         }
         public override void OnCollision(ConsoleObject otherObject)

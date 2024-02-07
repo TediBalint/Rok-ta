@@ -25,7 +25,6 @@ namespace Rokéta.GameObjectModules.AnimationModules.AnimationSubclasses
                 if (booster.IsDamageReady) {
                     enemy.TakeDamage(booster.Damage);
                     booster.IsDamageReady = true;
-                    Debug.WriteLine("Deal Damage");
                 }
             }
         }
