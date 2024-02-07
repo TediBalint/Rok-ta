@@ -20,6 +20,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         private void Death()
         {
+            IsDisposed = true;
             CanCollide = false;
             IsVissible = false;
             IsMovable = false;

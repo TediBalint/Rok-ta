@@ -72,7 +72,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         protected override string getSaveString()
         {
             Debug.WriteLine(booster.FilePath);
-            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{booster.}";
+            return base.getSaveString() + $";{MovementSpeed[0]};{MovementSpeed[1]};{booster.Name}";
         }
         public static Weapon GetCurrentWeapon()
         {

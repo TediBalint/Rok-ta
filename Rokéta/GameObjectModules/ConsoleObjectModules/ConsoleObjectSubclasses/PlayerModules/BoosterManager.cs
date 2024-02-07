@@ -15,7 +15,8 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             {
                 foreach (string path in Directory.GetFiles(parentFolder))
                 {
-                    boosters.Add(getBoosterName(path) ,makeBooster(path));
+                    Booster _booster = makeBooster(path);
+                    boosters.Add(_booster.Name , _booster);
                 }
             }
             return boosters;
@@ -29,13 +30,11 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 int damage = int.Parse(data[0]);
 				uint interval = uint.Parse(data[1]);
 				string animpath = data[2];
-				return new Booster(damage, interval, animpath);
+				return new Booster(damage, interval, animpath, getBoosterName(filePath));
 			}
 		}
         public static Booster GetBooster(string name)
         {
-            Debug.WriteLine(getBoosterName(name));
-            Debug.WriteLine(string.Join(", ", Boosters.Keys));
             return Boosters[getBoosterName(name)];   
         }
         private static string getBoosterName(string filePath)

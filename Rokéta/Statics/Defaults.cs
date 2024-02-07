@@ -6,6 +6,7 @@ namespace Rokéta.Statics
     public static class Defaults
 	{
 		public static double[] DefaultSpeed = new double[2] {1,1};
+		public static string DefaultBoosterName = "Booster1.txt";
 		public static List<Bullet> bullets = new List<Bullet>() 
 		{
 			new Bullet(0,0,2,1,1,"SaveFiles\\Objects\\Bullets\\Bullet1.txt", 10, 2, 1, false),
@@ -90,11 +91,6 @@ namespace Rokéta.Statics
 			{10, new Enemy[]{EnemyList[0], EnemyList[1], EnemyList[2] } },
 			{0, new Enemy[]{EnemyList[0], EnemyList[1] } },
 			
-		};
-
-		public static List<Booster> boosters = new List<Booster>()
-		{
-			new Booster(10, 500, "SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt")
 		};
 
 		public static Dictionary<string, ConsoleKey[]> keyBinds = new Dictionary<string, ConsoleKey[]>() 

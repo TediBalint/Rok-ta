@@ -49,8 +49,8 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
                         if (ObjType == "Player")
                         {
                             double[] movementSpeed = new double[2] { double.Parse(line[7]), double.Parse(line[8]) };
-                            string boosterPath = line[9];
-                            player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, movementSpeed,BoosterManager.GetBooster(boosterPath.Split('.').First()), ObjFilePath);
+                            string boosterName = line[9];
+                            player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, movementSpeed,BoosterManager.GetBooster(boosterName), ObjFilePath);
                         }
                         else if (ObjType == "Enemy")
                         {

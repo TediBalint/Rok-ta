@@ -25,7 +25,7 @@ void main()
 
 	UIObjectManager uIObjectManager = new UIObjectManager(consoleObjectManager.Pixels);
 
-	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, Defaults.boosters[0], filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
+	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, BoosterManager.GetBooster(Defaults.DefaultBoosterName), filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 	//enemyGenerator.test(1000);
