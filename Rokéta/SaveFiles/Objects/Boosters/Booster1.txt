@@ -1,1 +1,1 @@
-1;100000;SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt
+3;500;SaveFiles\\Objects\\Animations\\PlayerIdleAnim.txt

@@ -21,10 +21,11 @@ namespace Rokéta.GameObjectModules.AnimationModules.AnimationSubclasses
         {
             if(otherObject.GetType() == typeof(Enemy))
             {
-                Enemy enemy = (Enemy)otherObject;
+				
+				Enemy enemy = (Enemy)otherObject;
                 if (booster.IsDamageReady) {
-                    enemy.TakeDamage(booster.Damage);
-                    booster.IsDamageReady = true;
+					enemy.TakeDamage(booster.Damage);
+                    booster.IsDamageReady = false;
                 }
             }
         }
