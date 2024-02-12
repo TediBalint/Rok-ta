@@ -20,6 +20,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         private int BulletAmount;
         public double[] spawnPos { get; set; }
         private string[] shootSounds;
+        private readonly Stopwatch bulletTimer = new Stopwatch();
         public Weapon(Bullet bullet, double spread, double fire_rate, int bulletAmount, string[] _shootSounds)
         {
             Bullet = bullet;
@@ -28,11 +29,11 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             BulletAmount = bulletAmount;
             shootSounds = _shootSounds;
         }
-        public void Shoot(Stopwatch bulletTimer, ConsoleObjectFactory consoleObjectFactory)
+        public void Shoot(ConsoleObjectFactory consoleObjectFactory)
         {
             int _bulletAmount = BulletAmount;
             double[] pos;
-            if (bulletTimer.Elapsed.TotalSeconds > 1 / FireRate)
+            if (bulletTimer.Elapsed.TotalSeconds > 1 / FireRate || !bulletTimer.IsRunning)
             {
                 SoundManager.PlaySound(GetRandomShootSound());
                 bulletTimer.Restart();
