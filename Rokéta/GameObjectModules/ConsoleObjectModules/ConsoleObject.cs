@@ -39,7 +39,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Y = Math.Min(Y, Console.WindowHeight - Height + 1);
             Y = Math.Max(Y, 0);
         }
-		public override void Update(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[] pixels)
 		{
 			Snap();
 			if (IsVissible)

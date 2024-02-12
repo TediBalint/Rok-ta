@@ -108,7 +108,7 @@ namespace Rokéta.GameObjectModules
 				index++;
 			}
 		}
-		public virtual void Update(ref CharInfo[,] pixels)
+		public virtual void Update(ref CharInfo[] pixels)
 		{
 			insertToMatrix(ref pixels);
 		}
@@ -133,9 +133,9 @@ namespace Rokéta.GameObjectModules
 		{
 			return GetDistance(new int[] { (int)gameObject.X, (int)gameObject.Y });
 		}
-		private void insertToMatrix(ref CharInfo[,] pixels)
+		private void insertToMatrix(ref CharInfo[] pixels)
 		{
-			//ehhez lehet kell algoritmus amitol gyorsabb lesz????
+			// new
 			for (int i = 0; i < Height; i++)
 			{
 				for (int j = 0; j < Width; j++)
@@ -144,7 +144,9 @@ namespace Rokéta.GameObjectModules
 					{
 						if (CharInfos[i, j] != null)
 						{
-							pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+							int y = i + (int)Y;
+							int x  = j + (int)X;
+							pixels[y*150+x] = CharInfos[i, j].Value;
 						}
 					}
 					catch (IndexOutOfRangeException)
@@ -153,6 +155,27 @@ namespace Rokéta.GameObjectModules
 					}
 				}
 			}
+
+
+
+			//old
+			//for (int i = 0; i < Height; i++)
+			//{
+			//	for (int j = 0; j < Width; j++)
+			//	{
+			//		try
+			//		{
+			//			if (CharInfos[i, j] != null)
+			//			{
+			//				pixels[i + (int)Y, j + (int)X] = CharInfos[i, j].Value;
+			//			}
+			//		}
+			//		catch (IndexOutOfRangeException)
+			//		{
+			//			Debug.WriteLine("Out of map");
+			//		}
+			//	}
+			//}
 		}
 	}
 }

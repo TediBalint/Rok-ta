@@ -92,7 +92,7 @@ namespace Rokéta.ConsoleObjectModules.AnimationModules
 			else IsDisposed = true;
 			return null;
 		}
-		public override void Update(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[] pixels)
 		{
 			if(IsVissible)
 			{

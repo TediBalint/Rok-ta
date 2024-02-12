@@ -30,7 +30,6 @@ void main()
 	EnemyGenerator enemyGenerator = new EnemyGenerator(consoleObjectFactory, player);
 	//enemyGenerator.test(1000);
 	SoundManager.PlaySound("Music1");
-	Stopwatch bulletTimer = Stopwatch.StartNew();
 
 	Thread thread2 = new Thread(inputThread);
 	// thread for inputs
@@ -53,13 +52,14 @@ void main()
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
+			Debug.WriteLine(gameThicks);
 			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}
 	}
 	void Render()
 	{
-		renderer.Buffer = matrixToVector(consoleObjectManager.Pixels);
+		renderer.Buffer = consoleObjectManager.Pixels;
 		renderer.Render();
 		enemyGenerator.Generate();
 	}
@@ -86,7 +86,7 @@ void main()
 			}
 			else if (Defaults.keyBinds["Shoot"].Contains(keyPress.Key) && player.IsVissible)
 			{
-				player.Weapon.Shoot(bulletTimer, consoleObjectFactory);
+				player.Weapon.Shoot(consoleObjectFactory);
 			}
 			else if(Defaults.keyBinds["MusicToggle"].Contains(keyPress.Key))
 			{

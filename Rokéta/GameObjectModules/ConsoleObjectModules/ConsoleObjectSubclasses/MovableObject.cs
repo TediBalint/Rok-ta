@@ -23,7 +23,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
                 velocity[1] *= -1;
             }
         }
-		public override void Update(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[] pixels)
 		{
 			base.Update(ref pixels);
             Movement();
