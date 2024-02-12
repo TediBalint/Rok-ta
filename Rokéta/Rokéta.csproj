@@ -23,6 +23,7 @@
     <None Remove="savefiles\objects\background\bg4.txt" />
     <None Remove="SaveFiles\Objects\Background\bg5.txt" />
     <None Remove="SaveFiles\Objects\Background\bg6.txt" />
+    <None Remove="savefiles\objects\boosters\Booster1.txt" />
     <None Remove="SaveFiles\Objects\Bullet2.txt" />
     <None Remove="SaveFiles\Objects\Bullet4.txt" />
     <None Remove="SaveFiles\Objects\Bullets\Bullet10.txt" />
@@ -70,6 +71,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SaveFiles\Objects\Boosters\" />
   </ItemGroup>
 
 </Project>

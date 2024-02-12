@@ -8,7 +8,6 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
     {
         public double Health;
 		// stores bullets that hit this enemy already so bullets only hit it once
-		private HashSet<ConsoleObject> hitBullets = new HashSet<ConsoleObject>();
         public Enemy(double x, double y, int zIndex, int? width, int? height, string? filePath, double[] _velocity, double health)
         : base(x, y, zIndex, width, height, filePath, _velocity)
         {
@@ -21,6 +20,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         private void Death()
         {
+            IsDisposed = true;
             CanCollide = false;
             IsVissible = false;
             IsMovable = false;
@@ -29,7 +29,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             Animations[0].IsPaused = false;
             //SoundManager.PlaySound("PlayerDeathSound1");
         }
-        private void TakeDamage(double damage)
+        public void TakeDamage(double damage)
         {
             Health -= damage;
 
@@ -40,16 +40,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
         }
         public override void OnCollision(ConsoleObject otherObject)
         {
-            base.OnCollision(otherObject);
-            if (otherObject.GetType() == typeof(Bullet))
-            {
-                if (!hitBullets.Contains(otherObject))
-                {
-                    Bullet obj = (Bullet)otherObject;
-                    TakeDamage(obj.damage);
-                    hitBullets.Add(otherObject);
-                }
-            }
+            return;
         }
     }
 }

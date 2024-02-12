@@ -49,8 +49,8 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
                         if (ObjType == "Player")
                         {
                             double[] movementSpeed = new double[2] { double.Parse(line[7]), double.Parse(line[8]) };
-                            int boosterDamage = int.Parse(line[9]);
-                            player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, movementSpeed,boosterDamage, ObjFilePath);
+                            string boosterName = line[9];
+                            player = CreatePlayer(Objx, Objy, ObjzIndex, Objwidth, Objheight, movementSpeed,BoosterManager.GetBooster(boosterName), ObjFilePath);
                         }
                         else if (ObjType == "Enemy")
                         {
@@ -76,9 +76,10 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
             Globals.canGenerate = true;
             return player;
         }
-        public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed,int _boosterDamage, string? filePath = null)
+        
+        public Player CreatePlayer(double x, double y, int zIndex, int width, int height, double[] movementSpeed,Booster booster, string? filePath = null)
         {
-            Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed, _boosterDamage);
+            Player newPlayer = new Player(x, y, zIndex, width, height, filePath, movementSpeed, booster);
             ConsoleObjectManager.ConsoleObjects.Insert(findConsoleObjectPlace(newPlayer), newPlayer);
             handleAnimation(newPlayer);
             return newPlayer;
