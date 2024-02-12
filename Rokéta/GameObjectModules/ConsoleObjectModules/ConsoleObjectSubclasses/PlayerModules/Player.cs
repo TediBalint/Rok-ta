@@ -83,7 +83,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             }
             return Defaults.weapons.Last().Value;
         }
-		public override void Update(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[] pixels)
 		{
 			base.Update(ref pixels);
 			ChangeWeapon(GetCurrentWeapon());

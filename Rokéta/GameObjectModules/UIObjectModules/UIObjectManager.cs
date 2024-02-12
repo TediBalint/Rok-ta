@@ -12,7 +12,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 	{
 		public List<UIObject> UIObjects = new List<UIObject>();
 
-		public CharInfo[,] Pixels;
+		public CharInfo[] Pixels;
 		public UIObject ActiveObject { get; private set; }
 		private readonly Stack<UIObject> lastObjects = new Stack<UIObject>();
 		public bool IsActive { get; private set; }
@@ -26,7 +26,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 		};
 
 		private ActiveObjectContext activeObjectContext;
-		public UIObjectManager(CharInfo[,] pixels, bool isActive = false)
+		public UIObjectManager(CharInfo[] pixels, bool isActive = false)
 		{
 			IsActive = isActive;
 			activeObjectContext = new ActiveObjectContext();

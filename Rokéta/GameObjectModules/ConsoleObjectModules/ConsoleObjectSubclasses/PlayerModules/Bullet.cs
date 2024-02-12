@@ -22,7 +22,7 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses
             bounce = _bounce;
             Animations.Add(new Animation("SaveFiles\\Objects\\Animations\\BulletExplosionAnim.txt", this,false));
         }
-		public override void Update(ref CharInfo[,] pixels)
+		public override void Update(ref CharInfo[] pixels)
 		{
 			base.Update(ref pixels);
 			MoveMotion(speed, speed);

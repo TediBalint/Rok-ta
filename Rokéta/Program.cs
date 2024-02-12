@@ -53,13 +53,14 @@ void main()
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
+			Debug.WriteLine(gameThicks);
 			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}
 	}
 	void Render()
 	{
-		renderer.Buffer = matrixToVector(consoleObjectManager.Pixels);
+		renderer.Buffer = consoleObjectManager.Pixels;
 		renderer.Render();
 		enemyGenerator.Generate();
 	}

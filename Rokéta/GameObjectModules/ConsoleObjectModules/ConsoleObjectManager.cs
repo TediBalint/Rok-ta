@@ -11,12 +11,12 @@ namespace Rokéta.GameObjectModules.ConsoleObjectModules
         public string SaveFilePath;
         public List<ConsoleObject> ConsoleObjects;
 
-        public CharInfo[,] Pixels;
+        public CharInfo[] Pixels;
         public ConsoleObjectManager(int width, int height, string _savefilepath)
         {
             SaveFilePath = _savefilepath;
             ConsoleObjects = new List<ConsoleObject>();
-            Pixels = new CharInfo[height, width];
+            Pixels = new CharInfo[height*width];
         }
         public void HandleCollisions()
         {
