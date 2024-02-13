@@ -29,23 +29,27 @@ You will be able to adjust keybinds in the future.
 
 ### Tips & Tricks
 
-- <details>
+<details>
 <summary>Rocket Booster</summary>
+
 The booster of the rocket does damage however be careful to not get too close to the enemies.
 </details>
 
-- <details>
+<details>
 <summary>Rocket Movement</summary>
+
 The rocket movement is made via the console input system so if you set the keyboard repeat rate to the maximum you will become a speedy boi.
 </details>
 
-- <details>
+<details>
 <summary>For Cheaters</summary>
+
 Press X to gain progress towards the next weapon.
 </details>
 
-- <details>
-<summary>For Even Bigger Cheaters</summary>
+<details>
+<summary>For Event Bigger Cheaters</summary>
+
 Press Y + alt + B + f4 to win the game.
 </details>
 
