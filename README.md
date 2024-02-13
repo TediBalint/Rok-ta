@@ -29,15 +29,26 @@ You will be able to adjust keybinds in the future.
 
 ### Tips & Tricks
 
-- <details><summary>Rocket Booster</summary>
-The booster of the rocket does damage however be careful to not get too close to the enemies.</details>
-- <details><summary>Rocket Movement</summary>
-The rocket movement is made via the console input system so if you set the keyboard repeat rate to the maximum you will become a speedy boi. </details>
-- <details><summary>For Cheaters</summary>
-Press X to gain progress towards the next weapon.</details>
-- <details><summary>For Even Bigger Cheaters</summary>
-Press Y + alt + B + f4 to win the game.</details>
+- <details>
+<summary>Rocket Booster</summary>
+The booster of the rocket does damage however be careful to not get too close to the enemies.
+</details>
+
+- <details>
+<summary>Rocket Movement</summary>
+The rocket movement is made via the console input system so if you set the keyboard repeat rate to the maximum you will become a speedy boi.
+</details>
+
+- <details>
+<summary>For Cheaters</summary>
+Press X to gain progress towards the next weapon.
+</details>
+
+- <details>
+<summary>For Even Bigger Cheaters</summary>
+Press Y + alt + B + f4 to win the game.
+</details>
 
 ## Feedback
 
-If you play the game don't forget to leave feedback via [Issues](https://github.com/TediBalint/Rok-ta/issues).
+If you play the game don't forget to leave feedback via [Issues](https://github.com/TediBalint/Rok-ta/issues/new).
