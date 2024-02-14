@@ -10,7 +10,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 {
 	public class UIObjectManager
 	{
-		public List<UIObject> UIObjects = new List<UIObject>();
+		private List<UIObject> UIObjects = new List<UIObject>();
 
 		public CharInfo[] Pixels;
 		public UIObject ActiveObject { get; private set; }
@@ -55,6 +55,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules
 			ActiveObject = activeObjectContext.GetActiveGameObject(UIObjects, lastObjects);
 			ActiveObject.Focus();
 		}
+		public void AddObject(UIObject uiObject) => UIObjects.Add(uiObject);
 		public void Activate() => IsActive = true;
 		public void Deactivate() => IsActive = false;
 	}

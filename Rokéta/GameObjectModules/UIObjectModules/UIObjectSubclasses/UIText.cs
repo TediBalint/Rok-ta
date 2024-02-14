@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 {
-	public class UIText : UIObject
+	public abstract class UIText : UIObject
 	{
 		private readonly Dictionary<string, ITextState> textStates = new Dictionary<string, ITextState>()
 		{
