@@ -8,6 +8,7 @@ using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
 using Rokéta.GameObjectModules.UIObjectModules;
+using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses;
 
 void main()
 {
