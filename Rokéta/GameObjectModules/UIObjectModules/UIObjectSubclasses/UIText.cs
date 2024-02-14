@@ -57,7 +57,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 			}
 		}
 
-		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textAlign = "CC") : base(x, y, 5, width, height, null)
+		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textAlign) : base(x, y, 5, width, height, null)
 		{
 			textAlignState = _textAlign;
 			text = _text;
