@@ -4,7 +4,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 {
 	public class BRState : TextState
 	{
-		protected override int[] getTextPos(int width, int height, int textLength)
+		protected override int[] getTextPos(int width, int height, int textLength, Padding padding)
 		{
 			throw new NotImplementedException();
 		}

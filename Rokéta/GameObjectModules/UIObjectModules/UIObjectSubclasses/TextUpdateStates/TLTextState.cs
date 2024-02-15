@@ -4,9 +4,9 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 {
 	public class TLTextState : TextState
 	{
-		protected override int[] getTextPos(int width, int height, int textLength, int marginX, int marginY)
+		protected override int[] getTextPos(int width, int height, int textLength, Padding padding)
 		{
-			return new int[] {marginX,marginY};
+			return new int[] {padding.Left, padding.Top};
 		}
 	}
 }

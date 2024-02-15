@@ -1,5 +1,6 @@
 ﻿using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
+using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses;
 
 namespace Rokéta.Statics
 {
