@@ -8,6 +8,7 @@ using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.PlayerModules;
 using Rokéta.GameObjectModules.ConsoleObjectModules.ConsoleObjectSubclasses.EnemyModules.EnemyGenModules;
 using Rokéta.GameObjectModules.UIObjectModules;
+using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses;
 
 void main()
 {
@@ -23,7 +24,10 @@ void main()
 	ConsoleObjectManager consoleObjectManager = new ConsoleObjectManager(width,height, "SaveFiles\\GameStates\\game1.txt");
 	ConsoleObjectFactory consoleObjectFactory = new ConsoleObjectFactory(consoleObjectManager);
 
-	UIObjectManager uIObjectManager = new UIObjectManager(consoleObjectManager.Pixels);
+	UIObjectManager uiObjectManager = new UIObjectManager(consoleObjectManager.Pixels);
+	UIObjectFactory uiObjectFactory = new UIObjectFactory(uiObjectManager);
+	uiObjectManager.Activate();
+	uiObjectFactory.CreateButton(5,5,7,7, "Button1", ConsoleColor.Green, ConsoleColor.Red);
 
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, BoosterManager.GetBooster(Defaults.DefaultBoosterName), filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");
@@ -43,16 +47,16 @@ void main()
 	while (true)
 	{
 		
-		if(uIObjectManager.IsActive) uIObjectManager.UpdateObjects();
 		consoleObjectManager.UpdateObjects();
-
+		if (uiObjectManager.IsActive) uiObjectManager.UpdateObjects(); 
 		Render();
+
 		//Set Game Thicks
 		gameThicks +=100;
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
-			Debug.WriteLine(gameThicks);
+			Debug.WriteLine("FPS: " + gameThicks);
 			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}

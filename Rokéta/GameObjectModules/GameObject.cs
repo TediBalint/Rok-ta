@@ -1,5 +1,7 @@
 ﻿using Roketa.ConsoleObjectModules;
+using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.ButtonModules;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Rokéta.GameObjectModules
 {
@@ -12,7 +14,7 @@ namespace Rokéta.GameObjectModules
 		public int Z_Index { get; protected set; }
 		public int Width { get; protected set; }
 		public int Height { get; protected set; }
-		protected CharInfo?[,] CharInfos { get; set; }
+		protected CharInfo?[,] CharInfos;
 		public string? FilePath { get; protected set; }
 
 		public int Top => (int)Y;
