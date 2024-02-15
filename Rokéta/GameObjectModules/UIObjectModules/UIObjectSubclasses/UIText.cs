@@ -56,8 +56,28 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
+		protected int marginX;
+		public int MarginX
+		{
+			get => marginX;
+			set
+			{
+				marginX = value;
+				updateText();
+			}
+		}
+		protected int marginY;
+		public int MarginY
+		{
+			get => marginY;
+			set
+			{
+				marginY = value;
+				updateText();
+			}
+		}
 
-		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textAlign) : base(x, y, 5, width, height, null)
+		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textAlign, int _marginX, int _marginY ) : base(x, y, 5, width, height, null)
 		{
 			textAlignState = _textAlign;
 			text = _text;
@@ -65,11 +85,13 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 			backgroundColor = _backgroundColor;
 			textAlignState = _textAlign;
 			textStateContext = new TextStateContext(textStates[textAlignState]);
+			marginX = _marginX;
+			marginY = _marginY;
 			updateText();
 		}
 		protected void updateText()
 		{
-			textStateContext.UpdateText(ref CharInfos, text, foregroundColor, backgroundColor);
+			textStateContext.UpdateText(ref CharInfos, text, foregroundColor, backgroundColor, marginX, marginY);
 		}
 		
 	}

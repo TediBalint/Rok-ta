@@ -8,9 +8,9 @@
         {
             textState = _textState;
         }
-        public void UpdateText(ref CharInfo?[,] pixels,string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+        public void UpdateText(ref CharInfo?[,] pixels,string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, int marginX, int marginY)
         {
-            textState.UpdateText(ref pixels, text, foregroundColor, backgroundColor);
+            textState.UpdateText(ref pixels, text, foregroundColor, backgroundColor, marginX, marginY);
 		}
         public void SetTextUpdateStrategy(TextState textUpdateStrategy) => textState = textUpdateStrategy;
     }
