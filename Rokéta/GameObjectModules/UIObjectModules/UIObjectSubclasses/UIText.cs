@@ -6,7 +6,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 {
 	public abstract class UIText : UIObject
 	{
-		private readonly Dictionary<string, ITextState> textStates = new Dictionary<string, ITextState>()
+		private readonly Dictionary<string, TextState> textStates = new Dictionary<string, TextState>()
 		{
 			{"TL",new TLTextState()}
 		};

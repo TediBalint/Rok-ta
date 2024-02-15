@@ -3,8 +3,8 @@
     public class TextStateContext
     {
         
-        private ITextState textState;
-        public TextStateContext(ITextState _textState)
+        private TextState textState;
+        public TextStateContext(TextState _textState)
         {
             textState = _textState;
         }
@@ -12,6 +12,6 @@
         {
             textState.UpdateText(ref pixels, text, foregroundColor, backgroundColor);
 		}
-        public void SetTextUpdateStrategy(ITextState textUpdateStrategy) => textState = textUpdateStrategy;
+        public void SetTextUpdateStrategy(TextState textUpdateStrategy) => textState = textUpdateStrategy;
     }
 }
