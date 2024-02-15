@@ -61,8 +61,13 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 		{
 			textAlignState = _textAlign;
 			text = _text;
+			foregroundColor = _foregroundColor;
+			backgroundColor = _backgroundColor;
+			textAlignState = _textAlign;
+			textStateContext = new TextStateContext(textStates[textAlignState]);
+			updateText();
 		}
-		private void updateText()
+		protected void updateText()
 		{
 			textStateContext.UpdateText(ref CharInfos, text, foregroundColor, backgroundColor);
 		}

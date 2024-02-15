@@ -48,17 +48,15 @@ void main()
 	{
 		
 		consoleObjectManager.UpdateObjects();
-		if (uiObjectManager.IsActive) 
-		{
-			uiObjectManager.UpdateObjects(); 
-		}
+		if (uiObjectManager.IsActive) uiObjectManager.UpdateObjects(); 
 		Render();
+
 		//Set Game Thicks
 		gameThicks +=100;
 		if (timer.Elapsed.TotalSeconds >= 0.01)
 		{
 			timer.Restart();
-			Debug.WriteLine(gameThicks);
+			Debug.WriteLine("FPS: " + gameThicks);
 			Globals.currentGameThicks = gameThicks;
 			gameThicks = 0;
 		}
