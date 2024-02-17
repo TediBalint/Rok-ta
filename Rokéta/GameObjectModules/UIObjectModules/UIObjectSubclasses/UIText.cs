@@ -1,7 +1,6 @@
 ﻿using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates;
 using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.LeftTextStates;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 {
@@ -10,7 +9,8 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 		private readonly Dictionary<string, TextState> textStates = new Dictionary<string, TextState>()
 		{
 			{"TL",new TLTextState()},
-			{"CL", new CLTextState()}
+			{"CL", new CLTextState()},
+			{"BL", new BLTextState()},
 		};
 		protected TextStateContext textStateContext;
 

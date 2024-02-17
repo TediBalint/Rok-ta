@@ -4,7 +4,9 @@
 	{
 		protected override int[] getTextPos(int width, int height, int textLength, Padding padding)
 		{
-			throw new NotImplementedException();
+			int linesFilled = getFilledLines(width, textLength, padding);
+			return new int[] {padding.Left, height-linesFilled-padding.Bottom-1};
+			
 		}
 	}
 }
