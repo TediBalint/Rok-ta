@@ -42,5 +42,6 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 		}
 		protected bool isOnPadX(int x, int width, Padding padding) => x >= padding.Left && x < width - padding.Right;
 		protected bool isOnPadY(int y, int height, Padding padding) => y >= padding.Top && y < height - padding.Bottom;
+		protected int getFilledLines(int width, int textLength, Padding padding) => textLength / (width - padding.Left - padding.Right);
 	}
 }
