@@ -58,7 +58,6 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
-		
 		protected int marginX;
 		public int MarginX
 		{
@@ -92,7 +91,6 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 			Padding = _padding;
 			Padding.MarginChanged += updateText;
 			updateText();
-			
 		}
 		protected void updateText()
 		{

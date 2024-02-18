@@ -26,8 +26,9 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
                 if (y == startY) start = startX;
                 for (int x = start; x < width; x++)
                 {
-                    if (isOnPadX(x, width, padding) || isOnPadY(y, height, padding))
+                    if (isNotOnPadX(x, width, padding) && isNotOnPadY(y, height, padding))
                     {
+
                         pixels[y, x] = new CharInfo(text[charIndex], foregroundColor, backgroundColor);
                         charIndex++;
                         if (charIndex >= text.Length)

@@ -29,19 +29,18 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 					{
 						pixels[y, x] = new CharInfo(' ', foregroundColor, backgroundColor);
 					}
-					Debug.WriteLine($"x: {x}, y: {y}");
 				}
 			}
 		}
 		protected int getTextAreaLength(int width, int height, int startX, int startY, Padding padding)
 		{
 			int baseArea = (width - padding.Left - padding.Right) * (height - padding.Top - padding.Bottom);
-			if (!isOnPadX(startX, width, padding)) baseArea -= startX - padding.Left;
-			if (!isOnPadY(startY, width, padding)) baseArea -= startY - padding.Top;
+			if (!isNotOnPadX(startX, width, padding)) baseArea -= startX - padding.Left;
+			if (!isNotOnPadY(startY, width, padding)) baseArea -= startY - padding.Top;
 			return Math.Max(baseArea, 0);
 		}
-		protected bool isOnPadX(int x, int width, Padding padding) => x >= padding.Left && x < width - padding.Right;
-		protected bool isOnPadY(int y, int height, Padding padding) => y >= padding.Top && y < height - padding.Bottom;
+		protected bool isNotOnPadX(int x, int width, Padding padding) => x >= padding.Left && x < width - padding.Right;
+		protected bool isNotOnPadY(int y, int height, Padding padding) => y >= padding.Top && y < height - padding.Bottom;
 		protected int getFilledLines(int width, int textLength, Padding padding) => textLength / (width - padding.Left - padding.Right);
 	}
 }
