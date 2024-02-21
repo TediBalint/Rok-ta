@@ -32,7 +32,8 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 				}
 			}
 		}
-		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startY, ref int startX,ref int charIndex, int width, int height, Padding padding, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startY, ref int startX,ref int charIndex, int width, int height, 
+			Padding padding, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
 		{
 			int start = 0;
 			if (y == startY) start = startX;
