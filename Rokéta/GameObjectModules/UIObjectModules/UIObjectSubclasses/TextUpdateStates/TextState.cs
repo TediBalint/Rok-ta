@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
 {
 	public abstract class TextState
 	{
-		
 		protected abstract void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding);
 		protected abstract int[] getTextPos(int width, int height, int textLength, Padding padding);
 		public void UpdateText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, Padding padding)
@@ -31,6 +31,39 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 					}
 				}
 			}
+		}
+		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startY, ref int startX,ref int charIndex, int width, int height, Padding padding, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+		{
+			int start = 0;
+			if (y == startY) start = startX;
+			for (int x = start; x < width; x++)
+			{
+				if (isNotOnPadX(x, width, padding) && isNotOnPadY(y, height, padding))
+				{
+
+					pixels[y, x] = new CharInfo(text[charIndex], foregroundColor, backgroundColor);
+					charIndex++;
+					if (charIndex >= text.Length)
+					{
+						startX = x;
+						startY = y;
+						return;
+					}
+				}
+				else
+				{
+					pixels[y, x] = new CharInfo(' ', foregroundColor, backgroundColor);
+				}
+
+			}
+		}
+		protected string getText(string text, int charCount)
+		{
+			if (text.Length >= charCount)
+			{
+				text = text.Substring(0, charCount);
+			}
+			return text;
 		}
 		protected int getTextAreaLength(int width, int height, int startX, int startY, Padding padding)
 		{
