@@ -13,7 +13,6 @@
 				return;
 			}
 			text = getText(text, charCount);
-			
 			int charIndex = 0;
 			for (int y = startY; y < height; y++)
 			{
