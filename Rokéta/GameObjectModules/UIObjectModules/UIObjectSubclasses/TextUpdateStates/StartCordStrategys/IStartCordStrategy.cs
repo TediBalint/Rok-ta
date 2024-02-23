@@ -2,6 +2,6 @@
 {
 	public interface IStartCordStrategy
 	{
-		public int[] GetStartCords(int height, int width, Padding padding, int textLength);
+		public int[] GetStartCords(int width, int height, int textLength, Padding padding);
 	}
 }

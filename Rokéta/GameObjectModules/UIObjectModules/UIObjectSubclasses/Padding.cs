@@ -83,7 +83,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 			}
 		}
 
-		public event EventHandler MarginChanged;
+		public event EventHandler PaddingChanged;
 		public Padding(int padding) {
 			left = bottom = top = right = padding;
 		}
@@ -100,7 +100,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 		}
 		protected void OnMarginChanged()
 		{
-			MarginChanged?.Invoke(this, EventArgs.Empty);
+			PaddingChanged?.Invoke(this, EventArgs.Empty);
 		}
 	}
 }

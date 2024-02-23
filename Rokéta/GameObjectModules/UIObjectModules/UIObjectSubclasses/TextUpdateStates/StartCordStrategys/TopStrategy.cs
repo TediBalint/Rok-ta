@@ -2,7 +2,7 @@
 {
 	public class TopStrategy : IStartCordStrategy
 	{
-		public int[] GetStartCords(int height, int width, Padding padding, int textLength)
+		public int[] GetStartCords(int width, int height, int textLength, Padding padding)
 		{
 			return new int[] { padding.Right, padding.Top };
 		}

@@ -1,17 +1,13 @@
 ﻿using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates;
-using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.LeftTextStates;
+using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.StartCordStrategys;
 using System.Diagnostics;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 {
 	public abstract class UIText : UIObject
 	{
-		private readonly Dictionary<string, TextState> textStates = new Dictionary<string, TextState>()
-		{
-			{"TL",new TLTextState()},
-			{"CL", new CLTextState()},
-			{"BL", new BLTextState()},
-		};
+
+		
 		protected TextStateContext textStateContext;
 
 		protected string text;
@@ -24,18 +20,33 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
-		protected string textAlignState;
-		public string TextAlignState { 
-			get => textAlignState; 
+		protected string textHorizontalAlignState
+		{
+			get => textHorizontalAlignState;
+			set => textHorizontalAlignState = value.ToUpper();
+		}
+		public string TextHorizontalAlignState { 
+			get => textHorizontalAlignState; 
 			set
 			{
-				if (textStates.ContainsKey(value))
-				{
-					textAlignState = value;
-					textStateContext.SetTextUpdateStrategy(textStates[value]);
-					updateText();
-				}
-				else Debug.WriteLine($"UIText.cs//TextAlignState Setter: {value} state doesn't exist");
+				textHorizontalAlignState = value.ToUpper();
+				textStateContext.SetTextState(textHorizontalAlignState);
+				updateText();
+			}
+		}
+		protected string textVerticalAlignStrategy
+		{
+			get => textVerticalAlignStrategy;
+			set => textVerticalAlignStrategy = value.ToUpper();
+		}
+		public string TextVerticalAlignStrategy
+		{
+			get => textVerticalAlignStrategy;
+			set
+			{
+				textVerticalAlignStrategy = value.ToUpper();
+				textStateContext.SetTextState(textVerticalAlignStrategy);
+				updateText();
 			}
 		}
 		protected ConsoleColor foregroundColor;
@@ -58,38 +69,19 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
-		protected int marginX;
-		public int MarginX
-		{
-			get => marginX;
-			set
-			{
-				marginX = value;
-				updateText();
-			}
-		}
-		protected int marginY;
-		public int MarginY
-		{
-			get => marginY;
-			set
-			{
-				marginY = value;
-				updateText();
-			}
-		}
 		public Padding Padding;
-		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textAlign, Padding _padding)
+		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textHorizontalAlign,string _textVerticalAlign, Padding _padding)
 			: base(x, y, 5, width, height, null)
 		{
-			textAlignState = _textAlign;
+
 			text = _text;
 			foregroundColor = _foregroundColor;
 			backgroundColor = _backgroundColor;
-			textAlignState = _textAlign;
-			textStateContext = new TextStateContext(textStates[textAlignState]);
+			textHorizontalAlignState = _textHorizontalAlign;
+			textVerticalAlignStrategy = _textVerticalAlign;
+			textStateContext = new TextStateContext(textHorizontalAlignState, textVerticalAlignStrategy);
 			Padding = _padding;
-			Padding.MarginChanged += updateText;
+			Padding.PaddingChanged += updateText;
 			updateText();
 		}
 		protected void updateText()

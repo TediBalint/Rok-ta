@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.StartCordStrategys;
+using System.Diagnostics;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
 {
-    public abstract class LeftTextState : TextState
+    public class LeftTextState : TextState
     {
-        protected override void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding)
+		protected override void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding)
         {
 
             int height = pixels.GetLength(0);

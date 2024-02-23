@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.StartCordStrategys;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,13 +11,11 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 {
 	public abstract class TextState
 	{
-		protected abstract void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding);
-		protected abstract int[] getTextPos(int width, int height, int textLength, Padding padding);
-		public void UpdateText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, Padding padding)
+		public void UpdateText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, Padding padding, IStartCordStrategy startCordStrategy)
 		{
 			int height = pixels.GetLength(0);
 			int width = pixels.GetLength(1);
-			int[] pos = getTextPos(width, height, text.Length, padding);
+			int[] pos = startCordStrategy.GetStartCords(width, height, text.Length, padding);
 			for (int y = 0; y < height; y++)
 			{
 				for (int x = 0; x < width; x++)
@@ -32,6 +31,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 				}
 			}
 		}
+		protected abstract void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding);
 		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startY, ref int startX,ref int charIndex, int width, int height, 
 			Padding padding, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
 		{

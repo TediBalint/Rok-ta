@@ -1,6 +1,6 @@
 ﻿namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
 {
-    public abstract class RightTextState : TextState
+    public class RightTextState : TextState
     {
         protected override void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding)
         {
