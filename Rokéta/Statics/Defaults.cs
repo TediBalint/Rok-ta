@@ -8,7 +8,7 @@ namespace Rokéta.Statics
 	{
 		public static double[] DefaultSpeed = new double[2] {1,1};
 		public const string DefaultBoosterName = "Booster1.txt";
-		public const string DefaultButtonPath = "SaveFiles\\Objects\\UI\\Buttons\\1.txt";
+		
 		public static List<Bullet> bullets = new List<Bullet>() 
 		{
 			new Bullet(0,0,2,1,1,"SaveFiles\\Objects\\Bullets\\Bullet1.txt", 10, 2, 1, false),
@@ -109,7 +109,12 @@ namespace Rokéta.Statics
 			{"Cheat", new ConsoleKey[] {ConsoleKey.C } },
 			{"Restart", new ConsoleKey[] {ConsoleKey.R}}
 		};
-		
+		public static class UI
+		{
+			public const string ButtonPath = "SaveFiles\\Objects\\UI\\Buttons\\1.txt";
+			public const string HorizontalAlign = "LEFT";
+			public const string VerticalAlign = "TOP";
+		}
 	}
 	
 }

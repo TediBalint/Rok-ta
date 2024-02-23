@@ -4,8 +4,8 @@
     {
         
         public Button(double x, double y, int width, int height, string _text, ConsoleColor foregroundColor,ConsoleColor backgroundColor, 
-            Padding padding, string _textAlign = "TL", UIEventHandler? command = null) :
-            base(x, y, width, height, _text, foregroundColor,backgroundColor, _textAlign, padding)
+            Padding padding, string _textHorizontalAlign = "LEFT",string _textVerticalAlign = "TOP", UIEventHandler? command = null) :
+            base(x, y, width, height, _text, foregroundColor,backgroundColor, _textHorizontalAlign, _textVerticalAlign, padding)
         {
             if (command != null)
             {

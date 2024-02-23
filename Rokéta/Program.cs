@@ -26,7 +26,8 @@ void main()
 	UIObjectManager uiObjectManager = new UIObjectManager(consoleObjectManager.Pixels);
 	UIObjectFactory uiObjectFactory = new UIObjectFactory(uiObjectManager);
 	uiObjectManager.Activate();
-	Button button = uiObjectFactory.CreateButton(5,5,15,5,padTop:0,padBot:0, padLeft:2, padRight:0, text:"button01dasdsadasdas", textAlign:"BL",foreground:ConsoleColor.Green, background:ConsoleColor.Red);
+	Button button = uiObjectFactory.CreateButton(5,5,15,5,padTop:0,padBot:0, padLeft:2, padRight:0, text:"button01dasdsadasdas", textHorizontalAlign:"left",textVerticalAlign:"top",
+		foreground:ConsoleColor.Green, background:ConsoleColor.Red);
 
 	Player player = consoleObjectFactory.CreatePlayer(20, 20, 2, 5, 11,Defaults.DefaultSpeed, BoosterManager.GetBooster(Defaults.DefaultBoosterName), filePath: "SaveFiles\\Objects\\Players\\Player2.txt");
 	Background background = consoleObjectFactory.CreateBackground(filePath: "SaveFiles\\Objects\\Background\\bg1.txt");

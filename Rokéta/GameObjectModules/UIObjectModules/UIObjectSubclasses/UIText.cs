@@ -20,11 +20,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
-		protected string textHorizontalAlignState
-		{
-			get => textHorizontalAlignState;
-			set => textHorizontalAlignState = value.ToUpper();
-		}
+		protected string textHorizontalAlignState;
 		public string TextHorizontalAlignState { 
 			get => textHorizontalAlignState; 
 			set
@@ -34,11 +30,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 				updateText();
 			}
 		}
-		protected string textVerticalAlignStrategy
-		{
-			get => textVerticalAlignStrategy;
-			set => textVerticalAlignStrategy = value.ToUpper();
-		}
+		protected string textVerticalAlignStrategy;
 		public string TextVerticalAlignStrategy
 		{
 			get => textVerticalAlignStrategy;
@@ -73,12 +65,11 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses
 		public UIText(double x, double y, int width, int height, string _text, ConsoleColor _foregroundColor, ConsoleColor _backgroundColor, string _textHorizontalAlign,string _textVerticalAlign, Padding _padding)
 			: base(x, y, 5, width, height, null)
 		{
-
 			text = _text;
 			foregroundColor = _foregroundColor;
 			backgroundColor = _backgroundColor;
-			textHorizontalAlignState = _textHorizontalAlign;
-			textVerticalAlignStrategy = _textVerticalAlign;
+			textHorizontalAlignState = _textHorizontalAlign.ToUpper();
+			textVerticalAlignStrategy = _textVerticalAlign.ToUpper();
 			textStateContext = new TextStateContext(textHorizontalAlignState, textVerticalAlignStrategy);
 			Padding = _padding;
 			Padding.PaddingChanged += updateText;
