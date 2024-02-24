@@ -7,7 +7,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
     {
 		protected override void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding)
         {
-
+            Debug.WriteLine(pixels.GetLength(0));
             int height = pixels.GetLength(0);
             int width = pixels.GetLength(1);
             int charCount = getTextAreaLength(width, height, startX, startY, padding);
@@ -20,7 +20,11 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
             int charIndex = 0;
             for (int y = startY; y < height; y++)
             {
-                insertLine(ref pixels, text, y, ref startY, ref startX, ref charIndex, width, height, padding, foregroundColor, backgroundColor);
+                if(charIndex <= charCount)
+                {
+					insertLine(ref pixels, text, y, ref startY, ref startX, ref charIndex, width, height, padding, foregroundColor, backgroundColor);
+				}
+                
             }
         }
     }

@@ -1,11 +1,5 @@
 ﻿using Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates.StartCordStrategys;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
 {
@@ -39,10 +33,11 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 			if (y == startY) start = startX;
 			for (int x = start; x < width; x++)
 			{
-				if (isNotOnPadX(x, width, padding) && isNotOnPadY(y, height, padding))
+				if (isNotOnPadX(x, width, padding) && isNotOnPadY(y, height, padding) && charIndex < text.Length)
 				{
-
+					//Debug.WriteLine($"x = {x}, y = {y}, height = {pixels.GetLength(0)}, textLength = {text.Length}, charindex = {charIndex}");
 					pixels[y, x] = new CharInfo(text[charIndex], foregroundColor, backgroundColor);
+
 					charIndex++;
 					if (charIndex >= text.Length)
 					{
@@ -50,6 +45,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 						startY = y;
 						return;
 					}
+					
 				}
 				else
 				{
