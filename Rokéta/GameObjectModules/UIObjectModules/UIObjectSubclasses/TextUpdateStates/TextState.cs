@@ -18,7 +18,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 					{
 						insertText(ref pixels, text, foregroundColor, backgroundColor, ref y, ref x, padding);
 					}
-					else
+					else if(y < height && x < width)
 					{
 						pixels[y, x] = new CharInfo(' ', foregroundColor, backgroundColor);
 					}
@@ -26,11 +26,10 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
 			}
 		}
 		protected abstract void insertText(ref CharInfo?[,] pixels, string text, ConsoleColor foregroundColor, ConsoleColor backgroundColor, ref int startY, ref int startX, Padding padding);
-		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startY, ref int startX,ref int charIndex, int width, int height, 
+		protected void insertLine(ref CharInfo?[,] pixels, string text, int y, ref int startX, ref int startY, ref int charIndex, int width, int height, 
 			Padding padding, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
 		{
-			int start = 0;
-			if (y == startY) start = startX;
+			int start = startX;
 			for (int x = start; x < width; x++)
 			{
 				if (isNotOnPadX(x, width, padding) && isNotOnPadY(y, height, padding) && charIndex < text.Length)

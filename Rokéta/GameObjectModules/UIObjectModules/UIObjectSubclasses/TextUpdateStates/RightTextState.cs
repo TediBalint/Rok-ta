@@ -1,4 +1,6 @@
-﻿namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
+﻿using System.Diagnostics;
+
+namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdateStates
 {
     public class RightTextState : TextState
     {
@@ -22,8 +24,9 @@
                 }
                 else if (charIndex < text.Length)
                 {
-                    startX = width - text.Length + charIndex - padding.Right - 1;
-                    for (int x = 0; x < startX; x++)
+                    startX = width - text.Length + charIndex - padding.Right;
+					Debug.WriteLine(startX);
+					for (int x = 0; x < startX; x++)
                     {
                         pixels[y, x] = new CharInfo(' ', foregroundColor, backgroundColor);
                     }

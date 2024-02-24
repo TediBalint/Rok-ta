@@ -22,7 +22,7 @@ namespace Rokéta.GameObjectModules.UIObjectModules.UIObjectSubclasses.TextUpdat
             {
                 if(charIndex <= charCount)
                 {
-					insertLine(ref pixels, text, y, ref startY, ref startX, ref charIndex, width, height, padding, foregroundColor, backgroundColor);
+					insertLine(ref pixels, text, y, ref startX, ref startY, ref charIndex, width, height, padding, foregroundColor, backgroundColor);
 				}
                 
             }
