@@ -1,6 +1,6 @@
 # Rokéta
 
-Rokéta is a space invaders style game made in c#. It was made for a school project back in the december of 2023. The beatuy of this project is that it doesnt't use any NuGet packages for rendering, it just uses the Console class. The restriction for the project was that it must be a console project so i decided to take console project to the extreme levels. Even the sound is made via 
+Rokéta is a space invaders style game made in c#. It was made for a school project back in the december of 2023. The beauty of this project is that it doesnt't use any NuGet packages for rendering, it just uses the Console class. The restriction for the project was that it must be a console project so i decided to take console project to the extreme levels. Even the sound is made via 
 
 ```c#
 console.beep()
